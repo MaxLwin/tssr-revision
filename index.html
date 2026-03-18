@@ -577,6 +577,121 @@
   .tp-corr-text{color:var(--text);line-height:1.7}
   .tp-status{font-size:12px;color:var(--muted);font-family:var(--mono);margin-top:.5rem}
 
+
+  /* ── NOTES HUB ── */
+  .noteshub-wrap{max-width:740px;margin:0 auto;padding:2rem 0 5rem}
+  .noteshub-hero{padding:1.5rem 0 1.25rem;border-bottom:1px solid var(--border);margin-bottom:1.75rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  .noteshub-hero h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:.3rem}
+  .noteshub-hero p{font-size:13px;color:var(--muted);font-family:var(--mono)}
+  .noteshub-export-all{padding:.6rem 1.2rem;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:var(--mono);color:var(--text2);cursor:pointer;transition:.15s;-webkit-appearance:none;flex-shrink:0}
+  .noteshub-export-all:hover{border-color:var(--accent);color:var(--accent2)}
+  .noteshub-empty{text-align:center;padding:3.5rem 1rem;color:var(--muted);font-family:var(--mono);font-size:13px}
+  .noteshub-empty span{font-size:2.5rem;display:block;margin-bottom:.75rem}
+  .noteshub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+  .noteshub-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden;transition:border-color .15s,box-shadow .15s}
+  .noteshub-card:hover{border-color:var(--border3);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+  .noteshub-card-head{padding:.9rem 1.1rem .75rem;display:flex;align-items:center;gap:.75rem;cursor:pointer}
+  .noteshub-card-icon{font-size:1.3rem;flex-shrink:0}
+  .noteshub-card-title{font-size:14px;font-weight:700;color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .noteshub-card-meta{font-size:10px;color:var(--muted);font-family:var(--mono);margin-top:2px}
+  .noteshub-card-actions{display:flex;gap:4px;flex-shrink:0}
+  .noteshub-card-btn{padding:4px 9px;background:var(--surface2);border:1px solid var(--border2);border-radius:5px;font-size:10px;font-family:var(--mono);color:var(--muted);cursor:pointer;transition:.12s;-webkit-appearance:none}
+  .noteshub-card-btn:hover{border-color:var(--border3);color:var(--text2)}
+  .noteshub-card-btn.danger:hover{border-color:var(--red-border);color:var(--red)}
+  .noteshub-card-preview{padding:0 1.1rem .95rem;font-size:12px;color:var(--text2);font-family:var(--mono);line-height:1.65;white-space:pre-wrap;border-top:1px solid var(--border);padding-top:.75rem;max-height:100px;overflow:hidden;position:relative;cursor:pointer}
+  .noteshub-card-preview::after{content:'';position:absolute;bottom:0;left:0;right:0;height:30px;background:linear-gradient(transparent,var(--surface))}
+  .noteshub-card-full{padding:.75rem 1.1rem .95rem;font-size:12px;color:var(--text2);font-family:var(--mono);line-height:1.65;white-space:pre-wrap;border-top:1px solid var(--border);display:none}
+  .noteshub-card-full.open{display:block}
+  .noteshub-edit-area{width:100%;min-height:120px;background:var(--surface2);border:none;border-top:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:12px;padding:.8rem 1.1rem;resize:vertical;outline:none;box-sizing:border-box;line-height:1.7;display:none}
+  .noteshub-edit-area.open{display:block}
+  .noteshub-edit-footer{display:none;gap:.5rem;padding:.5rem 1.1rem .75rem;background:var(--surface)}
+  .noteshub-edit-footer.open{display:flex}
+  .noteshub-save-btn{padding:5px 14px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:11px;cursor:pointer;font-family:var(--mono);font-weight:600;-webkit-appearance:none}
+  .noteshub-cancel-btn{padding:5px 12px;background:transparent;color:var(--muted);border:1px solid var(--border2);border-radius:var(--radius);font-size:11px;cursor:pointer;font-family:var(--mono);-webkit-appearance:none}
+  .noteshub-status{font-size:10px;font-family:var(--mono);color:var(--green);margin-left:auto;align-self:center}
+  .noteshub-filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
+  .noteshub-filter-btn{padding:5px 12px;background:var(--surface);border:1px solid var(--border2);border-radius:99px;font-size:11px;font-family:var(--mono);color:var(--muted);cursor:pointer;transition:.12s;-webkit-appearance:none}
+  .noteshub-filter-btn:hover{border-color:var(--border3);color:var(--text2)}
+  .noteshub-filter-btn.active{background:rgba(79,142,255,.1);border-color:rgba(79,142,255,.3);color:var(--accent2)}
+  @media(max-width:600px){.noteshub-grid{grid-template-columns:1fr}}
+
+
+  /* ── BLOC-NOTES PAGE ── */
+  .bloc-wrap{max-width:740px;margin:0 auto;padding:2rem 0 5rem}
+  .bloc-hero{padding:1.5rem 0 1.25rem;border-bottom:1px solid var(--border);margin-bottom:1.75rem;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+  .bloc-hero h2{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .bloc-hero p{font-size:13px;color:var(--muted);font-family:var(--mono);margin-top:.25rem}
+  .bloc-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .bloc-export-all-btn{padding:7px 14px;background:rgba(79,142,255,.1);border:1px solid rgba(79,142,255,.3);border-radius:var(--radius);color:var(--accent2);font-size:12px;cursor:pointer;font-family:var(--mono);transition:.15s;-webkit-appearance:none}
+  .bloc-export-all-btn:hover{background:rgba(79,142,255,.2)}
+  .bloc-empty{text-align:center;padding:4rem 1rem;color:var(--muted);font-family:var(--mono);font-size:13px}
+  .bloc-empty-icon{font-size:2.5rem;margin-bottom:.75rem}
+  .bloc-search-row{margin-bottom:1.25rem}
+  .bloc-search{width:100%;padding:.75rem 1rem;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:14px;font-family:var(--sans);outline:none;transition:border-color .15s;box-sizing:border-box}
+  .bloc-search:focus{border-color:var(--accent)}
+  .bloc-search::placeholder{color:var(--muted)}
+  .bloc-grid{display:flex;flex-direction:column;gap:10px}
+  .bloc-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden;transition:border-color .15s}
+  .bloc-card:hover{border-color:var(--border3)}
+  .bloc-card-header{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;cursor:pointer;gap:.75rem;user-select:none}
+  .bloc-card-header:hover .bloc-card-title{color:var(--text)}
+  .bloc-card-left{display:flex;align-items:center;gap:.75rem;flex:1;min-width:0}
+  .bloc-card-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  .bloc-card-title{font-size:14px;font-weight:600;color:var(--text2);transition:color .12s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bloc-card-meta{font-size:10px;color:var(--muted);font-family:var(--mono);white-space:nowrap;flex-shrink:0}
+  .bloc-card-chevron{color:var(--muted);font-size:11px;flex-shrink:0;transition:transform .2s}
+  .bloc-card.open .bloc-card-chevron{transform:rotate(180deg)}
+  .bloc-card-body{display:none;border-top:1px solid var(--border);padding:1rem 1.1rem}
+  .bloc-card.open .bloc-card-body{display:block}
+  .bloc-card-content{font-size:13.5px;color:var(--text2);line-height:1.85;white-space:pre-wrap;font-family:var(--mono);max-height:320px;overflow-y:auto;background:var(--surface2);border-radius:var(--radius);padding:.85rem 1rem;margin-bottom:.75rem}
+  .bloc-card-footer{display:flex;gap:7px;flex-wrap:wrap}
+  .bloc-edit-btn{padding:5px 13px;background:rgba(79,142,255,.1);border:1px solid rgba(79,142,255,.3);border-radius:var(--radius);color:var(--accent2);font-size:11px;cursor:pointer;font-family:var(--mono);transition:.15s;-webkit-appearance:none}
+  .bloc-edit-btn:hover{background:rgba(79,142,255,.2)}
+  .bloc-delete-btn{padding:5px 12px;background:transparent;border:1px solid var(--border2);border-radius:var(--radius);color:var(--muted);font-size:11px;cursor:pointer;font-family:var(--mono);transition:.15s;-webkit-appearance:none}
+  .bloc-delete-btn:hover{color:var(--red);border-color:var(--red-border)}
+  .bloc-dl-btn{padding:5px 12px;background:transparent;border:1px solid var(--border2);border-radius:var(--radius);color:var(--muted);font-size:11px;cursor:pointer;font-family:var(--mono);transition:.15s;-webkit-appearance:none}
+  .bloc-dl-btn:hover{color:var(--green);border-color:var(--green-border)}
+  .bloc-goto-btn{padding:5px 12px;background:transparent;border:1px solid var(--border2);border-radius:var(--radius);color:var(--muted);font-size:11px;cursor:pointer;font-family:var(--mono);transition:.15s;-webkit-appearance:none}
+  .bloc-goto-btn:hover{color:var(--accent2);border-color:rgba(79,142,255,.3)}
+  .bloc-count-badge{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:18px;background:rgba(79,142,255,.12);border:1px solid rgba(79,142,255,.25);border-radius:99px;font-size:10px;font-family:var(--mono);color:var(--accent2);padding:0 5px}
+  .bloc-note-edit-area{width:100%;background:var(--surface2);border:1px solid var(--accent);border-radius:var(--radius);color:var(--text);font-size:13px;font-family:var(--mono);padding:.85rem 1rem;resize:vertical;outline:none;line-height:1.8;min-height:140px;box-sizing:border-box;margin-bottom:.6rem}
+  .bloc-save-inline-btn{padding:6px 16px;background:var(--accent);border:none;border-radius:var(--radius);color:#fff;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:opacity .15s;-webkit-appearance:none}
+  .bloc-save-inline-btn:hover{opacity:.88}
+  .bloc-cancel-btn{padding:6px 12px;background:transparent;border:1px solid var(--border2);border-radius:var(--radius);color:var(--muted);font-size:12px;cursor:pointer;font-family:var(--mono);transition:.15s;-webkit-appearance:none}
+  .bloc-cancel-btn:hover{color:var(--text2)}
+  .bloc-saved-toast{font-size:11px;color:var(--green);font-family:var(--mono)}
+
+
+  /* ── MES NOTES ── */
+  .mesnotes-wrap{max-width:740px;margin:0 auto;padding:2rem 0 5rem}
+  .mesnotes-hero{padding:1.5rem 0 1.25rem;border-bottom:1px solid var(--border);margin-bottom:1.75rem}
+  .mesnotes-hero h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:.4rem}
+  .mesnotes-hero p{font-size:13px;color:var(--muted);font-family:var(--mono)}
+  .mesnotes-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-family:var(--mono);font-size:13px}
+  .mesnotes-empty span{font-size:2.5rem;display:block;margin-bottom:.75rem}
+  .mesnotes-grid{display:flex;flex-direction:column;gap:10px}
+  .mesnotes-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden;transition:border-color .15s}
+  .mesnotes-card:hover{border-color:var(--border3)}
+  .mesnotes-card-head{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem .75rem;cursor:pointer;gap:.75rem;user-select:none}
+  .mesnotes-card-left{display:flex;align-items:center;gap:.75rem;min-width:0}
+  .mesnotes-card-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .mesnotes-card-title{font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mesnotes-card-meta{font-size:10px;color:var(--muted);font-family:var(--mono);white-space:nowrap}
+  .mesnotes-card-actions{display:flex;gap:5px;flex-shrink:0}
+  .mesnotes-edit-btn{padding:4px 10px;background:rgba(79,142,255,.1);border:1px solid rgba(79,142,255,.25);border-radius:5px;font-size:11px;color:var(--accent2);cursor:pointer;font-family:var(--mono);transition:.12s;-webkit-appearance:none}
+  .mesnotes-edit-btn:hover{background:rgba(79,142,255,.2)}
+  .mesnotes-del-btn{padding:4px 8px;background:var(--red-bg);border:1px solid var(--red-border);border-radius:5px;font-size:11px;color:var(--red);cursor:pointer;font-family:var(--mono);transition:.12s;-webkit-appearance:none}
+  .mesnotes-del-btn:hover{background:rgba(255,95,109,.18)}
+  .mesnotes-card-body{display:none;padding:0 1.1rem 1rem;border-top:1px solid var(--border)}
+  .mesnotes-card-body.open{display:block}
+  .mesnotes-card-text{font-size:13px;color:var(--text2);font-family:var(--mono);line-height:1.8;white-space:pre-wrap;margin:.75rem 0 .5rem;max-height:300px;overflow-y:auto}
+  .mesnotes-export-all-btn{padding:6px 14px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--radius);color:var(--green);font-size:12px;cursor:pointer;font-family:var(--mono);transition:.12s;-webkit-appearance:none}
+  .mesnotes-export-all-btn:hover{background:rgba(46,204,138,.18)}
+  .mesnotes-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem}
+  .mesnotes-count{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .mesnotes-search{padding:7px 12px;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:13px;font-family:var(--mono);outline:none;width:200px;transition:.15s;-webkit-appearance:none}
+  .mesnotes-search:focus{border-color:var(--accent);width:240px}
+
 </style>
 </head>
 <body>
@@ -628,6 +743,7 @@
       <button class="nav-drop-item" onclick="showSection('sprint');closeNavGroups()">⚡ Sprint 10 min</button>
       <button class="nav-drop-item" onclick="showSection('tp');closeNavGroups()">🧪 TPs générés</button>
       <button class="nav-drop-item" onclick="showSection('import');closeNavGroups()">📂 Importer un TP</button>
+      <button class="nav-drop-item" onclick="showSection('notes');closeNavGroups()">📓 Mes notes</button>
     </div>
   </div>
 
@@ -684,6 +800,7 @@
     <button onclick="showSection('sprint');closeMobileMenus()">⚡ Sprint</button>
     <button onclick="showSection('tp');closeMobileMenus()">🧪 TPs</button>
     <button onclick="showSection('import');closeMobileMenus()">📂 Import</button>
+    <button onclick="showSection('notes');closeMobileMenus()">📓 Notes</button>
   </div>
 </div>
 <div class="mobile-menu-overlay" id="mobile-overlay" onclick="closeMobileMenus()" style="display:none"></div>
@@ -727,6 +844,7 @@
     <div class="module-card" style="--card-color:#ffb347;--card-glow:rgba(255,179,71,.06)" onclick="showSection('fiches')"><div class="module-card-head"><span class="module-icon">📚</span><span class="module-arrow">↗</span></div><h3>Fiches de révision</h3><p>30 fiches · Recherche</p></div>
     <div class="module-card" style="--card-color:#38d9f5;--card-glow:rgba(56,217,245,.06)" onclick="showSection('ports')"><div class="module-card-head"><span class="module-icon">🔌</span><span class="module-arrow">↗</span></div><h3>Ports TCP/UDP</h3><p>20/30 ports · Tableau</p></div>
     <div class="module-card" style="--card-color:#a78bfa;--card-glow:rgba(167,139,250,.07)" onclick="showSection('import')"><div class="module-card-head"><span class="module-icon">📂</span><span class="module-arrow">↗</span></div><h3>Importer un TP</h3><p>PDF · DOCX · TXT · QCM auto</p></div>
+    <div class="module-card" style="--card-color:#4f8eff;--card-glow:rgba(79,142,255,.07)" onclick="showSection('notes')"><div class="module-card-head"><span class="module-icon">📓</span><span class="module-arrow">↗</span></div><h3>Mes notes</h3><p>Tous les bloc-notes sauvegardés</p></div>
     <div class="module-card" style="--card-color:#ff5f6d;--card-glow:rgba(255,95,109,.08);border-color:rgba(255,95,109,.18)" onclick="showSection('sprint')"><div class="module-card-head"><span class="module-icon">⚡</span><span class="module-arrow">↗</span></div><h3>Sprint 10 min</h3><p>Révision intensive · Flashcards</p></div>
   </div>
 </div>
@@ -749,8 +867,11 @@
 <div class="section" id="section-ports"><div id="quiz-ports"></div></div>
 <div class="section" id="section-ia"><div id="ia-container"></div></div>
 <div class="section" id="section-import"><div id="import-container"></div></div>
+<div class="section" id="section-notes"><div id="notes-hub-container"></div></div>
 <div class="section" id="section-profile"><div id="profile-container"></div></div>
+<div class="section" id="section-bloc"><div id="bloc-container"></div></div>
 <div class="section" id="section-tp"><div id="tp-container"></div></div>
+<div class="section" id="section-mesnotes"><div id="mesnotes-container"></div></div>
 <div class="section" id="section-sprint"><div id="sprint-container"></div></div>
 
 <script>
@@ -1185,7 +1306,7 @@ function showSection(id) {
   target.classList.add('active');
   window.scrollTo(0, 0);
   updateNavLabel(id);
-  if (id !== 'home' && id !== 'ouvert' && id !== 'ports' && id !== 'fiches' && id !== 'ia' && id !== 'import' && id !== 'sprint' && id !== 'profile' && id !== 'tp') {
+  if (id !== 'home' && id !== 'ouvert' && id !== 'ports' && id !== 'fiches' && id !== 'ia' && id !== 'import' && id !== 'sprint' && id !== 'profile' && id !== 'tp' && id !== 'notes') {
     initQcm(id);
   }
   if (id === 'ouvert') initOpen();
@@ -1196,6 +1317,8 @@ function showSection(id) {
   if (id === 'sprint') renderSprint();
   if (id === 'profile') renderProfile();
   if (id === 'tp') renderTP();
+  if (id === 'bloc') renderBloc();
+  if (id === 'notes') renderNotesHub();
 }
 
 function initQcm(id) {
@@ -1917,10 +2040,18 @@ async function loadNote(moduleId) {
   const status = document.getElementById('notes-status-' + moduleId);
   const chars = document.getElementById('notes-chars-' + moduleId);
   if (!ta) return;
+  // Essaie le serveur d'abord
   let saved = '';
-  try { saved = localStorage.getItem('tssr_note_' + moduleId) || ''; } catch(e) {}
-  if (!saved && window.storage) {
-    try { const r = await window.storage.get('notes_' + moduleId); if (r && r.value) saved = r.value; } catch(e) {}
+  const u = getCurrentUser();
+  if (u) {
+    const serverVal = await dbLoad(u.id, 'note_' + moduleId);
+    if (serverVal) {
+      saved = serverVal;
+      try { localStorage.setItem('tssr_note_' + moduleId, saved); } catch(e) {}
+    }
+  }
+  if (!saved) {
+    try { saved = localStorage.getItem('tssr_note_' + moduleId) || ''; } catch(e) {}
   }
   if (saved) {
     ta.value = saved;
@@ -1941,9 +2072,16 @@ async function saveNote(moduleId) {
   const ta = document.getElementById('notes-ta-' + moduleId);
   const status = document.getElementById('notes-status-' + moduleId);
   if (!ta) return;
+  // Sauvegarde locale
   try { localStorage.setItem('tssr_note_' + moduleId, ta.value); } catch(e) {}
-  if (window.storage) { try { await window.storage.set('notes_' + moduleId, ta.value); } catch(e) {} }
-  if (status) { status.textContent = '✓ Sauvegardé'; status.className = 'notes-status saved'; }
+  // Sauvegarde serveur
+  const u = getCurrentUser();
+  if (u) {
+    const r = await dbSave(u.id, 'note_' + moduleId, ta.value);
+    if (status) { status.textContent = '✓ Sauvegardé'; status.className = 'notes-status saved'; }
+  } else {
+    if (status) { status.textContent = '✓ Local'; status.className = 'notes-status saved'; }
+  }
 }
 
 async function clearNote(moduleId) {
@@ -1955,7 +2093,8 @@ async function clearNote(moduleId) {
   ta.value = '';
   if (chars) chars.textContent = '0 car.';
   try { localStorage.removeItem('tssr_note_' + moduleId); } catch(e) {}
-  if (window.storage) { try { await window.storage.delete('notes_' + moduleId); } catch(e) {} }
+  const u = getCurrentUser();
+  if (u) await dbDelete(u.id, 'note_' + moduleId);
   if (status) { status.textContent = 'Effacé'; status.className = 'notes-status'; }
 }
 
@@ -2611,6 +2750,7 @@ function sprintFinish() {
   const sd = JSON.parse(localStorage.getItem('tssr_sprint_streak') || '{"days":0,"last":""}');
   const newDays = sd.last === today ? sd.days : sd.last === yesterday ? sd.days + 1 : 1;
   localStorage.setItem('tssr_sprint_streak', JSON.stringify({days: newDays, last: today}));
+  const _us = getCurrentUser(); if (_us) dbSave(_us.id, 'sprint_streak', {days: newDays, last: today});
 
   const msg = pct >= 80 ? 'Excellent sprint !' : pct >= 50 ? 'Bon travail !' : 'Continue !';
 
@@ -2676,255 +2816,254 @@ function sprintFinish() {
 
 
 // ============================================================
-// SYSTÈME DE COMPTES — Pseudo + PIN, localStorage multi-profils
+// ============================================================
+// SYSTÈME DE COMPTES — Supabase
 // ============================================================
 
-const AUTH_KEY = 'tssr_accounts';
-const SESSION_KEY = 'tssr_session';
+const SUPABASE_URL = 'https://pkpsymutrudafpustsjk.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBrcHN5bXV0cnVkYWZwdXN0c2prIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4NjAzNDksImV4cCI6MjA4OTQzNjM0OX0.pdEzrNnJw1BXlOtQbidUlYAjRJ51l-7FjgHo7R7QZVs';
+const SESSION_KEY  = 'tssr_session';
 
-// ── Helpers ──
-function getAccounts() {
-  try { return JSON.parse(localStorage.getItem(AUTH_KEY) || '{}'); } catch(e) { return {}; }
-}
-function saveAccounts(accounts) {
-  try { localStorage.setItem(AUTH_KEY, JSON.stringify(accounts)); } catch(e) {}
-}
+// ── Helpers session ──
 function getCurrentUser() {
   try { return JSON.parse(localStorage.getItem(SESSION_KEY) || 'null'); } catch(e) { return null; }
 }
-function setCurrentUser(user) {
-  try { localStorage.setItem(SESSION_KEY, JSON.stringify(user)); } catch(e) {}
+function setCurrentUser(u) {
+  try { localStorage.setItem(SESSION_KEY, JSON.stringify(u)); } catch(e) {}
 }
-function getProfileKey(username, key) {
-  return 'tssr_' + username + '_' + key;
-}
-function profileGet(key) {
-  const u = getCurrentUser();
-  if (!u) return null;
-  try { return JSON.parse(localStorage.getItem(getProfileKey(u.username, key)) || 'null'); } catch(e) { return null; }
-}
-function profileSet(key, value) {
-  const u = getCurrentUser();
-  if (!u) return;
-  try { localStorage.setItem(getProfileKey(u.username, key), JSON.stringify(value)); } catch(e) {}
-}
-function hashPin(pin) {
-  // Simple XOR hash — suffisant pour un PIN local
-  let h = 0;
-  for (let i = 0; i < pin.length; i++) h = (h * 31 + pin.charCodeAt(i)) & 0xffffffff;
-  return h.toString(36);
-}
-function getInitial(name) {
-  return name.trim().charAt(0).toUpperCase();
+function getInitial(n) { return String(n).trim().charAt(0).toUpperCase(); }
+function escAuth(s) { return String(s).replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── Appel Supabase REST ──
+async function sbQuery(table, method, body, filter) {
+  let url = SUPABASE_URL + '/rest/v1/' + table;
+  if (filter) url += '?' + filter;
+  const headers = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': 'Bearer ' + SUPABASE_KEY,
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
+  };
+  const res = await fetch(url, { method, headers, body: body ? JSON.stringify(body) : undefined });
+  const text = await res.text();
+  let data;
+  try { data = JSON.parse(text); } catch(e) { data = null; }
+  return { ok: res.ok, status: res.status, data };
 }
 
-// ── Init auth au démarrage ──
+// ── Hash PIN côté client (SHA-256 via WebCrypto) ──
+async function hashPin(pin) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pin + 'tssr_salt_2024'));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+// ── Sauvegarde/chargement données profil ──
+async function profileSet(key, value) {
+  const u = getCurrentUser();
+  if (!u) return;
+  // Cache local
+  try { localStorage.setItem('tssr_cache_' + u.id + '_' + key, JSON.stringify(value)); } catch(e) {}
+  // Upsert Supabase
+  await sbQuery('user_data', 'POST',
+    { user_id: u.id, data_key: key, data_value: value },
+    'on_conflict=user_id,data_key'
+  );
+}
+
+function profileGetCache(key) {
+  const u = getCurrentUser();
+  if (!u) return null;
+  try { return JSON.parse(localStorage.getItem('tssr_cache_' + u.id + '_' + key) || 'null'); } catch(e) { return null; }
+}
+
+async function profileGet(key) {
+  const u = getCurrentUser();
+  if (!u) return null;
+  const r = await sbQuery('user_data', 'GET', null, `user_id=eq.${u.id}&data_key=eq.${key}&select=data_value`);
+  if (r.ok && Array.isArray(r.data) && r.data.length > 0) {
+    const val = r.data[0].data_value;
+    try { localStorage.setItem('tssr_cache_' + u.id + '_' + key, JSON.stringify(val)); } catch(e) {}
+    return val;
+  }
+  return profileGetCache(key);
+}
+
+async function profileDeleteKey(key) {
+  const u = getCurrentUser();
+  if (!u) return;
+  try { localStorage.removeItem('tssr_cache_' + u.id + '_' + key); } catch(e) {}
+  await sbQuery('user_data', 'DELETE', null, `user_id=eq.${u.id}&data_key=eq.${key}`);
+}
+
+async function profileLoadAll() {
+  const u = getCurrentUser();
+  if (!u) return {};
+  const r = await sbQuery('user_data', 'GET', null, `user_id=eq.${u.id}&select=data_key,data_value`);
+  if (!r.ok || !Array.isArray(r.data)) return {};
+  const result = {};
+  for (const row of r.data) {
+    result[row.data_key] = row.data_value;
+    try { localStorage.setItem('tssr_cache_' + u.id + '_' + row.data_key, JSON.stringify(row.data_value)); } catch(e) {}
+  }
+  return result;
+}
+
+// ── Init auth ──
 (function initAuth() {
   const user = getCurrentUser();
-  if (user) {
+  if (user && user.id) {
     showNavProfile(user);
+    profileLoadAll(); // Sync silencieux
   } else {
-    showAuthOverlay('welcome');
+    showAuthOverlay('login');
   }
 })();
 
 function showAuthOverlay(mode) {
-  const overlay = document.getElementById('auth-overlay');
-  if (overlay) overlay.style.display = 'flex';
+  const ov = document.getElementById('auth-overlay');
+  if (ov) ov.style.display = 'flex';
   renderAuthContent(mode);
 }
 function hideAuthOverlay() {
-  const overlay = document.getElementById('auth-overlay');
-  if (overlay) overlay.style.display = 'none';
+  const ov = document.getElementById('auth-overlay');
+  if (ov) ov.style.display = 'none';
 }
 
 function renderAuthContent(mode) {
-  const accounts = getAccounts();
-  const hasAccounts = Object.keys(accounts).length > 0;
   const el = document.getElementById('auth-content');
   if (!el) return;
-
-  if (mode === 'welcome' && hasAccounts) {
-    // Affiche la liste des comptes existants
-    const userListHTML = Object.values(accounts).map(u => `
-      <div class="auth-user-item" onclick="authSelectUser('${u.username}')">
-        <div class="auth-user-avatar">${getInitial(u.username)}</div>
-        <div>
-          <div class="auth-user-name">${escAuth(u.username)}</div>
-          <div class="auth-user-meta">Dernière session · ${u.lastLogin || 'jamais'}</div>
-        </div>
-      </div>`).join('');
-
-    el.innerHTML = `
-      <div class="auth-title">Bon retour 👋</div>
-      <div class="auth-sub">Choisis ton profil ou crée un nouveau compte.</div>
-      <div class="auth-users-list">${userListHTML}</div>
-      <div class="auth-or">— ou —</div>
-      <button class="auth-btn" onclick="renderAuthContent('register')" style="background:var(--surface2);color:var(--text2);border:1px solid var(--border2)">+ Nouveau compte</button>
-      <div class="auth-error" id="auth-error"></div>`;
-  } else if (mode === 'pin') {
-    // PIN pour l'utilisateur sélectionné
-    el.innerHTML = `
-      <div class="auth-title">Entrer le PIN</div>
-      <div class="auth-sub" id="auth-pin-for"></div>
-      <div class="auth-field">
-        <label>Code PIN (4 chiffres)</label>
-        <div class="auth-pin-row">
-          <input class="auth-pin-digit" id="pin0" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,0)" onkeydown="authPinKey(event,0)">
-          <input class="auth-pin-digit" id="pin1" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,1)" onkeydown="authPinKey(event,1)">
-          <input class="auth-pin-digit" id="pin2" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,2)" onkeydown="authPinKey(event,2)">
-          <input class="auth-pin-digit" id="pin3" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,3)" onkeydown="authPinKey(event,3)">
-        </div>
+  const isLogin = mode === 'login';
+  el.innerHTML = `
+    <div class="auth-title">${isLogin ? 'Bon retour 👋' : 'Créer un compte'}</div>
+    <div class="auth-sub">${isLogin ? 'Retrouve ta progression.' : 'Pseudo + PIN 4 chiffres. C\'est tout.'}</div>
+    <div class="auth-tabs">
+      <button class="auth-tab ${isLogin?'active':''}" onclick="renderAuthContent('login')">Connexion</button>
+      <button class="auth-tab ${!isLogin?'active':''}" onclick="renderAuthContent('register')">Créer un compte</button>
+    </div>
+    <div class="auth-field">
+      <label>Pseudo</label>
+      <input class="auth-input" id="auth-username" type="text" placeholder="Ton pseudo..." maxlength="20" autocomplete="username" onkeydown="if(event.key==='Enter')document.getElementById('pin0').focus()">
+    </div>
+    <div class="auth-field">
+      <label>Code PIN (4 chiffres)</label>
+      <div class="auth-pin-row">
+        <input class="auth-pin-digit" id="pin0" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,0)" onkeydown="authPinKey(event,0)">
+        <input class="auth-pin-digit" id="pin1" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,1)" onkeydown="authPinKey(event,1)">
+        <input class="auth-pin-digit" id="pin2" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,2)" onkeydown="authPinKey(event,2)">
+        <input class="auth-pin-digit" id="pin3" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,3)" onkeydown="authPinKey(event,3)">
       </div>
-      <div class="auth-error" id="auth-error"></div>
-      <div class="auth-switch"><span class="auth-switch-link" onclick="renderAuthContent('welcome')">← Retour</span></div>`;
-    setTimeout(() => document.getElementById('pin0') && document.getElementById('pin0').focus(), 100);
-  } else {
-    // Register
-    el.innerHTML = `
-      <div class="auth-title">Créer un compte</div>
-      <div class="auth-sub">Pseudo + PIN 4 chiffres. Rien d'autre.</div>
-      <div class="auth-field">
-        <label>Pseudo</label>
-        <input class="auth-input" id="reg-name" type="text" placeholder="Ex: Alex, Léa..." maxlength="20" autocomplete="off">
-      </div>
-      <div class="auth-field">
-        <label>Code PIN (4 chiffres)</label>
-        <div class="auth-pin-row">
-          <input class="auth-pin-digit" id="reg0" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,'r0')" onkeydown="authPinKey(event,'r0')">
-          <input class="auth-pin-digit" id="reg1" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,'r1')" onkeydown="authPinKey(event,'r1')">
-          <input class="auth-pin-digit" id="reg2" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,'r2')" onkeydown="authPinKey(event,'r2')">
-          <input class="auth-pin-digit" id="reg3" type="password" inputmode="numeric" maxlength="1" oninput="authPinInput(this,'r3')" onkeydown="authPinKey(event,'r3')">
-        </div>
-      </div>
-      <button class="auth-btn" onclick="authRegister()">Créer mon compte →</button>
-      <div class="auth-error" id="auth-error"></div>
-      ${hasAccounts ? '<div class="auth-switch"><span class="auth-switch-link" onclick="renderAuthContent(\'welcome\')">← Retour</span></div>' : ''}`;
-    setTimeout(() => document.getElementById('reg-name') && document.getElementById('reg-name').focus(), 100);
-  }
-}
-
-function escAuth(str) { return String(str).replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-let _pendingUser = null;
-function authSelectUser(username) {
-  _pendingUser = username;
-  renderAuthContent('pin');
-  const el = document.getElementById('auth-pin-for');
-  if (el) el.textContent = 'Profil : ' + username;
+    </div>
+    <button class="auth-btn" id="auth-submit-btn" onclick="${isLogin?'authLogin()':'authRegister()'}">
+      ${isLogin ? 'Se connecter →' : 'Créer mon compte →'}
+    </button>
+    <div class="auth-error" id="auth-error"></div>`;
+  setTimeout(() => { const i = document.getElementById('auth-username'); if(i) i.focus(); }, 80);
 }
 
 function authPinInput(input, idx) {
   const val = input.value.replace(/\D/g,'');
   input.value = val ? val[0] : '';
-  // Auto-advance
-  const ids = typeof idx === 'string' && idx.startsWith('r')
-    ? ['reg0','reg1','reg2','reg3']
-    : ['pin0','pin1','pin2','pin3'];
-  const i = parseInt(typeof idx === 'string' ? idx.replace('r','') : idx);
-  if (val && i < 3) {
-    const next = document.getElementById(ids[i+1]);
-    if (next) next.focus();
-  }
-  // Auto-submit when last digit filled
-  if (val && i === 3) {
-    if (typeof idx === 'string' && idx.startsWith('r')) return; // register needs button
-    setTimeout(authLoginSubmit, 80);
-  }
+  const ids = ['pin0','pin1','pin2','pin3'];
+  if (val && idx < 3) { const n = document.getElementById(ids[idx+1]); if(n) n.focus(); }
+  if (val && idx === 3) setTimeout(() => {
+    const mode = document.querySelector('.auth-tab.active');
+    if (mode && mode.textContent.includes('Créer')) authRegister(); else authLogin();
+  }, 80);
 }
-
 function authPinKey(e, idx) {
-  if (e.key === 'Backspace') {
-    const el = e.target;
-    if (!el.value) {
-      const ids = typeof idx === 'string' && idx.startsWith('r')
-        ? ['reg0','reg1','reg2','reg3']
-        : ['pin0','pin1','pin2','pin3'];
-      const i = parseInt(typeof idx === 'string' ? idx.replace('r','') : idx);
-      if (i > 0) document.getElementById(ids[i-1]).focus();
-    }
-  }
-  if (e.key === 'Enter') {
-    if (typeof idx === 'string' && idx.startsWith('r')) authRegister();
-    else authLoginSubmit();
+  if (e.key === 'Backspace' && !e.target.value) {
+    const ids = ['pin0','pin1','pin2','pin3'];
+    if (idx > 0) document.getElementById(ids[idx-1]).focus();
   }
 }
-
-function authGetPin(prefix) {
-  const p = [0,1,2,3].map(i => (document.getElementById(prefix+i)||{}).value||'').join('');
-  return p;
+function authGetPin() {
+  return ['pin0','pin1','pin2','pin3'].map(id => (document.getElementById(id)||{}).value||'').join('');
+}
+function authSetError(msg) {
+  const el = document.getElementById('auth-error');
+  if (el) el.textContent = msg;
+}
+function authSetLoading(on) {
+  const btn = document.getElementById('auth-submit-btn');
+  if (btn) { btn.disabled = on; if(on) btn.textContent = '⏳ Chargement...'; }
 }
 
-function authLoginSubmit() {
-  const pin = authGetPin('pin');
-  const errEl = document.getElementById('auth-error');
-  if (pin.length < 4) { if(errEl) errEl.textContent='Entre les 4 chiffres.'; return; }
-  const accounts = getAccounts();
-  const acc = accounts[_pendingUser];
-  if (!acc) { if(errEl) errEl.textContent='Compte introuvable.'; return; }
-  if (hashPin(pin) !== acc.pinHash) {
-    if(errEl) errEl.textContent='PIN incorrect. Réessaie.';
-    ['pin0','pin1','pin2','pin3'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
-    document.getElementById('pin0') && document.getElementById('pin0').focus();
-    return;
+async function authRegister() {
+  const username = (document.getElementById('auth-username')||{}).value?.trim();
+  const pin = authGetPin();
+  if (!username) { authSetError('Entre un pseudo.'); return; }
+  if (!/^[a-zA-ZÀ-ÿ0-9 _\-\.]{2,20}$/.test(username)) { authSetError('Pseudo invalide (2-20 caractères).'); return; }
+  if (pin.length < 4) { authSetError('PIN = 4 chiffres.'); return; }
+  authSetLoading(true);
+
+  // Vérifie si le pseudo existe déjà
+  const check = await sbQuery('users', 'GET', null, `username=eq.${encodeURIComponent(username)}&select=id`);
+  if (check.ok && Array.isArray(check.data) && check.data.length > 0) {
+    authSetLoading(false); authSetError('Ce pseudo est déjà pris.'); return;
   }
-  // Login OK
-  const today = new Date().toLocaleDateString('fr-FR');
-  acc.lastLogin = today;
-  accounts[_pendingUser] = acc;
-  saveAccounts(accounts);
-  const user = { username: _pendingUser, joined: acc.joined };
-  setCurrentUser(user);
+
+  const pin_hash = await hashPin(pin);
+  const r = await sbQuery('users', 'POST', { username, pin_hash });
+  authSetLoading(false);
+  if (!r.ok) { authSetError('Erreur : ' + (r.data?.message || 'Réessaie.')); return; }
+  const user = Array.isArray(r.data) ? r.data[0] : r.data;
+  const session = { id: user.id, username: user.username, joined: new Date().toLocaleDateString('fr-FR') };
+  setCurrentUser(session);
   hideAuthOverlay();
-  showNavProfile(user);
-  authSyncProgress();
+  showNavProfile(session);
 }
 
-function authRegister() {
-  const name = (document.getElementById('reg-name')||{}).value.trim();
-  const pin = authGetPin('reg');
-  const errEl = document.getElementById('auth-error');
-  if (!name) { if(errEl) errEl.textContent='Entre un pseudo.'; return; }
-  if (!/^[a-zA-ZÀ-ÿ0-9_\-. ]{2,20}$/.test(name)) { if(errEl) errEl.textContent='Pseudo invalide (2-20 caractères).'; return; }
-  if (pin.length < 4 || !/^\d{4}$/.test(pin)) { if(errEl) errEl.textContent='PIN = 4 chiffres.'; return; }
-  const accounts = getAccounts();
-  if (accounts[name]) { if(errEl) errEl.textContent='Ce pseudo existe déjà, choisis-en un autre.'; return; }
-  const today = new Date().toLocaleDateString('fr-FR');
-  accounts[name] = { username: name, pinHash: hashPin(pin), joined: today, lastLogin: today };
-  saveAccounts(accounts);
-  const user = { username: name, joined: today };
-  setCurrentUser(user);
+async function authLogin() {
+  const username = (document.getElementById('auth-username')||{}).value?.trim();
+  const pin = authGetPin();
+  if (!username) { authSetError('Entre ton pseudo.'); return; }
+  if (pin.length < 4) { authSetError('Entre les 4 chiffres.'); return; }
+  authSetLoading(true);
+
+  const pin_hash = await hashPin(pin);
+  const r = await sbQuery('users', 'GET', null, `username=eq.${encodeURIComponent(username)}&pin_hash=eq.${pin_hash}&select=id,username,created_at`);
+  authSetLoading(false);
+  if (!r.ok || !Array.isArray(r.data) || r.data.length === 0) {
+    authSetError('Pseudo ou PIN incorrect.'); return;
+  }
+  const user = r.data[0];
+  // Met à jour last_login
+  sbQuery('users', 'PATCH', { last_login: new Date().toISOString() }, `id=eq.${user.id}`);
+  const session = {
+    id: user.id,
+    username: user.username,
+    joined: user.created_at ? new Date(user.created_at).toLocaleDateString('fr-FR') : '—'
+  };
+  setCurrentUser(session);
   hideAuthOverlay();
-  showNavProfile(user);
-  authSyncProgress();
+  showNavProfile(session);
+  await profileLoadAll();
 }
 
 function showNavProfile(user) {
-  const profileWidget = document.getElementById('nav-profile');
-  const profileBtn = document.getElementById('nav-profile-btn');
-  if (profileWidget) {
-    profileWidget.style.display = 'flex';
-    profileWidget.innerHTML = `<div class="nav-avatar">${getInitial(user.username)}</div><span class="nav-username">${escAuth(user.username)}</span>`;
-  }
-  if (profileBtn) profileBtn.style.display = '';
+  const w = document.getElementById('nav-profile');
+  const b = document.getElementById('nav-profile-btn');
+  if (w) { w.style.display = 'flex'; w.innerHTML = `<div class="nav-avatar">${getInitial(user.username)}</div><span class="nav-username">${escAuth(user.username)}</span>`; }
+  if (b) b.style.display = '';
 }
 
-// ── Sync : sauvegarde les scores QCM dans le profil utilisateur ──
-function authSyncProgress() {
-  // Rien à charger si pas de données sauvegardées
-  const u = getCurrentUser();
-  if (!u) return;
-  // Charge les données existantes du profil dans les states locaux
-  const saved = profileGet('qcm_scores') || {};
-  window._authQcmScores = saved;
+function authLogout() {
+  if (!confirm('Se déconnecter ?')) return;
+  setCurrentUser(null);
+  const w = document.getElementById('nav-profile');
+  const b = document.getElementById('nav-profile-btn');
+  if (w) w.style.display = 'none';
+  if (b) b.style.display = 'none';
+  showSection('home');
+  showAuthOverlay('login');
 }
 
-// Appelée après chaque QCM terminé pour sauvegarder
-function authSaveQcmResult(moduleId, score, total) {
+// ── Sauvegarde progression ──
+async function authSaveQcmResult(moduleId, score, total) {
   const u = getCurrentUser();
   if (!u) return;
-  const scores = profileGet('qcm_scores') || {};
-  if (!scores[moduleId]) scores[moduleId] = { sessions: 0, totalScore: 0, totalQ: 0, bestPct: 0 };
+  let scores = profileGetCache('qcm_scores') || {};
+  if (!scores[moduleId]) scores[moduleId] = { sessions:0, totalScore:0, totalQ:0, bestPct:0 };
   scores[moduleId].sessions++;
   scores[moduleId].totalScore += score;
   scores[moduleId].totalQ += total;
@@ -2932,65 +3071,42 @@ function authSaveQcmResult(moduleId, score, total) {
   if (pct > scores[moduleId].bestPct) scores[moduleId].bestPct = pct;
   scores[moduleId].lastPct = pct;
   scores[moduleId].lastDate = new Date().toLocaleDateString('fr-FR');
-  profileSet('qcm_scores', scores);
-
-  // Total questions répondues
-  const totalQ = profileGet('total_questions') || 0;
-  profileSet('total_questions', totalQ + total);
+  await profileSet('qcm_scores', scores);
+  const totalQ = (profileGetCache('total_questions') || 0) + total;
+  await profileSet('total_questions', totalQ);
 }
 
-// Appelée après chaque sprint
-function authSaveSprintResult(score, total) {
+async function authSaveSprintResult(score, total) {
   const u = getCurrentUser();
   if (!u) return;
-  const sprints = profileGet('sprint_sessions') || 0;
-  profileSet('sprint_sessions', sprints + 1);
-  const sprintScore = profileGet('sprint_total_score') || 0;
-  profileSet('sprint_total_score', sprintScore + score);
-}
-
-function authLogout() {
-  if (!confirm('Se déconnecter ?')) return;
-  setCurrentUser(null);
-  const profileWidget = document.getElementById('nav-profile');
-  const profileBtn = document.getElementById('nav-profile-btn');
-  if (profileWidget) profileWidget.style.display = 'none';
-  if (profileBtn) profileBtn.style.display = 'none';
-  showSection('home');
-  showAuthOverlay('welcome');
+  await profileSet('sprint_sessions', (profileGetCache('sprint_sessions') || 0) + 1);
+  await profileSet('sprint_total_score', (profileGetCache('sprint_total_score') || 0) + score);
 }
 
 // ── Profil ──
-function renderProfile() {
+async function renderProfile() {
   const u = getCurrentUser();
   const el = document.getElementById('profile-container');
   if (!el) return;
   if (!u) { el.innerHTML = '<p style="color:var(--muted);padding:2rem;font-family:var(--mono)">Non connecté.</p>'; return; }
-
-  const scores = profileGet('qcm_scores') || {};
-  const totalQ = profileGet('total_questions') || 0;
-  const sprintSessions = profileGet('sprint_sessions') || 0;
-  const sprintScore = profileGet('sprint_total_score') || 0;
-  const streakData = JSON.parse(localStorage.getItem('tssr_sprint_streak')||'{"days":0}');
-
-  // Compte les modules avec au moins une session
+  el.innerHTML = '<div class="profile-wrap"><div style="padding:3rem;text-align:center;color:var(--muted);font-family:var(--mono)">⏳ Chargement de ta progression...</div></div>';
+  const data = await profileLoadAll();
+  const scores = data['qcm_scores'] || {};
+  const totalQ = data['total_questions'] || 0;
+  const sprintSessions = data['sprint_sessions'] || 0;
+  const sprintScore = data['sprint_total_score'] || 0;
+  const streakData = data['sprint_streak'] || { days: 0 };
   const doneMods = Object.keys(scores).length;
-  const avgPct = doneMods > 0
-    ? Math.round(Object.values(scores).reduce((a,s)=>a+(s.lastPct||0),0)/doneMods)
-    : 0;
-
-  // Module cards
+  const avgPct = doneMods > 0 ? Math.round(Object.values(scores).reduce((a,s)=>a+(s.lastPct||0),0)/doneMods) : 0;
   const moduleCardsHTML = Object.keys(MODULES).filter(k=>MODULES[k].questions).map(k => {
     const s = scores[k];
     const pct = s ? s.bestPct : 0;
-    const bar = `<div class="profile-module-bar" style="width:${pct}%;background:${MODULES[k].color}"></div>`;
     return `<div class="profile-module-card">
       <div class="profile-module-name">${MODULES[k].title}</div>
-      <div class="profile-module-bar-wrap">${bar}</div>
+      <div class="profile-module-bar-wrap"><div class="profile-module-bar" style="width:${pct}%;background:${MODULES[k].color}"></div></div>
       <div class="profile-module-meta">${s ? `Meilleur : ${pct}% · ${s.sessions} session${s.sessions>1?'s':''}` : 'Pas encore joué'}</div>
     </div>`;
   }).join('');
-
   el.innerHTML = `
   <div class="profile-wrap">
     <div class="profile-hero">
@@ -3000,20 +3116,17 @@ function renderProfile() {
         <div class="profile-joined">Inscrit le ${u.joined || '—'}</div>
       </div>
     </div>
-
     <div class="profile-section-title">Statistiques globales</div>
     <div class="profile-stats-grid">
       <div class="profile-stat-card"><div class="profile-stat-val">${totalQ}</div><div class="profile-stat-lbl">Questions</div></div>
       <div class="profile-stat-card"><div class="profile-stat-val">${doneMods}/${Object.keys(MODULES).filter(k=>MODULES[k].questions).length}</div><div class="profile-stat-lbl">Modules joués</div></div>
-      <div class="profile-stat-card"><div class="profile-stat-val">${avgPct}%</div><div class="profile-stat-lbl">Moy. modules</div></div>
+      <div class="profile-stat-card"><div class="profile-stat-val">${avgPct}%</div><div class="profile-stat-lbl">Moyenne</div></div>
       <div class="profile-stat-card"><div class="profile-stat-val">${sprintSessions}</div><div class="profile-stat-lbl">Sprints</div></div>
       <div class="profile-stat-card"><div class="profile-stat-val">${streakData.days || 0}</div><div class="profile-stat-lbl">Jours 🔥</div></div>
       <div class="profile-stat-card"><div class="profile-stat-val">${sprintSessions>0?Math.round(sprintScore/sprintSessions)+'%':'—'}</div><div class="profile-stat-lbl">Moy. sprint</div></div>
     </div>
-
     <div class="profile-section-title">Progression par module</div>
     <div class="profile-module-grid">${moduleCardsHTML}</div>
-
     <div class="profile-section-title">Compte</div>
     <div class="profile-actions">
       <button class="profile-logout-btn" onclick="authLogout()">Se déconnecter</button>
@@ -3021,8 +3134,6 @@ function renderProfile() {
   </div>`;
 }
 
-
-// ============================================================
 // NAV DROPDOWN
 // ============================================================
 
@@ -3051,7 +3162,7 @@ const NAV_LABELS = {
   pentest_secu:'Cybersécurité',supervision_avance:'Supervision+',
   ouvert:'Questions ouvertes',fiches:'Fiches',ports:'Ports TCP/UDP',
   sprint:'Sprint 10min',tp:'TPs générés',import:'Importer',
-  ia:'IA',profile:'Profil'
+  ia:'IA',profile:'Profil',notes:'Mes notes'
 };
 function updateNavLabel(id) {
   const el = document.getElementById('nav-active-label');
@@ -3522,6 +3633,623 @@ function tpQuizEval(knew) {
   if (knew) tpQuizState.score++;
   tpQuizState.current++;
   renderTPQuiz();
+}
+
+
+// ============================================================
+// NOTES HUB — Affiche tous les bloc-notes sauvegardés
+// ============================================================
+
+const NOTES_MODULE_ICONS = {
+  linux:'🐧',reseau:'🌐',virt:'💻',sauvegarde:'💾',actdir:'🏢',
+  secu:'🔐',supervision:'📡',stockage:'🗄️',ouvert:'✍️',
+  winserver:'🪟',linux_avance:'⚙️',reseau_avance:'🔀',
+  pentest_secu:'🕵️',supervision_avance:'📊'
+};
+
+function renderNotesHub() {
+  const c = document.getElementById('notes-hub-container');
+  if (!c) return;
+
+  // Collecte toutes les notes sauvegardées
+  const notes = collectAllNotes();
+
+  if (notes.length === 0) {
+    c.innerHTML = `
+    <div class="noteshub-wrap">
+      <div class="noteshub-hero">
+        <div><h2>📓 Mes notes</h2><p>Tous tes bloc-notes sauvegardés depuis les modules.</p></div>
+      </div>
+      <div class="noteshub-empty">
+        <span>📭</span>
+        Aucune note sauvegardée pour l'instant.<br>
+        Commence un module QCM et utilise le bloc-notes en bas de page !
+      </div>
+    </div>`;
+    return;
+  }
+
+  // Groupes disponibles
+  const groups = ['Tous', ...new Set(notes.map(n => n.group))];
+
+  const cards = notes.map((note, idx) => buildNoteCard(note, idx)).join('');
+
+  c.innerHTML = `
+  <div class="noteshub-wrap">
+    <div class="noteshub-hero">
+      <div>
+        <h2>📓 Mes notes</h2>
+        <p>${notes.length} note${notes.length > 1 ? 's' : ''} sauvegardée${notes.length > 1 ? 's' : ''}</p>
+      </div>
+      <button class="noteshub-export-all" onclick="notesHubExportAll()">⬇ Tout exporter .txt</button>
+    </div>
+    <div class="noteshub-filter-row" id="noteshub-filters">
+      ${groups.map(g => `<button class="noteshub-filter-btn${g==='Tous'?' active':''}" onclick="notesHubFilter('${g}',this)">${g}</button>`).join('')}
+    </div>
+    <div class="noteshub-grid" id="noteshub-grid">${cards}</div>
+  </div>`;
+}
+
+function collectAllNotes() {
+  const notes = [];
+  // Scan localStorage pour toutes les clés tssr_note_*
+  const allKeys = [];
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith('tssr_note_')) allKeys.push(k);
+    }
+  } catch(e) {}
+  // Ajoute aussi les clés cachées depuis le serveur
+  const u = getCurrentUser();
+  if (u) {
+    try {
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith('tssr_cache_' + u.user_id + '_note_')) {
+          const modId = k.replace('tssr_cache_' + u.user_id + '_note_', '');
+          const localKey = 'tssr_note_' + modId;
+          if (!allKeys.includes(localKey)) allKeys.push(localKey);
+          // Sync cache vers localStorage standard
+          const val = localStorage.getItem(k);
+          if (val) { try { const parsed = JSON.parse(val); localStorage.setItem(localKey, parsed); } catch(e) {} }
+        }
+      }
+    } catch(e) {}
+  }
+
+  for (const key of allKeys) {
+    const moduleId = key.replace('tssr_note_', '');
+    const content = localStorage.getItem(key) || '';
+    if (!content.trim()) continue;
+    const mod = MODULES[moduleId];
+    const title = mod ? mod.title : moduleId;
+    const icon = NOTES_MODULE_ICONS[moduleId] || '📝';
+    const color = mod ? mod.color : 'var(--accent)';
+    // Groupe par catégorie
+    const group = getModuleGroup(moduleId);
+    notes.push({ moduleId, key, title, icon, color, content, group, chars: content.length });
+  }
+  // Tri alphabétique par titre
+  notes.sort((a, b) => a.title.localeCompare(b.title));
+  return notes;
+}
+
+function getModuleGroup(id) {
+  const linux = ['linux','linux_avance'];
+  const reseau = ['reseau','reseau_avance'];
+  const secu = ['secu','pentest_secu'];
+  const superv = ['supervision','supervision_avance'];
+  const win = ['winserver','actdir'];
+  if (linux.includes(id)) return 'Linux';
+  if (reseau.includes(id)) return 'Réseau';
+  if (secu.includes(id)) return 'Sécurité';
+  if (superv.includes(id)) return 'Supervision';
+  if (win.includes(id)) return 'Windows';
+  return 'Autre';
+}
+
+function buildNoteCard(note, idx) {
+  const preview = note.content.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const wordCount = note.content.trim().split(/\s+/).length;
+  return `
+  <div class="noteshub-card" id="nhcard-${idx}" data-group="${note.group}" data-module="${note.moduleId}">
+    <div class="noteshub-card-head" onclick="notesHubToggle(${idx})">
+      <span class="noteshub-card-icon">${note.icon}</span>
+      <div style="flex:1;min-width:0">
+        <div class="noteshub-card-title">${escNH(note.title)}</div>
+        <div class="noteshub-card-meta">${wordCount} mots · ${note.chars} car.</div>
+      </div>
+      <div class="noteshub-card-actions" onclick="event.stopPropagation()">
+        <button class="noteshub-card-btn" onclick="notesHubEdit(${idx})" title="Modifier">✏️</button>
+        <button class="noteshub-card-btn" onclick="notesHubExport(${idx})" title="Exporter">⬇</button>
+        <button class="noteshub-card-btn" onclick="notesHubGoto('${note.moduleId}')" title="Aller au module">↗</button>
+        <button class="noteshub-card-btn danger" onclick="notesHubDelete(${idx},'${note.moduleId}')" title="Supprimer">🗑</button>
+      </div>
+    </div>
+    <div class="noteshub-card-preview" id="nhpreview-${idx}" onclick="notesHubToggle(${idx})">${preview}</div>
+    <div class="noteshub-card-full" id="nhfull-${idx}">${preview}</div>
+    <textarea class="noteshub-edit-area" id="nhedit-${idx}">${escNH(note.content)}</textarea>
+    <div class="noteshub-edit-footer" id="nheditfooter-${idx}">
+      <button class="noteshub-save-btn" onclick="notesHubSave(${idx},'${note.moduleId}')">💾 Sauvegarder</button>
+      <button class="noteshub-cancel-btn" onclick="notesHubCancelEdit(${idx})">Annuler</button>
+      <span class="noteshub-status" id="nhstatus-${idx}"></span>
+    </div>
+  </div>`;
+}
+
+function escNH(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function notesHubToggle(idx) {
+  const preview = document.getElementById('nhpreview-' + idx);
+  const full = document.getElementById('nhfull-' + idx);
+  if (!preview || !full) return;
+  const isOpen = full.classList.contains('open');
+  if (isOpen) {
+    full.classList.remove('open');
+    preview.style.display = '';
+  } else {
+    preview.style.display = 'none';
+    full.classList.add('open');
+  }
+}
+
+function notesHubEdit(idx) {
+  // Close preview, open editor
+  document.getElementById('nhpreview-' + idx).style.display = 'none';
+  document.getElementById('nhfull-' + idx).classList.remove('open');
+  document.getElementById('nhedit-' + idx).classList.add('open');
+  document.getElementById('nheditfooter-' + idx).classList.add('open');
+  const ta = document.getElementById('nhedit-' + idx);
+  if (ta) ta.focus();
+}
+
+function notesHubCancelEdit(idx) {
+  document.getElementById('nhpreview-' + idx).style.display = '';
+  document.getElementById('nhedit-' + idx).classList.remove('open');
+  document.getElementById('nheditfooter-' + idx).classList.remove('open');
+}
+
+async function notesHubSave(idx, moduleId) {
+  const ta = document.getElementById('nhedit-' + idx);
+  const status = document.getElementById('nhstatus-' + idx);
+  const full = document.getElementById('nhfull-' + idx);
+  if (!ta) return;
+  const newVal = ta.value;
+  // Save to localStorage + Supabase
+  try { localStorage.setItem('tssr_note_' + moduleId, newVal); } catch(e) {}
+  const _u = getCurrentUser();
+  if (_u) await dbSave(_u.id, 'note_' + moduleId, newVal);
+  // Update preview
+  const escaped = escNH(newVal);
+  if (full) full.innerHTML = escaped;
+  const preview = document.getElementById('nhpreview-' + idx);
+  if (preview) preview.innerHTML = escaped;
+  // Update meta
+  const card = document.getElementById('nhcard-' + idx);
+  if (card) {
+    const meta = card.querySelector('.noteshub-card-meta');
+    if (meta) meta.textContent = newVal.trim().split(/\s+/).length + ' mots · ' + newVal.length + ' car.';
+  }
+  if (status) { status.textContent = '✓ Sauvegardé'; setTimeout(() => { if(status) status.textContent=''; }, 2000); }
+  // Also update the module's own textarea if visible
+  const modTA = document.getElementById('notes-ta-' + moduleId);
+  if (modTA) modTA.value = newVal;
+  notesHubCancelEdit(idx);
+}
+
+function notesHubExport(idx) {
+  const card = document.getElementById('nhcard-' + idx);
+  if (!card) return;
+  const moduleId = card.dataset.module;
+  const content = localStorage.getItem('tssr_note_' + moduleId) || '';
+  const mod = MODULES[moduleId];
+  const title = mod ? mod.title : moduleId;
+  const blob = new Blob(['Notes — ' + title + '\n' + '='.repeat(40) + '\n\n' + content], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'notes_' + title.replace(/[^a-z0-9]/gi,'_') + '.txt'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function notesHubExportAll() {
+  const notes = collectAllNotes();
+  if (!notes.length) return;
+  let txt = 'MES NOTES TSSR\n' + '='.repeat(50) + '\n\n';
+  for (const n of notes) {
+    txt += '── ' + n.icon + ' ' + n.title + ' ──\n\n' + n.content + '\n\n' + '─'.repeat(40) + '\n\n';
+  }
+  const blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'notes_TSSR_' + new Date().toISOString().slice(0,10) + '.txt'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function notesHubDelete(idx, moduleId) {
+  if (!confirm('Supprimer les notes de ce module définitivement ?')) return;
+  try { localStorage.removeItem('tssr_note_' + moduleId); } catch(e) {}
+  const _ud = getCurrentUser();
+  if (_ud) dbDelete(_ud.id, 'note_' + moduleId);
+  const card = document.getElementById('nhcard-' + idx);
+  if (card) { card.style.opacity='0'; card.style.transform='scale(.95)'; card.style.transition='.2s'; setTimeout(()=>{ card.remove(); refreshNotesHubCount(); }, 200); }
+  const modTA = document.getElementById('notes-ta-' + moduleId);
+  if (modTA) modTA.value = '';
+}
+
+function refreshNotesHubCount() {
+  const grid = document.getElementById('noteshub-grid');
+  if (!grid) return;
+  const remaining = grid.querySelectorAll('.noteshub-card').length;
+  const heroP = document.querySelector('.noteshub-hero p');
+  if (heroP) heroP.textContent = remaining + ' note' + (remaining>1?'s':'') + ' sauvegardée' + (remaining>1?'s':'');
+  if (remaining === 0) {
+    grid.innerHTML = '';
+    const wrap = document.querySelector('.noteshub-wrap');
+    if (wrap) wrap.insertAdjacentHTML('beforeend', '<div class="noteshub-empty"><span>📭</span>Toutes les notes ont été supprimées.</div>');
+  }
+}
+
+function notesHubGoto(moduleId) {
+  showSection(moduleId);
+}
+
+function notesHubFilter(group, btn) {
+  document.querySelectorAll('.noteshub-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.noteshub-card').forEach(card => {
+    if (group === 'Tous' || card.dataset.group === group) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+
+// ============================================================
+// PAGE BLOC-NOTES — Centralise tous les notes sauvegardées
+// ============================================================
+
+const MODULE_COLORS = {
+  linux:'#3ecf8e', reseau:'#7c6af7', virt:'#f5a623', sauvegarde:'#f26464',
+  actdir:'#4fa8e8', secu:'#e8554e', supervision:'#3ecf8e', stockage:'#a594ff',
+  ouvert:'#f5a623', winserver:'#4fa8e8', linux_avance:'#3ecf8e',
+  reseau_avance:'#7c6af7', pentest_secu:'#e8554e', supervision_avance:'#1D9E75'
+};
+
+function getAllNotes() {
+  const notes = [];
+  // Récupère toutes les clés localStorage qui commencent par tssr_note_
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (!key || !key.startsWith('tssr_note_')) continue;
+      const moduleId = key.replace('tssr_note_', '');
+      const text = localStorage.getItem(key) || '';
+      if (!text.trim()) continue;
+      const modTitle = MODULES[moduleId] ? MODULES[moduleId].title : moduleId;
+      const color = MODULES[moduleId] ? MODULES[moduleId].color : MODULE_COLORS[moduleId] || 'var(--accent)';
+      notes.push({ moduleId, title: modTitle, text, color });
+    }
+  } catch(e) {}
+  return notes.sort((a, b) => a.title.localeCompare(b.title, 'fr'));
+}
+
+function renderBloc() {
+  const c = document.getElementById('bloc-container');
+  if (!c) return;
+  const notes = getAllNotes();
+
+  c.innerHTML = `
+  <div class="bloc-wrap">
+    <div class="bloc-hero">
+      <div>
+        <h2>📓 Mes bloc-notes</h2>
+        <p>${notes.length} note${notes.length !== 1 ? 's' : ''} sauvegardée${notes.length !== 1 ? 's' : ''} <span class="bloc-count-badge">${notes.length}</span></p>
+      </div>
+      ${notes.length > 0 ? `<div class="bloc-actions">
+        <button class="bloc-export-all-btn" onclick="blocExportAll()">⬇ Tout exporter (.txt)</button>
+      </div>` : ''}
+    </div>
+    ${notes.length === 0
+      ? `<div class="bloc-empty"><div class="bloc-empty-icon">📭</div>Aucune note sauvegardée.<br>Va dans un module QCM et utilise le bloc-notes en bas de page.</div>`
+      : `<div class="bloc-search-row">
+          <input class="bloc-search" type="search" placeholder="🔍 Rechercher dans les notes..." oninput="blocFilter(this.value)" id="bloc-search-input">
+         </div>
+         <div class="bloc-grid" id="bloc-grid">
+           ${notes.map(n => blocCardHTML(n)).join('')}
+         </div>`
+    }
+  </div>`;
+}
+
+function blocCardHTML(n) {
+  const preview = n.text.trim().split('\n')[0].slice(0, 80) + (n.text.length > 80 ? '…' : '');
+  const lines = n.text.trim().split('\n').length;
+  const chars = n.text.trim().length;
+  return `<div class="bloc-card" id="bloccard-${n.moduleId}">
+    <div class="bloc-card-header" onclick="blocToggle('${n.moduleId}')">
+      <div class="bloc-card-left">
+        <div class="bloc-card-dot" style="background:${n.color}"></div>
+        <div>
+          <div class="bloc-card-title">${escBloc(n.title)}</div>
+          <div style="font-size:10px;color:var(--muted);font-family:var(--mono);margin-top:1px">${escBloc(preview)}</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <span class="bloc-card-meta">${lines} ligne${lines>1?'s':''} · ${chars} car.</span>
+        <span class="bloc-card-chevron">▾</span>
+      </div>
+    </div>
+    <div class="bloc-card-body" id="blocbody-${n.moduleId}">
+      <div class="bloc-card-content" id="bloccontent-${n.moduleId}">${escBloc(n.text)}</div>
+      <div class="bloc-card-footer">
+        <button class="bloc-edit-btn" onclick="blocStartEdit('${n.moduleId}')">✏️ Modifier</button>
+        <button class="bloc-dl-btn" onclick="blocDownload('${n.moduleId}')">⬇ Télécharger</button>
+        <button class="bloc-goto-btn" onclick="showSection('${n.moduleId}')">→ Aller au module</button>
+        <button class="bloc-delete-btn" onclick="blocDelete('${n.moduleId}')">🗑 Supprimer</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function escBloc(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function blocToggle(moduleId) {
+  const card = document.getElementById('bloccard-' + moduleId);
+  if (card) card.classList.toggle('open');
+}
+
+function blocFilter(query) {
+  const q = query.toLowerCase().trim();
+  const notes = getAllNotes();
+  const grid = document.getElementById('bloc-grid');
+  if (!grid) return;
+  const filtered = q ? notes.filter(n => n.title.toLowerCase().includes(q) || n.text.toLowerCase().includes(q)) : notes;
+  grid.innerHTML = filtered.length
+    ? filtered.map(n => blocCardHTML(n)).join('')
+    : `<div style="text-align:center;padding:2rem;color:var(--muted);font-family:var(--mono);font-size:13px">Aucune note trouvée pour "${escBloc(q)}"</div>`;
+}
+
+function blocStartEdit(moduleId) {
+  const body = document.getElementById('blocbody-' + moduleId);
+  if (!body) return;
+  const text = localStorage.getItem('tssr_note_' + moduleId) || '';
+  body.innerHTML = `
+    <textarea class="bloc-note-edit-area" id="blocedit-${moduleId}">${escBloc(text)}</textarea>
+    <div style="display:flex;gap:7px;align-items:center">
+      <button class="bloc-save-inline-btn" onclick="blocSaveEdit('${moduleId}')">💾 Sauvegarder</button>
+      <button class="bloc-cancel-btn" onclick="renderBloc()">Annuler</button>
+      <span class="bloc-saved-toast" id="bloctoast-${moduleId}"></span>
+    </div>`;
+  const ta = document.getElementById('blocedit-' + moduleId);
+  if (ta) { ta.value = text; ta.focus(); }
+}
+
+async function blocSaveEdit(moduleId) {
+  const ta = document.getElementById('blocedit-' + moduleId);
+  const toast = document.getElementById('bloctoast-' + moduleId);
+  if (!ta) return;
+  const newText = ta.value;
+  try { localStorage.setItem('tssr_note_' + moduleId, newText); } catch(e) {}
+  if (window.storage) { try { await window.storage.set('notes_' + moduleId, newText); } catch(e) {} }
+  // Also update the notes textarea if it's open in the module
+  const moduleTa = document.getElementById('notes-ta-' + moduleId);
+  if (moduleTa) moduleTa.value = newText;
+  if (toast) { toast.textContent = '✓ Sauvegardé !'; setTimeout(() => renderBloc(), 1200); }
+}
+
+async function blocDelete(moduleId) {
+  const mod = MODULES[moduleId] ? MODULES[moduleId].title : moduleId;
+  if (!confirm(`Supprimer la note « ${mod} » ?`)) return;
+  try { localStorage.removeItem('tssr_note_' + moduleId); } catch(e) {}
+  if (window.storage) { try { await window.storage.delete('notes_' + moduleId); } catch(e) {} }
+  renderBloc();
+}
+
+function blocDownload(moduleId) {
+  const text = localStorage.getItem('tssr_note_' + moduleId) || '';
+  if (!text.trim()) return;
+  const modTitle = MODULES[moduleId] ? MODULES[moduleId].title : moduleId;
+  const blob = new Blob(['Notes — ' + modTitle + '\n' + '='.repeat(40) + '\n\n' + text], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'notes_' + modTitle.replace(/[^a-z0-9]/gi,'_') + '.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function blocExportAll() {
+  const notes = getAllNotes();
+  if (!notes.length) return;
+  let txt = 'MES BLOC-NOTES — TSSR Révisions\n' + '='.repeat(50) + '\n';
+  txt += 'Exporté le ' + new Date().toLocaleDateString('fr-FR') + '\n\n';
+  for (const n of notes) {
+    txt += '═══ ' + n.title + ' ═══\n\n' + n.text + '\n\n' + '─'.repeat(40) + '\n\n';
+  }
+  const blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'bloc_notes_TSSR_' + new Date().toISOString().slice(0,10) + '.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+
+// ============================================================
+// MES NOTES — Vue centralisée de tous les bloc-notes
+// ============================================================
+
+function renderMesNotes() {
+  const c = document.getElementById('mesnotes-container');
+  if (!c) return;
+
+  // Collect all saved notes from localStorage
+  const allNotes = [];
+  const keys = Object.keys(localStorage);
+  for (const key of keys) {
+    if (!key.startsWith('tssr_note_')) continue;
+    const moduleId = key.replace('tssr_note_', '');
+    const content = localStorage.getItem(key);
+    if (!content || !content.trim()) continue;
+    const mod = MODULES[moduleId];
+    allNotes.push({
+      moduleId,
+      title: mod ? mod.title : moduleId,
+      color: mod ? mod.color : 'var(--accent)',
+      content: content.trim(),
+      chars: content.trim().length
+    });
+  }
+
+  c.innerHTML = `
+  <div class="mesnotes-wrap">
+    <div class="mesnotes-hero">
+      <h2>📓 Mes notes</h2>
+      <p>Tous tes bloc-notes sauvegardés, réunis au même endroit.</p>
+    </div>
+    <div id="mesnotes-inner"></div>
+  </div>`;
+
+  renderMesNotesInner(allNotes, '');
+}
+
+function renderMesNotesInner(allNotes, filter) {
+  const inner = document.getElementById('mesnotes-inner');
+  if (!inner) return;
+  const filtered = filter
+    ? allNotes.filter(n => n.title.toLowerCase().includes(filter.toLowerCase()) || n.content.toLowerCase().includes(filter.toLowerCase()))
+    : allNotes;
+
+  if (allNotes.length === 0) {
+    inner.innerHTML = `<div class="mesnotes-empty"><span>📓</span>Aucune note sauvegardée pour l'instant.<br><br>Ouvre un module QCM et écris dans le bloc-notes en bas de page.</div>`;
+    return;
+  }
+
+  const toolbar = `
+    <div class="mesnotes-toolbar">
+      <span class="mesnotes-count">${filtered.length} note${filtered.length>1?'s':''} sur ${allNotes.length}</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <input class="mesnotes-search" type="text" placeholder="Rechercher..." value="${escMN(filter)}" oninput="mnesSearch(this.value)" id="mnes-search">
+        <button class="mesnotes-export-all-btn" onclick="mnesExportAll()">⬇ Tout exporter</button>
+      </div>
+    </div>`;
+
+  const cardsHTML = filtered.length === 0
+    ? `<div class="mesnotes-empty" style="padding:1.5rem"><span>🔍</span>Aucune note ne correspond à la recherche.</div>`
+    : filtered.map(n => `
+      <div class="mesnotes-card" id="mnes-card-${n.moduleId}">
+        <div class="mesnotes-card-head" onclick="mnesToggle('${n.moduleId}')">
+          <div class="mesnotes-card-left">
+            <div class="mesnotes-card-dot" style="background:${n.color}"></div>
+            <div>
+              <div class="mesnotes-card-title">${escMN(n.title)}</div>
+              <div class="mesnotes-card-meta">${n.chars} caractères</div>
+            </div>
+          </div>
+          <div class="mesnotes-card-actions" onclick="event.stopPropagation()">
+            <button class="mesnotes-edit-btn" onclick="mnesGoEdit('${n.moduleId}')">✏️ Éditer</button>
+            <button class="mnesotes-export-btn mesnotes-edit-btn" onclick="mnesExportOne('${n.moduleId}')">⬇</button>
+            <button class="mesnotes-del-btn" onclick="mnesDelete('${n.moduleId}')">✕</button>
+          </div>
+        </div>
+        <div class="mesnotes-card-body" id="mnes-body-${n.moduleId}">
+          <div class="mesnotes-card-text">${escMN(n.content)}</div>
+        </div>
+      </div>`).join('');
+
+  inner.innerHTML = toolbar + `<div class="mesnotes-grid">${cardsHTML}</div>`;
+}
+
+function escMN(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function mnesToggle(moduleId) {
+  const body = document.getElementById('mnes-body-' + moduleId);
+  if (body) body.classList.toggle('open');
+}
+
+function mnesSearch(val) {
+  const allNotes = mnesLoadAll();
+  renderMesNotesInner(allNotes, val);
+  // Restore focus
+  setTimeout(() => {
+    const s = document.getElementById('mnes-search');
+    if (s) { s.focus(); s.value = val; s.setSelectionRange(val.length, val.length); }
+  }, 10);
+}
+
+function mnesLoadAll() {
+  const allNotes = [];
+  const keys = Object.keys(localStorage);
+  for (const key of keys) {
+    if (!key.startsWith('tssr_note_')) continue;
+    const moduleId = key.replace('tssr_note_', '');
+    const content = localStorage.getItem(key);
+    if (!content || !content.trim()) continue;
+    const mod = MODULES[moduleId];
+    allNotes.push({
+      moduleId,
+      title: mod ? mod.title : moduleId,
+      color: mod ? mod.color : 'var(--accent)',
+      content: content.trim(),
+      chars: content.trim().length
+    });
+  }
+  return allNotes;
+}
+
+function mnesGoEdit(moduleId) {
+  showSection(moduleId);
+  // Scroll to notes block after a short delay
+  setTimeout(() => {
+    const nb = document.getElementById('notes-block-' + moduleId);
+    if (nb) nb.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const ta = document.getElementById('notes-ta-' + moduleId);
+    if (ta) ta.focus();
+  }, 400);
+}
+
+function mnesDelete(moduleId) {
+  const mod = MODULES[moduleId];
+  const title = mod ? mod.title : moduleId;
+  if (!confirm('Supprimer les notes "' + title + '" ?')) return;
+  try { localStorage.removeItem('tssr_note_' + moduleId); } catch(e) {}
+  renderMesNotes();
+}
+
+function mnesExportOne(moduleId) {
+  const content = localStorage.getItem('tssr_note_' + moduleId) || '';
+  const mod = MODULES[moduleId];
+  const title = mod ? mod.title : moduleId;
+  if (!content.trim()) { alert('Aucune note à exporter.'); return; }
+  const blob = new Blob(['Notes — ' + title + '\n' + '='.repeat(40) + '\n\n' + content], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url;
+  a.download = 'notes_' + title.replace(/[^a-z0-9]/gi,'_') + '.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function mnesExportAll() {
+  const allNotes = mnesLoadAll();
+  if (!allNotes.length) { alert('Aucune note à exporter.'); return; }
+  let txt = 'TOUTES MES NOTES — TSSR Révisions\n' + '='.repeat(50) + '\n\n';
+  for (const n of allNotes) {
+    txt += '━━━ ' + n.title + ' ━━━\n\n' + n.content + '\n\n';
+  }
+  const blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url;
+  a.download = 'mes_notes_TSSR_' + new Date().toISOString().slice(0,10) + '.txt';
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 </script>
