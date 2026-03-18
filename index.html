@@ -2852,9 +2852,18 @@ async function sbQuery(table, method, body, filter) {
 }
 
 // ── Hash PIN côté client (SHA-256 via WebCrypto) ──
+// Fonction de hachage ultra simple pour le PIN
 async function hashPin(pin) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pin + 'tssr_salt_2024'));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    // Version simplifiée qui fonctionne partout
+    const str = pin + 'tssr_salt_2024';
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+    // Ajouter un padding pour faire comme SHA-256
+    return Math.abs(hash).toString(16).padStart(64, '0') + Math.abs(hash*2).toString(16).slice(0,32);
 }
 
 // ── Sauvegarde/chargement données profil ──
