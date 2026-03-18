@@ -1322,19 +1322,38 @@ function showSection(id) {
 }
 
 function initQcm(id) {
-  const mod = MODULES[id];
-  const drawn = shuffle(mod.questions).slice(0, DRAW_QCM);
-  state[id] = { questions: drawn, current: 0, score: 0, answered: false, missed: [] };
-  renderQcm(id);
-  setTimeout(() => {
-    const section = document.getElementById('section-' + id);
-    if (section && !document.getElementById('notes-block-' + id)) {
-      const nb = renderNotes(id);
-      section.appendChild(nb);
-    }
-  }, 50);
+    const mod = MODULES[id];
+    // On prend les questions au hasard
+    let drawn = shuffle(mod.questions).slice(0, DRAW_QCM);
+    
+    // Pour chaque question, on mélange les options
+    drawn = drawn.map(q => {
+        // Sauvegarder la bonne réponse
+        const correctAnswer = q.opts[q.ans];
+        // Mélanger toutes les options
+        const shuffledOpts = shuffle(q.opts);
+        // Trouver la nouvelle position de la bonne réponse
+        const newAns = shuffledOpts.indexOf(correctAnswer);
+        
+        return {
+            ...q,
+            opts: shuffledOpts,
+            ans: newAns  // La nouvelle position de la bonne réponse
+        };
+    });
+    
+    state[id] = { questions: drawn, current: 0, score: 0, answered: false, missed: [] };
+    renderQcm(id);
+    
+    setTimeout(() => {
+        const section = document.getElementById('section-' + id);
+        if (section && !document.getElementById('notes-block-' + id)) {
+            const nb = renderNotes(id);
+            section.appendChild(nb);
+        }
+    }, 50);
 }
-
+  
 function renderQcm(id) {
   const mod = MODULES[id];
   const s = state[id];
