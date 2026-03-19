@@ -857,7 +857,7 @@
 <button id="admin-btn" onclick="showAuthOverlay('login')" title="Panneau Admin" style="position:fixed;top:10px;left:52px;z-index:200;width:34px;height:34px;border-radius:50%;background:var(--surface);border:1px solid rgba(255,95,109,.35);font-size:14px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25);transition:transform .15s;-webkit-appearance:none">⚡</button>
 
 <button id="theme-btn" onclick="toggleTheme()" aria-label="Changer le thème" title="Dark / Light">🌙</button>
-<button id="admin-btn" onclick="showAuthOverlay('login')" title="Panneau Admin" style="position:fixed;top:10px;left:52px;z-index:200;width:34px;height:34px;border-radius:50%;background:var(--surface);border:1px solid rgba(255,95,109,.35);font-size:14px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25);transition:transform .15s;-webkit-appearance:none">⚡</button>
+
 <div id="admin-overlay" class="admin-overlay" style="display:none" onclick="if(event.target===this)adminClose()">
   <div class="admin-modal">
     <div class="admin-header">
@@ -1085,7 +1085,7 @@ const DRAW_PORTS = 20;
 
 const MODULES = {
   linux: {
-    title: "Serveurs Linux", color: "#3ecf8e",
+    icon: '🐧', title: "Serveurs Linux", color: "#3ecf8e",
     questions: [
       {q:"Quelle commande affiche le contenu d'un fichier texte ?",opts:["ls","cat","cd","mkdir"],ans:1,expl:"cat affiche le contenu. ls liste les fichiers, cd change de dossier, mkdir crée un dossier."},
       {q:"Quelle commande change les droits d'un fichier ?",opts:["chown","chmod","chgrp","chdir"],ans:1,expl:"chmod modifie les permissions. chown change le propriétaire, chgrp le groupe."},
@@ -1120,7 +1120,7 @@ const MODULES = {
     ]
   },
   reseau: {
-    title: "Réseau IP", color: "#7c6af7",
+    icon: '🌐', title: "Réseau IP", color: "#7c6af7",
     questions: [
       {q:"Combien de bits contient une adresse IPv4 ?",opts:["16 bits","32 bits","64 bits","128 bits"],ans:1,expl:"IPv4 = 32 bits = 4 octets. IPv6 = 128 bits."},
       {q:"À quelle couche OSI appartient le protocole IP ?",opts:["Couche 2 – Liaison","Couche 3 – Réseau","Couche 4 – Transport","Couche 7 – Application"],ans:1,expl:"IP est en couche 3. TCP/UDP en couche 4."},
@@ -1155,7 +1155,7 @@ const MODULES = {
     ]
   },
   virt: {
-    title: "Virtualisation", color: "#f5a623",
+    icon: '💻', title: "Virtualisation", color: "#f5a623",
     questions: [
       {q:"Qu'est-ce qu'un hyperviseur ?",opts:["Un serveur physique puissant","Un logiciel qui crée et gère des VM","Un système de sauvegarde","Un protocole réseau"],ans:1,expl:"L'hyperviseur (ESXi, Proxmox) fait tourner plusieurs VM sur un seul serveur physique."},
       {q:"Différence hyperviseur type 1 vs type 2 ?",opts:["Type 1 est plus lent","Type 1 tourne sur le matériel, type 2 sur un OS","Type 2 est pour les entreprises","Aucune différence"],ans:1,expl:"Type 1 (bare-metal) : ESXi, Proxmox. Type 2 (hosted) : VirtualBox, VMware Workstation."},
@@ -1190,7 +1190,7 @@ const MODULES = {
     ]
   },
   sauvegarde: {
-    title: "Sauvegarde", color: "#f26464",
+    icon: '💾', title: "Sauvegarde", color: "#f26464",
     questions: [
       {q:"Qu'est-ce qu'une sauvegarde complète ?",opts:["Sauvegarde des fichiers modifiés uniquement","Sauvegarde de tout le système à un instant T","Sauvegarde des nouveaux fichiers","Copie d'un seul disque"],ans:1,expl:"La sauvegarde complète copie tout. Lente à faire, rapide à restaurer."},
       {q:"Qu'est-ce qu'une sauvegarde différentielle ?",opts:["Sauvegarde tout depuis le début","Sauvegarde ce qui a changé depuis la dernière complète","Sauvegarde ce qui a changé depuis la dernière sauvegarde quelle qu'elle soit","Sauvegarde uniquement les logs"],ans:1,expl:"Différentielle = changements depuis la dernière COMPLÈTE. Restauration : complète + dernière différentielle."},
@@ -1225,7 +1225,7 @@ const MODULES = {
     ]
   },
   actdir: {
-    title: "Active Directory", color: "#4fa8e8",
+    icon: '🏢', title: "Active Directory", color: "#4fa8e8",
     questions: [
       {q:"Rôle principal d'Active Directory ?",opts:["Héberger des sites web","Centraliser l'authentification et la gestion des utilisateurs","Gérer les sauvegardes","Configurer les switchs"],ans:1,expl:"AD centralise la gestion des comptes, droits et ressources dans un domaine Windows."},
       {q:"Qu'est-ce qu'un contrôleur de domaine (DC) ?",opts:["Serveur qui héberge AD et gère l'authentification","Un routeur Windows","Un serveur de sauvegarde","Un poste administrateur"],ans:0,expl:"Le DC fait tourner AD DS, authentifie les utilisateurs et applique les stratégies."},
@@ -1260,7 +1260,7 @@ const MODULES = {
     ]
   },
   secu: {
-    title: "Sécurité", color: "#e8554e",
+    icon: '🔐', title: "Sécurité", color: "#e8554e",
     questions: [
       {q:"Rôle d'un firewall ?",opts:["Accélérer le réseau","Filtrer le trafic réseau selon des règles","Chiffrer les données","Attribuer des adresses IP"],ans:1,expl:"Le firewall filtre les paquets selon des règles et bloque le trafic non autorisé."},
       {q:"Différence firewall stateful vs stateless ?",opts:["Stateful est plus ancien","Stateful suit l'état des connexions, stateless analyse chaque paquet isolément","Stateless est plus sécurisé","Aucune différence"],ans:1,expl:"Stateful = analyse le contexte de connexion. Stateless = vérifie chaque paquet indépendamment."},
@@ -1295,7 +1295,7 @@ const MODULES = {
     ]
   },
   supervision: {
-    title: "Supervision", color: "#3ecf8e",
+    icon: '📡', title: "Supervision", color: "#3ecf8e",
     questions: [
       {q:"Rôle de la supervision réseau ?",opts:["Chiffrer les communications","Surveiller l'état et les performances des équipements en temps réel","Gérer les comptes utilisateurs","Configurer les switchs"],ans:1,expl:"La supervision surveille en continu les équipements et alerte en cas de panne ou seuil dépassé."},
       {q:"Port par défaut de SNMP ?",opts:["161 UDP","443 TCP","22 TCP","80 TCP"],ans:0,expl:"SNMP = port 161 UDP pour les requêtes, 162 UDP pour les traps."},
@@ -1330,7 +1330,7 @@ const MODULES = {
     ]
   },
   stockage: {
-    title: "Stockage", color: "#a594ff",
+    icon: '🗄️', title: "Stockage", color: "#a594ff",
     questions: [
       {q:"Qu'est-ce que le RAID 1 ?",opts:["Répartition des données sur plusieurs disques","Miroir : données copiées sur 2 disques","Parité sur 3 disques minimum","Combinaison RAID 0 et 5"],ans:1,expl:"RAID 1 = miroir. Si un disque tombe, l'autre prend le relais."},
       {q:"Quel RAID offre les meilleures performances sans redondance ?",opts:["RAID 1","RAID 5","RAID 0","RAID 6"],ans:2,expl:"RAID 0 = striping. Performances max mais aucune tolérance de panne."},
@@ -2045,7 +2045,7 @@ function showFiche(id) {
 
 const MODULES_V5 = {
   winserver: {
-    title: "Windows Server", color: "#4fa8e8",
+    icon: '🪟', title: "Windows Server", color: "#4fa8e8",
     questions: [
       {q:"Quelle commande PowerShell installe le rôle AD DS avec ses outils d'administration ?",opts:["Add-WindowsFeature AD","Install-WindowsFeature AD-Domain-Services -IncludeManagementTools","Enable-ADRole -Full","Install-ADDomain"],ans:1,expl:"La commande complète est : Install-WindowsFeature AD-Domain-Services -IncludeManagementTools. Le paramètre -IncludeManagementTools installe aussi les MMC (ADUC, GPMC, DNS Manager...). Sans ce paramètre, les outils graphiques ne sont pas installés."},
       {q:"Quelle commande PowerShell crée une nouvelle forêt Active Directory ?",opts:["New-ADForest entreprise.local","Install-ADDSForest -DomainName entreprise.local -InstallDNS:$true","Add-ADDomain -Forest entreprise.local","New-Domain entreprise.local"],ans:1,expl:"Install-ADDSForest est la commande de promotion. Les paramètres essentiels sont : -DomainName (ex: entreprise.local), -DomainNetbiosName (ex: ENTREPRISE), -SafeModeAdministratorPassword (mot de passe DSRM), -InstallDNS:$true. Après exécution, le serveur redémarre automatiquement en contrôleur de domaine."},
@@ -2078,7 +2078,7 @@ const MODULES_V5 = {
     ]
   },
   linux_avance: {
-    title: "Linux Avancé", color: "#3ecf8e",
+    icon: '⚙️', title: "Linux Avancé", color: "#3ecf8e",
     questions: [
       {q:"Que fait la commande 'set -euo pipefail' au début d'un script Bash ?",opts:["Désactive toutes les erreurs","Combinaison de protections : -e (stop sur erreur), -u (erreur si variable non déclarée), -o pipefail (propage les erreurs dans les pipes)","Définit les variables d'environnement","Limite les droits du script"],ans:1,expl:"set -e : le script s'arrête à la première commande qui retourne un code d'erreur ≠ 0. set -u : utiliser une variable non définie devient une erreur (évite les bugs silencieux). set -o pipefail : si cmd1 | cmd2 échoue à cmd1, l'erreur est propagée (sans ça, seul le code de cmd2 est capturé). C'est le trio indispensable pour les scripts Bash professionnels."},
       {q:"Quelle est la différence entre SUID et SGID sous Linux ?",opts:["Aucune différence","SUID (chmod u+s) = le programme s'exécute avec les droits du propriétaire du fichier. SGID (chmod g+s) = le programme s'exécute avec les droits du groupe du fichier (ou les nouveaux fichiers créés dans un dossier héritent de son groupe)","SGID est plus sécurisé que SUID","SUID est pour les dossiers, SGID pour les fichiers"],ans:1,expl:"SUID visible comme 's' dans les droits propriétaire : -rwsr-xr-x. Exemple classique : /usr/bin/passwd a SUID root → permet à tous les utilisateurs de changer leur mot de passe (qui nécessite d'écrire dans /etc/shadow). SGID sur un dossier partagé : tous les fichiers créés dedans appartiennent au groupe du dossier — pratique pour les répertoires collaboratifs."},
@@ -2108,7 +2108,7 @@ const MODULES_V5 = {
     ]
   },
   reseau_avance: {
-    title: "Réseau Avancé", color: "#7c6af7",
+    icon: '🔀', title: "Réseau Avancé", color: "#7c6af7",
     questions: [
       {q:"Qu'est-ce que la CAM Table (Content Addressable Memory) d'un switch et comment la consulter sur Cisco ?",opts:["Une table de routage IP","La table MAC du switch : associe chaque adresse MAC à son port d'entrée. Le switch apprend automatiquement les MACs depuis les trames reçues. Commande Cisco : show mac address-table","Une table ARP","Une table de VLANs"],ans:1,expl:"La CAM Table contient : VLAN | MAC | Type (dynamic/static) | Port. Le switch l'utilise pour le forwarding intelligent : au lieu de diffuser sur tous les ports (flooding), il envoie directement sur le bon port. Si la MAC est inconnue → flood (envoi sur tous les ports du VLAN). Durée de vie d'une entrée dynamique : environ 300 secondes. show mac address-table dynamic affiche seulement les entrées apprises automatiquement."},
       {q:"Quels sont les états STP (Spanning Tree Protocol) qu'un port peut traverser et combien de temps dure la convergence ?",opts:["Actif ou Inactif uniquement","Blocking (reçoit BPDU sans forwarder) → Listening (15s) → Learning (15s) → Forwarding. Convergence totale STP classique : environ 50 secondes. RSTP (802.1w) converge en quelques secondes","Un seul état : Forwarding ou Blocking","STP n'a pas d'états définis"],ans:1,expl:"STP 802.1D : Blocking (écoute les BPDU, ne forwarder pas), Listening (15s, élit Root Bridge), Learning (15s, apprend les MACs sans forwarder), Forwarding (forwarde le trafic). Convergence = 50s minimum — trop lent pour les réseaux modernes. RSTP 802.1w : Discarding/Learning/Forwarding, convergence < 1 seconde. BPDU Guard désactive immédiatement un port access qui reçoit un BPDU (protection contre les switches non autorisés)."},
@@ -2135,7 +2135,7 @@ const MODULES_V5 = {
     ]
   },
   pentest_secu: {
-    title: "Cybersécurité Avancée", color: "#e8554e",
+    icon: '🕵️', title: "Cybersécurité Avancée", color: "#e8554e",
     questions: [
       {q:"Quels sont les services Windows recommandés à désactiver lors du hardening, selon la FICHE 601 ?",opts:["DNS et DHCP","Fax, Remote Registry, SMBv1, Telnet, Print Spooler (si pas d'imprimante) — services inutiles qui augmentent la surface d'attaque","Tous les services Windows","RDP uniquement"],ans:1,expl:"Chaque service inutile = surface d'attaque supplémentaire. Remote Registry permet la modification du registre à distance — désactiver si pas nécessaire. SMBv1 est vulnérable (EternalBlue, WannaCry) → désactiver absolument : Set-SmbServerConfiguration -EnableSMB1Protocol $false. Telnet transmet en clair → désactiver. Print Spooler = vecteur d'attaque (PrintNightmare CVE-2021-34527) → désactiver si pas d'imprimante. Commande : Set-Service -Name RemoteRegistry -StartupType Disabled."},
       {q:"Qu'est-ce que NLA (Network Level Authentication) pour RDP et comment l'activer ?",opts:["Une option de chiffrement RDP","NLA authentifie l'utilisateur AVANT d'établir la session RDP complète — si les credentials sont faux, aucune session n'est créée (protection contre le vol de session et le brute-force). Activer via GPO : Computer Config → Windows Settings → Security Settings → Local Policies → Require NLA","Un type de pare-feu","Un protocole de compression RDP"],ans:1,expl:"Sans NLA : l'écran de connexion Windows est affiché à l'attaquant avant toute auth → vulnérabilités comme BlueKeep (CVE-2019-0708) exploitent cette phase. Avec NLA : Kerberos ou NTLM valide les credentials avant d'ouvrir la session graphique → beaucoup moins de surface d'attaque. NLA nécessite que le client RDP soit Windows Vista/Server 2008 minimum. Activation PowerShell : Set-ItemProperty -Path 'HKLM:\\System\\CurrentControlSet\\Control\\Terminal Server\\WinStations\\RDP-Tcp' -Name 'UserAuthentication' -Value 1."},
@@ -2160,7 +2160,7 @@ const MODULES_V5 = {
     ]
   },
   supervision_avance: {
-    title: "Supervision & ITSM", color: "#1D9E75",
+    icon: '📊', title: "Supervision & ITSM", color: "#1D9E75",
     questions: [
       {q:"Qu'est-ce que GLPI et quels sont ses modules principaux selon la FICHE 1001 ?",opts:["GLPI est uniquement un helpdesk","GLPI est un outil ITSM open source (PHP/MySQL) incluant : Helpdesk (tickets, SLA, projets), Inventaire matériel et logiciel, Suivi des licences, Gestion des contrats, Base de connaissances, Gestion des changements","GLPI est un outil de supervision réseau","GLPI est un SIEM"],ans:1,expl:"GLPI (Gestion Libre de Parc Informatique) couvre l'ITSM complet. Architecture : interface web PHP, base MariaDB/MySQL, agents FusionInventory pour l'inventaire automatique. Les objets gérés : ordinateurs, serveurs, moniteurs, switches, routeurs, licences, logiciels, IP/réseaux, périphériques. Accès via navigateur. La structure de ticket inclut : catégorie, urgence, impact, priorité calculée, SLA associé, technicien assigné, suivi des actions."},
       {q:"Comment installer l'agent FusionInventory sur Windows et quelle est la configuration minimale ?",opts:["Il n'y a pas d'agent Windows","fusioninventory-agent_windows-x64.exe /acceptlicense /server='http://glpi.domain/plugins/fusioninventory/' /runnow installe l'agent et déclenche un inventaire immédiat. Options utiles : /add-firewall-exception, /runnow","apt install fusioninventory-agent","yum install fusioninventory"],ans:1,expl:"L'agent FusionInventory collecte : matériel complet (CPU, RAM, disques, numéro de série), logiciels installés, mises à jour, IP/MAC, comptes locaux. Sur Linux : apt install fusioninventory-agent → configurer /etc/fusioninventory/agent.cfg avec server=URL GLPI. Sur Windows : installateur MSI avec l'URL du serveur. L'agent peut aussi être déployé via GPO (MSI en déploiement silencieux). FusionInventory peut aussi faire de la découverte réseau SNMP pour les switches/routeurs."},
@@ -3090,10 +3090,18 @@ async function profileSet(key, value) {
   // Cache local
   try { localStorage.setItem('tssr_cache_' + u.id + '_' + key, JSON.stringify(value)); } catch(e) {}
   // Upsert Supabase
-  await sbQuery('user_data', 'POST',
+  // Upsert via POST with on_conflict, then PATCH as fallback
+  const rPost = await sbQuery('user_data', 'POST',
     { user_id: u.id, data_key: key, data_value: value },
     'on_conflict=user_id,data_key'
   );
+  if (!rPost.ok && rPost.status !== 409) {
+    // Fallback: try PATCH
+    await sbQuery('user_data', 'PATCH',
+      { data_value: value },
+      `user_id=eq.${u.id}&data_key=eq.${key}`
+    );
+  }
 }
 
 function profileGetCache(key) {
@@ -3242,28 +3250,47 @@ async function authRegister() {
 async function authLogin() {
   const username = (document.getElementById('auth-username')||{}).value?.trim();
   const pin = authGetPin();
+
+  // ── Compte administrateur (local, pas dans Supabase) ──
+  if (username === 'Administrateur' && pin === '7539') {
+    hideAuthOverlay();
+    adminOpen();
+    return;
+  }
+
   if (!username) { authSetError('Entre ton pseudo.'); return; }
   if (pin.length < 4) { authSetError('Entre les 4 chiffres.'); return; }
   authSetLoading(true);
 
-  const pin_hash = await hashPin(pin);
-  const r = await sbQuery('users', 'GET', null, `username=eq.${encodeURIComponent(username)}&pin_hash=eq.${pin_hash}&select=id,username,created_at`);
-  authSetLoading(false);
-  if (!r.ok || !Array.isArray(r.data) || r.data.length === 0) {
-    authSetError('Pseudo ou PIN incorrect.'); return;
+  try {
+    const pin_hash = await hashPin(pin);
+    const r = await sbQuery('users', 'GET', null, `username=eq.${encodeURIComponent(username)}&pin_hash=eq.${pin_hash}&select=id,username,created_at`);
+    authSetLoading(false);
+    if (!r.ok || !Array.isArray(r.data) || r.data.length === 0) {
+      authSetError('Pseudo ou PIN incorrect.'); return;
+    }
+    const user = r.data[0];
+    sbQuery('users', 'PATCH', { last_login: new Date().toISOString() }, `id=eq.${user.id}`);
+    const session = {
+      id: user.id,
+      username: user.username,
+      joined: user.created_at ? new Date(user.created_at).toLocaleDateString('fr-FR') : '—'
+    };
+    // Effacer le flag admin pour les utilisateurs normaux
+    localStorage.removeItem('tssr_is_admin');
+    const ab = document.getElementById('admin-btn');
+    if (ab) ab.style.display = 'none';
+    setCurrentUser(session);
+    hideAuthOverlay();
+    showNavProfile(session);
+    profileLoadAll();
+    saveUserIP(user.id);
+    setTimeout(() => checkIfBlocked(), 1500);
+    setInterval(() => checkIfBlocked(), 30000);
+  } catch(e) {
+    authSetLoading(false);
+    authSetError('Erreur de connexion. Vérifie ta connexion.');
   }
-  const user = r.data[0];
-  // Met à jour last_login
-  sbQuery('users', 'PATCH', { last_login: new Date().toISOString() }, `id=eq.${user.id}`);
-  const session = {
-    id: user.id,
-    username: user.username,
-    joined: user.created_at ? new Date(user.created_at).toLocaleDateString('fr-FR') : '—'
-  };
-  setCurrentUser(session);
-  hideAuthOverlay();
-  showNavProfile(session);
-  await profileLoadAll();
 }
 
 function showNavProfile(user) {
@@ -3276,10 +3303,13 @@ function showNavProfile(user) {
 function authLogout() {
   if (!confirm('Se déconnecter ?')) return;
   setCurrentUser(null);
+  localStorage.removeItem('tssr_is_admin');
   const w = document.getElementById('nav-profile');
   const b = document.getElementById('nav-profile-btn');
+  const ab = document.getElementById('admin-btn');
   if (w) w.style.display = 'none';
   if (b) b.style.display = 'none';
+  if (ab) ab.style.display = 'none';
   showSection('home');
   showAuthOverlay('login');
 }
@@ -3288,7 +3318,12 @@ function authLogout() {
 async function authSaveQcmResult(moduleId, score, total) {
   const u = getCurrentUser();
   if (!u) return;
-  let scores = profileGetCache('qcm_scores') || {};
+  // Charger les scores existants depuis le cache ou Supabase
+  let scores = profileGetCache('qcm_scores');
+  if (!scores) {
+    const r = await sbQuery('user_data','GET',null,`user_id=eq.${u.id}&data_key=eq.qcm_scores&select=data_value`);
+    scores = (r.ok && Array.isArray(r.data) && r.data.length > 0) ? (r.data[0].data_value || {}) : {};
+  }
   if (!scores[moduleId]) scores[moduleId] = { sessions:0, totalScore:0, totalQ:0, bestPct:0 };
   scores[moduleId].sessions++;
   scores[moduleId].totalScore += score;
@@ -3298,8 +3333,13 @@ async function authSaveQcmResult(moduleId, score, total) {
   scores[moduleId].lastPct = pct;
   scores[moduleId].lastDate = new Date().toLocaleDateString('fr-FR');
   await profileSet('qcm_scores', scores);
-  const totalQ = (profileGetCache('total_questions') || 0) + total;
-  await profileSet('total_questions', totalQ);
+  // Mettre à jour total questions
+  let totalQCached = profileGetCache('total_questions');
+  if (totalQCached === null) {
+    const rq = await sbQuery('user_data','GET',null,`user_id=eq.${u.id}&data_key=eq.total_questions&select=data_value`);
+    totalQCached = (rq.ok && Array.isArray(rq.data) && rq.data.length > 0) ? (rq.data[0].data_value || 0) : 0;
+  }
+  await profileSet('total_questions', totalQCached + total);
 }
 
 async function authSaveSprintResult(score, total) {
@@ -3310,52 +3350,78 @@ async function authSaveSprintResult(score, total) {
 }
 
 // ── Profil ──
+function escA(s){return String(s).replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 async function renderProfile() {
   const u = getCurrentUser();
   const el = document.getElementById('profile-container');
   if (!el) return;
   if (!u) { el.innerHTML = '<p style="color:var(--muted);padding:2rem;font-family:var(--mono)">Non connecté.</p>'; return; }
-  el.innerHTML = '<div class="profile-wrap"><div style="padding:3rem;text-align:center;color:var(--muted);font-family:var(--mono)">⏳ Chargement de ta progression...</div></div>';
+  el.innerHTML = '<div class="profile-wrap"><div style="padding:3rem;text-align:center;color:var(--muted);font-family:var(--mono)">⏳ Chargement...</div></div>';
+
   const data = await profileLoadAll();
   const scores = data['qcm_scores'] || {};
   const totalQ = data['total_questions'] || 0;
   const sprintSessions = data['sprint_sessions'] || 0;
   const sprintScore = data['sprint_total_score'] || 0;
-  const streakData = data['sprint_streak'] || { days: 0 };
+  const streak = data['sprint_streak'] || {days:0};
   const doneMods = Object.keys(scores).length;
-  const avgPct = doneMods > 0 ? Math.round(Object.values(scores).reduce((a,s)=>a+(s.lastPct||0),0)/doneMods) : 0;
-  const moduleCardsHTML = Object.keys(MODULES).filter(k=>MODULES[k].questions).map(k => {
+  const totalMods = Object.keys(MODULES).filter(k => MODULES[k].questions).length;
+  const avgPct = doneMods > 0 ? Math.round(Object.values(scores).reduce((a,s) => a + (s.lastPct||0), 0) / doneMods) : 0;
+
+  // Modules cards avec progression détaillée
+  const moduleCardsHTML = Object.keys(MODULES).filter(k => MODULES[k].questions).map(k => {
+    const mod = MODULES[k];
     const s = scores[k];
     const pct = s ? s.bestPct : 0;
-    return `<div class="profile-module-card">
-      <div class="profile-module-name">${MODULES[k].title}</div>
-      <div class="profile-module-bar-wrap"><div class="profile-module-bar" style="width:${pct}%;background:${MODULES[k].color}"></div></div>
-      <div class="profile-module-meta">${s ? `Meilleur : ${pct}% · ${s.sessions} session${s.sessions>1?'s':''}` : 'Pas encore joué'}</div>
+    const sessions = s ? s.sessions : 0;
+    const lastScore = s ? s.lastPct : null;
+    const totalQMod = mod.questions.length;
+    const barColor = pct >= 80 ? 'var(--green)' : pct >= 50 ? 'var(--accent)' : pct > 0 ? 'var(--amber)' : 'var(--surface3)';
+    return `<div class="profile-module-card" style="cursor:pointer;transition:border-color .15s" onmouseenter="this.style.borderColor='${mod.color}40'" onmouseleave="this.style.borderColor=''" onclick="showSection('${k}')">
+      <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.4rem">
+        <span style="font-size:14px">${mod.icon||'📚'}</span>
+        <div class="profile-module-name" style="color:${mod.color}">${mod.title}</div>
+      </div>
+      <div class="profile-module-bar-wrap">
+        <div class="profile-module-bar" style="width:${pct}%;background:${barColor}"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.3rem">
+        <div class="profile-module-meta">${sessions > 0 ? `Meilleur : <strong>${pct}%</strong> · ${sessions} session${sessions>1?'s':''}` : '<span style="color:var(--muted)">Pas encore joué</span>'}</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--muted)">${totalQMod}q</div>
+      </div>
+      ${lastScore !== null ? `<div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:2px">Dernier : ${lastScore}%</div>` : ''}
     </div>`;
   }).join('');
+
+  const isAdmin = localStorage.getItem('tssr_is_admin') === '1';
+
   el.innerHTML = `
   <div class="profile-wrap">
     <div class="profile-hero">
       <div class="profile-avatar-big">${getInitial(u.username)}</div>
       <div class="profile-info">
-        <div class="profile-name">${escAuth(u.username)}</div>
+        <div class="profile-name">${escA(u.username)}</div>
         <div class="profile-joined">Inscrit le ${u.joined || '—'}</div>
       </div>
     </div>
+
     <div class="profile-section-title">Statistiques globales</div>
     <div class="profile-stats-grid">
       <div class="profile-stat-card"><div class="profile-stat-val">${totalQ}</div><div class="profile-stat-lbl">Questions</div></div>
-      <div class="profile-stat-card"><div class="profile-stat-val">${doneMods}/${Object.keys(MODULES).filter(k=>MODULES[k].questions).length}</div><div class="profile-stat-lbl">Modules joués</div></div>
+      <div class="profile-stat-card"><div class="profile-stat-val">${doneMods}<span style="font-size:14px;color:var(--muted)">/${totalMods}</span></div><div class="profile-stat-lbl">Modules joués</div></div>
       <div class="profile-stat-card"><div class="profile-stat-val">${avgPct}%</div><div class="profile-stat-lbl">Moyenne</div></div>
       <div class="profile-stat-card"><div class="profile-stat-val">${sprintSessions}</div><div class="profile-stat-lbl">Sprints</div></div>
-      <div class="profile-stat-card"><div class="profile-stat-val">${streakData.days || 0}</div><div class="profile-stat-lbl">Jours 🔥</div></div>
+      <div class="profile-stat-card"><div class="profile-stat-val">${streak.days||0}</div><div class="profile-stat-lbl">Jours 🔥</div></div>
       <div class="profile-stat-card"><div class="profile-stat-val">${sprintSessions>0?Math.round(sprintScore/sprintSessions)+'%':'—'}</div><div class="profile-stat-lbl">Moy. sprint</div></div>
     </div>
-    <div class="profile-section-title">Progression par module</div>
+
+    <div class="profile-section-title">Progression par module <span style="font-weight:400;font-size:10px">(clic → accéder au module)</span></div>
     <div class="profile-module-grid">${moduleCardsHTML}</div>
+
     <div class="profile-section-title">Compte</div>
     <div class="profile-actions">
       <button class="profile-logout-btn" onclick="authLogout()">Se déconnecter</button>
+      ${isAdmin ? '<button onclick="adminOpen()" style="padding:.65rem 1.5rem;background:rgba(255,95,109,.12);border:1px solid rgba(255,95,109,.35);border-radius:var(--radius);color:#ff5f6d;font-size:12px;cursor:pointer;font-family:var(--mono);margin-left:.5rem">⚡ Panel Admin</button>' : ''}
     </div>
   </div>`;
 }
@@ -4479,415 +4545,383 @@ function mnesExportAll() {
 }
 
 
-// ── NAV DROPDOWN ──
-function toggleNavGroup(id) {
-  const grp = document.getElementById(id);
-  if (!grp) return;
-  const wasOpen = grp.classList.contains('open');
-  closeNavGroups();
-  if (!wasOpen) grp.classList.add('open');
-}
-function closeNavGroups() {
-  document.querySelectorAll('.nav-group.open').forEach(g => g.classList.remove('open'));
-}
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.nav-group')) closeNavGroups();
-});
 
-// ── NAV LABEL UPDATE (no redefinition) ──
-const NAV_LABELS_MAP = {'home':'Accueil','linux':'Linux','reseau':'Réseau','virt':'Virtualisation','sauvegarde':'Sauvegarde','actdir':'Active Directory','secu':'Sécurité','supervision':'Supervision','stockage':'Stockage','winserver':'Windows Server','linux_avance':'Linux Avancé','reseau_avance':'Réseau Avancé','pentest_secu':'Cybersécurité','supervision_avance':'Supervision+','ouvert':'Questions ouvertes','fiches':'Fiches','ports':'Ports','sprint':'Sprint','notes':'Notes','credits':'Crédits','profile':'Profil'};
+// ============================================================
+// SUPABASE CONFIG (if not defined above)
+// ============================================================
+// SUPABASE_URL & KEY already defined above
 
-// ── SUPABASE ──
-// SUPABASE_URL already defined
-// SUPABASE_KEY already defined
-// SESSION_KEY already defined
-
-// function getCurrentUser() already defined
-
-// async function hashPin( already defined
-
-async function profileSet(key, value) {
-  const u = getCurrentUser(); if (!u) return;
-  try { localStorage.setItem('tssr_c_'+u.id+'_'+key, JSON.stringify(value)); } catch(e) {}
-  await sbQuery('user_data','POST',{user_id:u.id,data_key:key,data_value:value},'on_conflict=user_id,data_key');
-}
-function profileGetCache(key) {
-  const u = getCurrentUser(); if (!u) return null;
-  try { return JSON.parse(localStorage.getItem('tssr_c_'+u.id+'_'+key)||'null'); } catch(e) { return null; }
-}
-async function profileLoadAll() {
-  const u = getCurrentUser(); if (!u) return {};
-  const r = await sbQuery('user_data','GET',null,'user_id=eq.'+u.id+'&select=data_key,data_value');
-  if (!r.ok || !Array.isArray(r.data)) return {};
-  const res = {};
-  r.data.forEach(row => {
-    res[row.data_key] = row.data_value;
-    try { localStorage.setItem('tssr_c_'+u.id+'_'+row.data_key, JSON.stringify(row.data_value)); } catch(e) {}
-  });
-  return res;
+// ============================================================
+// NAV LABELS
+// ============================================================
+const NAV_LABELS_MAP = {
+  home:'Accueil',linux:'Linux',reseau:'Réseau',virt:'Virtualisation',
+  sauvegarde:'Sauvegarde',actdir:'Active Directory',secu:'Sécurité',
+  supervision:'Supervision',stockage:'Stockage',winserver:'Windows Server',
+  linux_avance:'Linux Avancé',reseau_avance:'Réseau Avancé',
+  pentest_secu:'Cybersécurité',supervision_avance:'Supervision+',
+  ouvert:'Questions ouvertes',fiches:'Fiches',ports:'Ports',
+  sprint:'Sprint',notes:'Notes',credits:'Crédits',profile:'Profil',tp:'TPs'
+};
+function updateNavLabelById(id) {
+  const el = document.getElementById('nav-active-label');
+  if (el) el.textContent = NAV_LABELS_MAP[id] || '';
 }
 
-// ── AUTH ──
-// function showAuthOverlay( already defined
-// function hideAuthOverlay( already defined
-// function renderAuthContent( already defined
-function authPinInput(input, idx) {
-  const val = input.value.replace(/\D/g,'');
-  input.value = val ? val[0] : '';
-  const ids = ['pin0','pin1','pin2','pin3'];
-  if (val && idx < 3) { const n=document.getElementById(ids[idx+1]); if(n) n.focus(); }
-  if (val && idx === 3) setTimeout(() => {
-    const btn = document.getElementById('auth-submit-btn');
-    if (btn && btn.disabled) return;
-    const mode = document.querySelector('.auth-tab.active');
-    if (mode && mode.textContent.includes('Créer')) authRegister(); else authLogin();
-  }, 150);
-}
-function authPinKey(e, idx) {
-  if (e.key==='Backspace' && !e.target.value) {
-    const ids=['pin0','pin1','pin2','pin3'];
-    if (idx>0) document.getElementById(ids[idx-1]).focus();
-  }
-}
-function authGetPin() { return ['pin0','pin1','pin2','pin3'].map(id=>(document.getElementById(id)||{}).value||'').join(''); }
-function authSetError(msg) { const el=document.getElementById('auth-error'); if(el) el.textContent=msg; }
-function authSetLoading(on) {
-  const btn=document.getElementById('auth-submit-btn'); if(!btn) return;
-  if (on) { if(!btn.dataset.orig) btn.dataset.orig=btn.textContent; btn.textContent='⏳ Chargement...'; btn.disabled=true; btn.style.opacity='0.65'; }
-  else { btn.textContent=btn.dataset.orig||'Valider →'; btn.disabled=false; btn.style.opacity=''; delete btn.dataset.orig; }
-}
-
-async function authLogin() {
-  const username = (document.getElementById('auth-username')||{}).value?.trim();
-  const pin = authGetPin();
-  if (username==='Administrateur' && pin==='7539') { hideAuthOverlay(); adminOpen(); return; }
-  if (!username) { authSetError('Entre ton pseudo.'); return; }
-  if (pin.length<4) { authSetError('Entre les 4 chiffres.'); return; }
-  authSetLoading(true);
-  try {
-    const pin_hash = await hashPin(pin);
-    const r = await sbQuery('users','GET',null,'username=eq.'+encodeURIComponent(username)+'&pin_hash=eq.'+pin_hash+'&select=id,username,created_at');
-    authSetLoading(false);
-    if (!r.ok || !Array.isArray(r.data) || r.data.length===0) { authSetError('Pseudo ou PIN incorrect.'); return; }
-    const user = r.data[0];
-    sbQuery('users','PATCH',{last_login:new Date().toISOString()},'id=eq.'+user.id);
-    const session = {id:user.id, username:user.username, joined:user.created_at?new Date(user.created_at).toLocaleDateString('fr-FR'):'—'};
-    setCurrentUser(session);
-    hideAuthOverlay();
-    showNavProfile(session);
-    profileLoadAll();
-    checkIfBlocked();
-  } catch(e) { authSetLoading(false); authSetError('Erreur. Vérifie ta connexion.'); }
-}
-
-async function authRegister() {
-  const username = (document.getElementById('auth-username')||{}).value?.trim();
-  const pin = authGetPin();
-  if (username==='Administrateur' && pin==='7539') { hideAuthOverlay(); adminOpen(); return; }
-  if (!username) { authSetError('Entre un pseudo.'); return; }
-  if (pin.length<4) { authSetError('PIN = 4 chiffres.'); return; }
-  authSetLoading(true);
-  try {
-    const check = await sbQuery('users','GET',null,'username=eq.'+encodeURIComponent(username)+'&select=id');
-    if (check.ok && Array.isArray(check.data) && check.data.length>0) { authSetLoading(false); authSetError('Ce pseudo est déjà pris.'); return; }
-    const pin_hash = await hashPin(pin);
-    const r = await sbQuery('users','POST',{username,pin_hash});
-    authSetLoading(false);
-    if (!r.ok) { authSetError(r.status===409?'Pseudo déjà pris.':'Erreur: '+((r.data&&r.data.message)||'Réessaie.')); return; }
-    const user = Array.isArray(r.data)?r.data[0]:r.data;
-    if (!user||!user.id) { renderAuthContent('login'); authSetError('Compte créé ! Connecte-toi.'); return; }
-    const session = {id:user.id, username:user.username, joined:new Date().toLocaleDateString('fr-FR')};
-    setCurrentUser(session); hideAuthOverlay(); showNavProfile(session);
-  } catch(e) { authSetLoading(false); authSetError('Erreur inattendue. Réessaie.'); }
-}
-
-function showNavProfile(user) {
-  const w=document.getElementById('nav-profile'); if (!w) return;
-  w.style.display='flex';
-  w.innerHTML='<div class="nav-avatar">'+getInitial(user.username)+'</div><span class="nav-username">'+escA(user.username)+'</span>';
-}
-function authLogout() {
-  if (!confirm('Se déconnecter ?')) return;
-  setCurrentUser(null);
-  const w=document.getElementById('nav-profile'); if(w) w.style.display='none';
-  showSection('home'); showAuthOverlay('login');
-}
-
-async function authSaveQcmResult(moduleId, score, total) {
-  const u=getCurrentUser(); if(!u) return;
-  let scores=profileGetCache('qcm_scores')||{};
-  if(!scores[moduleId]) scores[moduleId]={sessions:0,totalScore:0,totalQ:0,bestPct:0};
-  scores[moduleId].sessions++;
-  scores[moduleId].totalScore+=score;
-  scores[moduleId].totalQ+=total;
-  const pct=Math.round((score/total)*100);
-  if(pct>scores[moduleId].bestPct) scores[moduleId].bestPct=pct;
-  scores[moduleId].lastPct=pct;
-  await profileSet('qcm_scores',scores);
-  await profileSet('total_questions',(profileGetCache('total_questions')||0)+total);
-}
-async function authSaveSprintResult(score,total) {
-  const u=getCurrentUser(); if(!u) return;
-  await profileSet('sprint_sessions',(profileGetCache('sprint_sessions')||0)+1);
-  await profileSet('sprint_total_score',(profileGetCache('sprint_total_score')||0)+score);
-}
-
-async function renderProfile() {
-  const u=getCurrentUser();
-  const el=document.getElementById('profile-container'); if(!el) return;
-  if(!u) { el.innerHTML='<p style="color:var(--muted);padding:2rem;font-family:var(--mono)">Non connecté.</p>'; return; }
-  el.innerHTML='<div class="profile-wrap"><div style="padding:3rem;text-align:center;color:var(--muted);font-family:var(--mono)">⏳ Chargement...</div></div>';
-  const data=await profileLoadAll();
-  const scores=data['qcm_scores']||{};
-  const totalQ=data['total_questions']||0;
-  const sprintSessions=data['sprint_sessions']||0;
-  const sprintScore=data['sprint_total_score']||0;
-  const streak=data['sprint_streak']||{days:0};
-  const doneMods=Object.keys(scores).length;
-  const avgPct=doneMods>0?Math.round(Object.values(scores).reduce((a,s)=>a+(s.lastPct||0),0)/doneMods):0;
-  const cards=Object.keys(MODULES).filter(k=>MODULES[k].questions).map(k=>{
-    const s=scores[k]; const pct=s?s.bestPct:0;
-    return '<div class="profile-module-card"><div class="profile-module-name">'+MODULES[k].title+'</div><div class="profile-module-bar-wrap"><div class="profile-module-bar" style="width:'+pct+'%;background:'+MODULES[k].color+'"></div></div><div class="profile-module-meta">'+(s?'Meilleur : '+pct+'% · '+s.sessions+' session'+(s.sessions>1?'s':''):'Pas encore joué')+'</div></div>';
-  }).join('');
-  const isAdmin=localStorage.getItem('tssr_is_admin')==='1';
-  el.innerHTML='<div class="profile-wrap"><div class="profile-hero"><div class="profile-avatar-big">'+getInitial(u.username)+'</div><div class="profile-info"><div class="profile-name">'+escA(u.username)+'</div><div class="profile-joined">Inscrit le '+(u.joined||'—')+'</div></div></div>'
-    +'<div class="profile-section-title">Statistiques globales</div>'
-    +'<div class="profile-stats-grid">'
-    +'<div class="profile-stat-card"><div class="profile-stat-val">'+totalQ+'</div><div class="profile-stat-lbl">Questions</div></div>'
-    +'<div class="profile-stat-card"><div class="profile-stat-val">'+doneMods+'/'+Object.keys(MODULES).filter(k=>MODULES[k].questions).length+'</div><div class="profile-stat-lbl">Modules</div></div>'
-    +'<div class="profile-stat-card"><div class="profile-stat-val">'+avgPct+'%</div><div class="profile-stat-lbl">Moyenne</div></div>'
-    +'<div class="profile-stat-card"><div class="profile-stat-val">'+sprintSessions+'</div><div class="profile-stat-lbl">Sprints</div></div>'
-    +'<div class="profile-stat-card"><div class="profile-stat-val">'+(streak.days||0)+'</div><div class="profile-stat-lbl">Jours 🔥</div></div>'
-    +'</div>'
-    +'<div class="profile-section-title">Progression</div>'
-    +'<div class="profile-module-grid">'+cards+'</div>'
-    +'<div class="profile-section-title">Compte</div>'
-    +'<div class="profile-actions"><button class="profile-logout-btn" onclick="authLogout()">Se déconnecter</button>'
-    +(isAdmin?'<button onclick="adminOpen()" style="margin-left:.5rem;padding:.65rem 1.5rem;background:rgba(255,95,109,.12);border:1px solid rgba(255,95,109,.35);border-radius:var(--radius);color:var(--red);font-size:12px;cursor:pointer;font-family:var(--mono)">⚡ Panel Admin</button>':'')
-    +'</div></div>';
-}
-
-// ── CREDITS ──
+// ============================================================
+// CREDITS
+// ============================================================
 function renderCredits() {
-  const el=document.getElementById('credits-container'); if(!el) return;
-  el.innerHTML='<div style="max-width:600px;margin:0 auto;padding:3rem 0 6rem;text-align:center"><div style="font-family:var(--mono);font-size:22px;font-weight:800;margin-bottom:2rem">🏅 Crédits</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:2rem;text-align:left"><div style="background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:1.5rem"><div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.5rem">👑 Main — Dev principal</div><div style="font-size:20px;font-weight:800;margin-bottom:.3rem">Louis</div><div style="font-size:12px;color:var(--text2);font-family:var(--mono)">Conception & développement de la plateforme</div></div><div style="background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:1.5rem"><div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.5rem">🎨 Vernis — UX & Tests</div><div style="font-size:20px;font-weight:800;margin-bottom:.3rem">Julien</div><div style="font-size:12px;color:var(--text2);font-family:var(--mono)">Retours, tests & finitions UX</div></div></div><div style="font-family:var(--mono);font-size:10px;color:var(--muted)">TSSR Révisions · v6.0 · 2025</div></div>';
+  const el = document.getElementById('credits-container');
+  if (!el) return;
+  el.innerHTML = `
+  <div style="max-width:600px;margin:0 auto;padding:3rem 0 6rem;text-align:center">
+    <div style="font-family:var(--mono);font-size:13px;color:var(--cyan);letter-spacing:.18em;margin-bottom:2rem">● TSSR · RÉVISIONS</div>
+    <h1 style="font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.03em;margin-bottom:.6rem">Fait avec ❤️<br><span style="background:linear-gradient(130deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">par des étudiants,<br>pour des étudiants</span></h1>
+    <p style="font-size:13px;color:var(--muted);font-family:var(--mono);margin-bottom:3rem">Plateforme de révision pour la formation TSSR</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:2.5rem;text-align:left">
+      <div style="background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:1.5rem;border-top:2px solid var(--accent)">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.5rem">👑 Main — Développeur principal</div>
+        <div style="font-size:22px;font-weight:800;margin-bottom:.3rem">Louis</div>
+        <div style="font-size:12px;color:var(--text2);font-family:var(--mono);line-height:1.7">Conception & développement<br>Architecture, QCM, Sprint, Supabase</div>
+        <div style="margin-top:.75rem;display:inline-flex;align-items:center;gap:5px;padding:3px 10px;background:var(--surface2);border:1px solid var(--border2);border-radius:99px;font-size:10px;font-family:var(--mono);color:var(--muted)">💻 Dev & Design</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:1.5rem;border-top:2px solid var(--purple)">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.5rem">🎨 Vernis — UX & Tests</div>
+        <div style="font-size:22px;font-weight:800;margin-bottom:.3rem">Julien</div>
+        <div style="font-size:12px;color:var(--text2);font-family:var(--mono);line-height:1.7">Retours utilisateurs, tests<br>& polissage de l'expérience</div>
+        <div style="margin-top:.75rem;display:inline-flex;align-items:center;gap:5px;padding:3px 10px;background:var(--surface2);border:1px solid var(--border2);border-radius:99px;font-size:10px;font-family:var(--mono);color:var(--muted)">✨ UX & Tests</div>
+      </div>
+    </div>
+    <div style="height:1px;background:var(--border);margin:1.5rem 0"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:1.5rem">
+      ${['HTML5','CSS3','Vanilla JS','Supabase','GitHub Pages','Space Mono','Syne'].map(t=>`<span style="padding:4px 12px;background:var(--surface);border:1px solid var(--border2);border-radius:99px;font-size:11px;font-family:var(--mono);color:var(--muted)">${t}</span>`).join('')}
+    </div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--muted)">TSSR Révisions · v6.0 · 2025</div>
+  </div>`;
 }
 
-// ── ADMIN ──
-const ADMIN_USER='Administrateur', ADMIN_PIN_VAL='7539';
-let _adminOpen=false, _adminTab='overview', _adminAnnounceType='info', _adminPoll=null;
+// ============================================================
+// ADMIN PANEL
+// ============================================================
+let _adminOpen = false;
+let _adminTabCurrent = 'overview';
+let _adminAnnounceTypeVal = 'info';
+let _adminPollInterval = null;
+
+function escH(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 function adminOpen() {
-  _adminOpen=true; localStorage.setItem('tssr_is_admin','1');
-  const ab=document.getElementById('admin-btn'); if(ab){ab.style.display='flex';ab.onclick=adminOpen;}
-  const ov=document.getElementById('admin-overlay'); if(ov) ov.style.display='flex';
+  _adminOpen = true;
+  localStorage.setItem('tssr_is_admin','1');
+  const ab = document.getElementById('admin-btn');
+  if (ab) { ab.style.display = 'flex'; ab.onclick = adminOpen; }
+  const ov = document.getElementById('admin-overlay');
+  if (ov) ov.style.display = 'flex';
   adminTab('overview');
-  if(!_adminPoll) { _adminPoll=setInterval(adminCheckAnnounces,15000); adminCheckAnnounces(); }
-  let clk=document.getElementById('admin-clock');
-  if(clk) setInterval(()=>{ if(clk) clk.textContent=new Date().toLocaleTimeString('fr-FR'); },1000);
+  if (!_adminPollInterval) {
+    adminCheckAnnounces();
+    _adminPollInterval = setInterval(() => {
+      if (_adminTabCurrent === 'online') adminLoadOnline();
+      if (_adminTabCurrent === 'overview') adminLoadOverview();
+    }, 30000);
+  }
+  // Clock
+  const clk = document.getElementById('admin-clock');
+  if (clk) {
+    const tick = () => { if(document.getElementById('admin-clock')) document.getElementById('admin-clock').textContent = new Date().toLocaleTimeString('fr-FR'); };
+    tick(); setInterval(tick, 1000);
+  }
 }
+
 function adminClose() {
-  _adminOpen=false;
-  const ov=document.getElementById('admin-overlay'); if(ov) ov.style.display='none';
+  _adminOpen = false;
+  const ov = document.getElementById('admin-overlay');
+  if (ov) ov.style.display = 'none';
 }
+
 function adminTab(tab) {
-  _adminTab=tab;
-  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.admin-nav-btn').forEach(b=>b.classList.remove('active'));
-  const sec=document.getElementById('admin-sec-'+tab); if(sec) sec.classList.add('active');
-  document.querySelectorAll('.admin-nav-btn').forEach(b=>{ if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+tab+"'")) b.classList.add('active'); });
-  if(tab==='overview') adminLoadOverview();
-  if(tab==='users') adminLoadUsers();
-  if(tab==='online') adminLoadOnline();
-  if(tab==='logs') adminLoadLogs();
-  if(tab==='announce') adminLoadAnnounceHistory();
+  _adminTabCurrent = tab;
+  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+  const sec = document.getElementById('admin-sec-' + tab);
+  if (sec) sec.classList.add('active');
+  document.querySelectorAll('.admin-nav-btn').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + tab + "'")) b.classList.add('active');
+  });
+  if (tab === 'overview') adminLoadOverview();
+  if (tab === 'users') adminLoadUsers();
+  if (tab === 'online') adminLoadOnline();
+  if (tab === 'logs') adminLoadLogs();
+  if (tab === 'announce') adminLoadAnnounceHistory();
 }
-function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
 async function adminLoadOverview() {
-  const el=document.getElementById('admin-stats'); if(!el) return;
-  const [rU,rD,rB]=await Promise.all([
+  const statsEl = document.getElementById('admin-stats');
+  const recentEl = document.getElementById('admin-recent-users');
+  if (!statsEl) return;
+  const [rU, rD, rB] = await Promise.all([
     sbQuery('users','GET',null,'select=id,username,created_at,last_login&order=created_at.desc&limit=100'),
     sbQuery('user_data','GET',null,'select=user_id,data_key&data_key=eq.qcm_scores'),
     sbQuery('user_data','GET',null,'select=user_id&data_key=eq.blocked&data_value=eq.true')
   ]);
-  const users=(rU.ok&&Array.isArray(rU.data))?rU.data:[];
-  const withScores=(rD.ok&&Array.isArray(rD.data))?[...new Set(rD.data.map(d=>d.user_id))].length:0;
-  const blocked=(rB.ok&&Array.isArray(rB.data))?rB.data.length:0;
-  const now=Date.now();
-  const online=users.filter(u=>u.last_login&&(now-new Date(u.last_login).getTime())<15*60*1000).length;
-  el.innerHTML='<div class="admin-stat-card"><div class="admin-stat-val" style="color:var(--accent2)">'+users.length+'</div><div class="admin-stat-lbl">Comptes</div></div>'
-    +'<div class="admin-stat-card"><div class="admin-stat-val" style="color:var(--green)">'+online+'</div><div class="admin-stat-lbl">En ligne</div></div>'
-    +'<div class="admin-stat-card"><div class="admin-stat-val" style="color:var(--purple)">'+withScores+'</div><div class="admin-stat-lbl">Ont joué</div></div>'
-    +'<div class="admin-stat-card"><div class="admin-stat-val" style="color:var(--red)">'+blocked+'</div><div class="admin-stat-lbl">Bloqués</div></div>';
-  const recentEl=document.getElementById('admin-recent-users'); if(!recentEl) return;
-  recentEl.innerHTML='<table class="admin-table"><thead><tr><th>Pseudo</th><th>Inscrit</th><th>Dernière co.</th><th>Statut</th></tr></thead><tbody>'
-    +users.slice(0,10).map(u=>{const isOn=u.last_login&&(now-new Date(u.last_login).getTime())<15*60*1000;return'<tr><td><strong>'+escH(u.username)+'</strong></td><td style="font-family:var(--mono);font-size:10px">'+new Date(u.created_at).toLocaleDateString('fr-FR')+'</td><td style="font-family:var(--mono);font-size:10px">'+(u.last_login?new Date(u.last_login).toLocaleString('fr-FR'):'—')+'</td><td>'+(isOn?'<span style="color:var(--green);font-size:10px">🟢 En ligne</span>':'<span style="color:var(--muted);font-size:10px">Hors ligne</span>')+'</td></tr>';}).join('')
-    +'</tbody></table>';
+  const users = (rU.ok && Array.isArray(rU.data)) ? rU.data : [];
+  const withScores = (rD.ok && Array.isArray(rD.data)) ? [...new Set(rD.data.map(d=>d.user_id))].length : 0;
+  const blocked = (rB.ok && Array.isArray(rB.data)) ? rB.data.length : 0;
+  const now = Date.now();
+  const online = users.filter(u => u.last_login && (now - new Date(u.last_login).getTime()) < 15*60*1000).length;
+  statsEl.innerHTML = `
+    <div class="admin-stat-card"><div class="admin-stat-val" style="color:var(--accent2)">${users.length}</div><div class="admin-stat-lbl">Comptes</div></div>
+    <div class="admin-stat-card"><div class="admin-stat-val" style="color:var(--green)">${online}</div><div class="admin-stat-lbl">En ligne</div></div>
+    <div class="admin-stat-card"><div class="admin-stat-val" style="color:var(--purple)">${withScores}</div><div class="admin-stat-lbl">Ont joué</div></div>
+    <div class="admin-stat-card"><div class="admin-stat-val" style="color:#ff5f6d">${blocked}</div><div class="admin-stat-lbl">Bloqués</div></div>`;
+  if (recentEl) {
+    recentEl.innerHTML = `<table class="admin-table"><thead><tr><th>Pseudo</th><th>IP</th><th>Inscrit</th><th>Dernière co.</th><th>Statut</th></tr></thead><tbody>`
+      + users.slice(0,10).map(u => {
+        const isOn = u.last_login && (now - new Date(u.last_login).getTime()) < 15*60*1000;
+        const ip = u.last_ip || '—';
+        return `<tr><td><strong>${escH(u.username)}</strong></td><td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${ip}</td><td style="font-family:var(--mono);font-size:10px">${new Date(u.created_at).toLocaleDateString('fr-FR')}</td><td style="font-family:var(--mono);font-size:10px">${u.last_login?new Date(u.last_login).toLocaleString('fr-FR'):'—'}</td><td>${isOn?'<span class="admin-tag green">🟢 En ligne</span>':'<span class="admin-tag">Hors ligne</span>'}</td></tr>`;
+      }).join('') + `</tbody></table>`;
+  }
 }
 
 async function adminLoadOnline() {
-  const el=document.getElementById('admin-online-list'); if(!el) return;
-  el.innerHTML='<div style="color:var(--muted);font-family:var(--mono);font-size:11px">Chargement...</div>';
-  const [rU,rD]=await Promise.all([
-    sbQuery('users','GET',null,'select=id,username,last_login&order=last_login.desc&limit=100'),
+  const el = document.getElementById('admin-online-list');
+  if (!el) return;
+  el.innerHTML = '<div style="color:var(--muted);font-family:var(--mono);font-size:11px">⏳ Chargement...</div>';
+  const [rU, rD] = await Promise.all([
+    sbQuery('users','GET',null,'select=id,username,last_login,last_ip&order=last_login.desc&limit=100'),
     sbQuery('user_data','GET',null,'select=user_id,data_key,data_value&data_key=in.(current_section,total_questions,blocked)')
   ]);
-  const users=(rU.ok&&Array.isArray(rU.data))?rU.data:[];
-  const now=Date.now();
-  const online=users.filter(u=>u.last_login&&(now-new Date(u.last_login).getTime())<15*60*1000);
-  const el2=document.getElementById('admin-online-count'); if(el2) el2.textContent='('+online.length+')';
-  const dm={};
-  if(rD.ok&&Array.isArray(rD.data)) rD.data.forEach(d=>{ if(!dm[d.user_id]) dm[d.user_id]={}; dm[d.user_id][d.data_key]=d.data_value; });
-  if(!online.length){el.innerHTML='<div style="color:var(--muted);font-family:var(--mono);font-size:12px;padding:1rem">Aucun utilisateur actif.</div>';return;}
-  let rows='';
-  online.forEach(u=>{
-    const d=dm[u.id]||{};
-    const sec=escH(String(d.current_section||'Accueil'));
-    const q=d.total_questions||0;
-    const min=Math.round((now-new Date(u.last_login).getTime())/60000);
-    const blocked=d.blocked===true;
-    const uid=u.id, uname=escH(u.username);
-    const btn=blocked
-      ? '<button class="admin-action-btn success" onclick="adminToggleBlock(this)">Debloquer</button>'
-      : '<button class="admin-action-btn danger" onclick="adminToggleBlock(this)">Bloquer</button>';
-    rows+='<tr data-uid="'+uid+'" data-uname="'+uname+'" data-blocked="'+blocked+'">'
-      +'<td><span class="admin-online-dot"></span><strong>'+uname+'</strong></td>'
-      +'<td><span class="admin-tag amber">'+sec+'</span></td>'
-      +'<td style="font-family:var(--mono)">'+q+'</td>'
-      +'<td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Il y a '+min+' min</td>'
-      +'<td>'+btn+'</td></tr>';
+  const users = (rU.ok && Array.isArray(rU.data)) ? rU.data : [];
+  const now = Date.now();
+  const online = users.filter(u => u.last_login && (now - new Date(u.last_login).getTime()) < 15*60*1000);
+  const countEl = document.getElementById('admin-online-count');
+  if (countEl) countEl.textContent = '(' + online.length + ')';
+  const dm = {};
+  if (rD.ok && Array.isArray(rD.data)) rD.data.forEach(d => { if(!dm[d.user_id]) dm[d.user_id]={}; dm[d.user_id][d.data_key]=d.data_value; });
+  if (!online.length) { el.innerHTML = '<div style="color:var(--muted);font-family:var(--mono);font-size:12px;padding:1rem">Aucun utilisateur actif.</div>'; return; }
+  let rows = '';
+  online.forEach(u => {
+    const d = dm[u.id] || {};
+    const sec = escH(String(d.current_section || 'Accueil'));
+    const q = d.total_questions || 0;
+    const min = Math.round((now - new Date(u.last_login).getTime()) / 60000);
+    const isBlocked = d.blocked === true;
+    const ip = u.last_ip || '—';
+    const uid = u.id, uname = escH(u.username);
+    rows += `<tr data-uid="${uid}" data-uname="${uname}" data-blocked="${isBlocked}">
+      <td><span class="admin-online-dot"></span><strong>${uname}</strong></td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${ip}</td>
+      <td><span class="admin-tag amber">${sec}</span></td>
+      <td style="font-family:var(--mono)">${q}</td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Il y a ${min} min</td>
+      <td>${isBlocked
+        ? '<button class="admin-action-btn success" onclick="adminToggleBlock(this)">✓ Débloquer</button>'
+        : '<button class="admin-action-btn danger" onclick="adminToggleBlock(this)">🚫 Bloquer</button>'
+      }</td></tr>`;
   });
-  el.innerHTML='<table class="admin-table"><thead><tr><th>Utilisateur</th><th>Section</th><th>Questions</th><th>Activite</th><th>Action</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  el.innerHTML = `<table class="admin-table"><thead><tr><th>Utilisateur</th><th>IP</th><th>Section</th><th>Questions</th><th>Activité</th><th>Action</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
 async function adminLoadUsers() {
-  const el=document.getElementById('admin-users-table'); if(!el) return;
-  el.innerHTML='<div style="color:var(--muted);font-family:var(--mono);font-size:11px">⏳ Chargement...</div>';
-  const [rU,rD]=await Promise.all([
-    sbQuery('users','GET',null,'select=id,username,created_at,last_login&order=username.asc'),
+  const el = document.getElementById('admin-users-table');
+  if (!el) return;
+  el.innerHTML = '<div style="color:var(--muted);font-family:var(--mono);font-size:11px">⏳ Chargement...</div>';
+  const [rU, rD] = await Promise.all([
+    sbQuery('users','GET',null,'select=id,username,created_at,last_login,last_ip&order=username.asc'),
     sbQuery('user_data','GET',null,'select=user_id,data_key,data_value&data_key=in.(total_questions,sprint_sessions,qcm_scores,blocked)')
   ]);
-  const users=(rU.ok&&Array.isArray(rU.data))?rU.data:[];
-  const dm={};
-  if(rD.ok&&Array.isArray(rD.data)) rD.data.forEach(d=>{ if(!dm[d.user_id]) dm[d.user_id]={}; dm[d.user_id][d.data_key]=d.data_value; });
-  const now=Date.now();
-  el.innerHTML='<table class="admin-table"><thead><tr><th>Pseudo</th><th>Statut</th><th>Questions</th><th>Sprints</th><th>Modules</th><th>Inscrit</th><th>Action</th></tr></thead><tbody>'
-    +function(){
-      let r='';
-      users.forEach(u=>{
-        const d=dm[u.id]||{};
-        const isOn=u.last_login&&(now-new Date(u.last_login).getTime())<15*60*1000;
-        const blocked=d.blocked===true;
-        const q=d.total_questions||0, sp=d.sprint_sessions||0, mo=d.qcm_scores?Object.keys(d.qcm_scores).length:0;
-        const uname=escH(u.username), uid=u.id;
-        const btn=blocked
-          ?'<button class="admin-action-btn success" onclick="adminToggleBlock(this)">Debloquer</button>'
-          :'<button class="admin-action-btn danger" onclick="adminToggleBlock(this)">Bloquer</button>';
-        r+='<tr data-uid="'+uid+'" data-uname="'+uname+'" data-blocked="'+blocked+'" style="'+(blocked?'opacity:.55':'')+'"><td><strong>'+uname+'</strong>'+(blocked?' <span class="admin-tag red">Bloque</span>':'')+'</td>'
-          +'<td>'+(isOn?'<span class="admin-online-dot"></span><span style="color:var(--green);font-size:10px">En ligne</span>':'<span class="admin-offline-dot"></span><span style="font-size:10px;color:var(--muted)">Hors ligne</span>')+'</td>'
-          +'<td style="font-family:var(--mono)">'+q+'</td><td style="font-family:var(--mono)">'+sp+'</td><td style="font-family:var(--mono)">'+mo+'</td>'
-          +'<td style="font-family:var(--mono);font-size:10px">'+new Date(u.created_at).toLocaleDateString('fr-FR')+'</td>'
-          +'<td>'+btn+'</td></tr>';
-      });
-      return r;
-    }()+'</tbody></table>';
+  const users = (rU.ok && Array.isArray(rU.data)) ? rU.data : [];
+  const dm = {};
+  if (rD.ok && Array.isArray(rD.data)) rD.data.forEach(d => { if(!dm[d.user_id]) dm[d.user_id]={}; dm[d.user_id][d.data_key]=d.data_value; });
+  const now = Date.now();
+  let rows = '';
+  users.forEach(u => {
+    const d = dm[u.id] || {};
+    const isOn = u.last_login && (now - new Date(u.last_login).getTime()) < 15*60*1000;
+    const isBlocked = d.blocked === true;
+    const q = d.total_questions || 0, sp = d.sprint_sessions || 0;
+    const mo = d.qcm_scores ? Object.keys(d.qcm_scores).length : 0;
+    const uid = u.id, uname = escH(u.username);
+    const ip = u.last_ip || '—';
+    rows += `<tr data-uid="${uid}" data-uname="${uname}" data-blocked="${isBlocked}" style="${isBlocked?'opacity:.55':''}">
+      <td><strong>${uname}</strong>${isBlocked?' <span class="admin-tag red">Bloqué</span>':''}</td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${ip}</td>
+      <td>${isOn?'<span class="admin-online-dot"></span><span style="color:var(--green);font-size:10px">En ligne</span>':'<span class="admin-offline-dot"></span><span style="font-size:10px;color:var(--muted)">Hors ligne</span>'}</td>
+      <td style="font-family:var(--mono)">${q}</td>
+      <td style="font-family:var(--mono)">${sp}</td>
+      <td style="font-family:var(--mono)">${mo}</td>
+      <td style="font-family:var(--mono);font-size:10px">${new Date(u.created_at).toLocaleDateString('fr-FR')}</td>
+      <td>${isBlocked
+        ? '<button class="admin-action-btn success" onclick="adminToggleBlock(this)">✓ Débloquer</button>'
+        : '<button class="admin-action-btn danger" onclick="adminToggleBlock(this)">🚫 Bloquer</button>'
+      }</td></tr>`;
+  });
+  el.innerHTML = `<table class="admin-table"><thead><tr><th>Pseudo</th><th>IP</th><th>Statut</th><th>Questions</th><th>Sprints</th><th>Modules</th><th>Inscrit</th><th>Action</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
 async function adminToggleBlock(btn) {
-  const row=btn.closest('tr');
-  const userId=row.dataset.uid, username=row.dataset.uname;
-  const blocked=row.dataset.blocked==='true';
-  const block=!blocked;
-  if(!confirm((block?'Bloquer':'Debloquer')+' "'+username+'" ?')) return;
-  btn.disabled=true;
+  const row = btn.closest('tr');
+  const userId = row.dataset.uid, username = row.dataset.uname;
+  const wasBlocked = row.dataset.blocked === 'true';
+  const block = !wasBlocked;
+  if (!confirm((block ? '🚫 Bloquer' : '✓ Débloquer') + ' "' + username + '" ?')) return;
+  btn.disabled = true;
+  // Sauvegarder le blocage dans Supabase
   await sbQuery('user_data','POST',{user_id:userId,data_key:'blocked',data_value:block},'on_conflict=user_id,data_key');
+  // Forcer la mise à jour
   await sbQuery('user_data','PATCH',{data_value:block},'user_id=eq.'+userId+'&data_key=eq.blocked');
-  if(_adminTab==='users') adminLoadUsers();
-  else if(_adminTab==='online') adminLoadOnline();
+  // Recharger la vue
+  if (_adminTabCurrent === 'users') adminLoadUsers();
+  else if (_adminTabCurrent === 'online') adminLoadOnline();
   else adminLoadOverview();
 }
 
 async function adminLoadLogs() {
-  const el=document.getElementById('admin-log-content'); if(!el) return;
-  const [rD,rU]=await Promise.all([
+  const el = document.getElementById('admin-log-content');
+  if (!el) return;
+  const [rD, rU] = await Promise.all([
     sbQuery('user_data','GET',null,'select=user_id,data_key,updated_at&data_key=in.(qcm_scores,sprint_sessions,current_section)&order=updated_at.desc&limit=60'),
     sbQuery('users','GET',null,'select=id,username')
   ]);
-  const um={}; if(rU.ok&&Array.isArray(rU.data)) rU.data.forEach(u=>{um[u.id]=u.username;});
-  const logs=(rD.ok&&Array.isArray(rD.data))?rD.data:[];
-  if(!logs.length){el.innerHTML='<div style="color:var(--muted)">Aucune activité.</div>';return;}
-  const am={qcm_scores:'a joué un QCM',sprint_sessions:'a terminé un sprint',current_section:'a navigué vers'};
-  el.innerHTML=logs.map(l=>{
-    const name=um[l.user_id]||'???';
-    const time=new Date(l.updated_at).toLocaleString('fr-FR');
-    return '<div class="admin-log-entry"><span class="admin-log-time">'+time+'</span><span class="admin-log-user">'+escH(name)+'</span><span class="admin-log-action"> '+(am[l.data_key]||l.data_key)+'</span></div>';
+  const um = {}; if (rU.ok && Array.isArray(rU.data)) rU.data.forEach(u => { um[u.id] = u.username; });
+  const logs = (rD.ok && Array.isArray(rD.data)) ? rD.data : [];
+  if (!logs.length) { el.innerHTML = '<div style="color:var(--muted)">Aucune activité.</div>'; return; }
+  const am = {qcm_scores:'a joué un QCM',sprint_sessions:'a terminé un sprint',current_section:'a navigué vers'};
+  el.innerHTML = logs.map(l => {
+    const name = um[l.user_id] || '???';
+    const time = new Date(l.updated_at).toLocaleString('fr-FR');
+    return `<div class="admin-log-entry"><span class="admin-log-time">${time}</span><span class="admin-log-user">${escH(name)}</span><span class="admin-log-action"> ${am[l.data_key]||l.data_key}</span></div>`;
   }).join('');
 }
 
 function adminAnnounceType(btn) {
-  document.querySelectorAll('.admin-type-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active'); _adminAnnounceType=btn.dataset.type;
+  document.querySelectorAll('.admin-type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  _adminAnnounceTypeVal = btn.dataset.type;
 }
+
 async function adminSendAnnounce() {
-  const text=(document.getElementById('admin-announce-text')||{}).value?.trim(); if(!text) return;
-  const a={text,type:_adminAnnounceType,ts:Date.now()};
-  const arr=JSON.parse(localStorage.getItem('tssr_announces')||'[]'); arr.push(a);
-  localStorage.setItem('tssr_announces',JSON.stringify(arr.slice(-20)));
-  showAnnounceToast(a);
-  const ta=document.getElementById('admin-announce-text'); if(ta) ta.value='';
+  const text = (document.getElementById('admin-announce-text')||{}).value?.trim();
+  if (!text) return;
+  const announce = { text, type: _adminAnnounceTypeVal, ts: Date.now() };
+  // Sauvegarder dans Supabase pour que TOUS les utilisateurs le reçoivent
+  await sbQuery('user_data','POST',{
+    user_id: '00000000-0000-0000-0000-000000000001',
+    data_key: 'announce_' + announce.ts,
+    data_value: announce
+  },'on_conflict=user_id,data_key');
+  // Aussi en localStorage pour l'admin lui-même
+  const arr = JSON.parse(localStorage.getItem('tssr_announces')||'[]');
+  arr.push(announce);
+  localStorage.setItem('tssr_announces', JSON.stringify(arr.slice(-20)));
+  showAnnounceToast(announce);
+  const ta = document.getElementById('admin-announce-text');
+  if (ta) ta.value = '';
   adminLoadAnnounceHistory();
 }
+
 async function adminLoadAnnounceHistory() {
-  const el=document.getElementById('admin-announce-history'); if(!el) return;
-  const arr=JSON.parse(localStorage.getItem('tssr_announces')||'[]').slice().reverse();
-  if(!arr.length){el.innerHTML='<div style="color:var(--muted);font-family:var(--mono);font-size:11px">Aucune annonce.</div>';return;}
-  const icons={info:'ℹ️',warning:'⚠️',urgent:'🚨'};
-  el.innerHTML=arr.map(a=>'<div style="padding:.6rem .9rem;background:rgba(255,255,255,.03);border:1px solid rgba(100,180,255,.1);border-radius:8px;margin-bottom:6px"><div style="font-size:9px;color:var(--muted);font-family:var(--mono);margin-bottom:3px">'+(icons[a.type]||'📢')+' '+new Date(a.ts).toLocaleString('fr-FR')+'</div><div style="font-size:13px;color:var(--text2)">'+escH(a.text)+'</div></div>').join('');
+  const el = document.getElementById('admin-announce-history');
+  if (!el) return;
+  const arr = JSON.parse(localStorage.getItem('tssr_announces')||'[]').slice().reverse();
+  if (!arr.length) { el.innerHTML = '<div style="color:var(--muted);font-family:var(--mono);font-size:11px">Aucune annonce.</div>'; return; }
+  const icons = {info:'ℹ️',warning:'⚠️',urgent:'🚨'};
+  el.innerHTML = arr.map(a => `<div style="padding:.6rem .9rem;background:rgba(255,255,255,.03);border:1px solid rgba(100,180,255,.1);border-radius:8px;margin-bottom:6px"><div style="font-size:9px;color:var(--muted);font-family:var(--mono);margin-bottom:3px">${icons[a.type]||'📢'} ${new Date(a.ts).toLocaleString('fr-FR')}</div><div style="font-size:13px;color:var(--text2)">${escH(a.text)}</div></div>`).join('');
 }
-function showAnnounceToast(a) {
-  const t=document.getElementById('announce-toast'),h=document.getElementById('announce-toast-header'),x=document.getElementById('announce-toast-text');
-  if(!t||!h||!x) return;
-  h.className='announce-toast-header '+(a.type||'info');
-  h.textContent={info:'ℹ️ Information',warning:'⚠️ Attention',urgent:'🚨 URGENT'}[a.type]||'📢';
-  x.textContent=a.text; t.classList.add('show');
-  if(a.type!=='urgent') setTimeout(()=>t.classList.remove('show'),10000);
+
+function showAnnounceToast(announce) {
+  const t = document.getElementById('announce-toast');
+  const h = document.getElementById('announce-toast-header');
+  const x = document.getElementById('announce-toast-text');
+  if (!t||!h||!x) return;
+  h.className = 'announce-toast-header ' + (announce.type||'info');
+  h.textContent = {info:'ℹ️ Information',warning:'⚠️ Attention',urgent:'🚨 URGENT'}[announce.type] || '📢 Annonce';
+  x.textContent = announce.text;
+  t.classList.add('show');
+  if (announce.type !== 'urgent') setTimeout(() => t.classList.remove('show'), 10000);
 }
-let _lastA=parseInt(localStorage.getItem('tssr_last_announce')||'0');
-function adminCheckAnnounces() {
-  const arr=JSON.parse(localStorage.getItem('tssr_announces')||'[]');
-  const news=arr.filter(a=>a.ts>_lastA);
-  if(news.length){showAnnounceToast(news[news.length-1]);_lastA=Math.max(...news.map(a=>a.ts));localStorage.setItem('tssr_last_announce',String(_lastA));}
+
+// Vérification des annonces depuis Supabase (pour TOUS les users)
+let _lastAnnounceCheck = 0;
+async function adminCheckAnnounces() {
+  try {
+    const r = await sbQuery('user_data','GET',null,
+      'user_id=eq.00000000-0000-0000-0000-000000000001&data_key=like.announce_*&select=data_key,data_value&order=updated_at.desc&limit=5'
+    );
+    if (!r.ok || !Array.isArray(r.data)) return;
+    const saved = parseInt(localStorage.getItem('tssr_last_announce')||'0');
+    r.data.forEach(row => {
+      const a = row.data_value;
+      if (a && a.ts && a.ts > saved) {
+        showAnnounceToast(a);
+        if (a.ts > _lastAnnounceCheck) _lastAnnounceCheck = a.ts;
+      }
+    });
+    if (_lastAnnounceCheck > saved) localStorage.setItem('tssr_last_announce', String(_lastAnnounceCheck));
+  } catch(e) {}
 }
+
+// Vérification si l'utilisateur est bloqué (appelée périodiquement)
 async function checkIfBlocked() {
-  const u=getCurrentUser(); if(!u) return;
-  const r=await sbQuery('user_data','GET',null,'user_id=eq.'+u.id+'&data_key=eq.blocked&select=data_value');
-  if(r.ok&&Array.isArray(r.data)&&r.data.length>0&&r.data[0].data_value===true) {
-    const bl=document.createElement('div');
-    bl.style.cssText='position:fixed;inset:0;background:#080a0e;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;z-index:9999';
-    bl.innerHTML='<div style="font-size:4rem;margin-bottom:1rem">🚫</div><div style="font-size:24px;font-weight:800;color:#ff5f6d;margin-bottom:.5rem">Acces bloque</div><div style="font-size:14px;color:#5a6a82;font-family:monospace">Ton acces a ete suspendu.</div>';
+  const u = getCurrentUser();
+  if (!u) return;
+  const r = await sbQuery('user_data','GET',null,'user_id=eq.'+u.id+'&data_key=eq.blocked&select=data_value');
+  if (r.ok && Array.isArray(r.data) && r.data.length > 0 && r.data[0].data_value === true) {
+    document.body.innerHTML = '';
+    const bl = document.createElement('div');
+    bl.style.cssText = 'position:fixed;inset:0;background:#080a0e;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;z-index:99999';
+    const icon = document.createElement('div');
+    icon.style.cssText = 'font-size:4rem;margin-bottom:1rem';
+    icon.textContent = '🚫';
+    const title = document.createElement('div');
+    title.style.cssText = 'font-size:24px;font-weight:800;color:#ff5f6d;margin-bottom:.5rem';
+    title.textContent = 'Acces bloque';
+    const sub = document.createElement('div');
+    sub.style.cssText = 'font-size:14px;color:#5a6a82;font-family:monospace';
+    sub.textContent = 'Ton acces a ete suspendu. Contacte l administrateur.';
+    bl.appendChild(icon); bl.appendChild(title); bl.appendChild(sub);
     document.body.appendChild(bl);
   }
 }
 
-// ── INIT AUTH ──
-(function() {
-  const user=getCurrentUser();
-  if(user&&user.id) { showNavProfile(user); profileLoadAll(); }
-  else { showAuthOverlay('login'); }
-  setTimeout(adminCheckAnnounces,2000);
-  // Show admin button if was previously admin
-  if(localStorage.getItem('tssr_is_admin')==='1') {
-    const ab=document.getElementById('admin-btn');
-    if(ab){ab.style.display='flex';ab.onclick=adminOpen;}
-  }
-})();
-
-// Notes hub (placeholder - calls existing renderNotesHub if defined)
-function renderNotesHub() {
-  const el=document.getElementById('notes-hub-container'); if(!el) return;
-  el.innerHTML='<div style="max-width:740px;margin:0 auto;padding:2rem 0 5rem"><h2 style="font-size:22px;font-weight:800;margin-bottom:1.5rem">📓 Mes notes</h2><p style="color:var(--muted);font-family:var(--mono)">Ouvre un module QCM et utilise le bloc-notes en bas de page pour créer des notes.</p></div>';
+// Sauvegarder l'IP de l'utilisateur lors de la connexion
+async function saveUserIP(userId) {
+  try {
+    const r = await fetch('https://api.ipify.org?format=json');
+    const data = await r.json();
+    if (data.ip) {
+      await sbQuery('users','PATCH',{last_ip: data.ip},'id=eq.'+userId);
+    }
+  } catch(e) {}
 }
+
+// ============================================================
+// INIT
+// ============================================================
+(function initApp() {
+  const user = getCurrentUser();
+  // Si un utilisateur normal est connecté, effacer le flag admin
+  if (user && user.id) {
+    localStorage.removeItem('tssr_is_admin');
+    showNavProfile(user);
+    profileLoadAll();
+    setTimeout(() => checkIfBlocked(), 1000);
+    saveUserIP(user.id);
+    setInterval(() => checkIfBlocked(), 30000);
+  } else if (!localStorage.getItem('tssr_is_admin')) {
+    // Aucun user connecté ET pas admin → afficher login
+    showAuthOverlay('login');
+  }
+  // Annonces pour tous
+  setInterval(adminCheckAnnounces, 20000);
+  setTimeout(adminCheckAnnounces, 3000);
+  // Le bouton admin est TOUJOURS caché au démarrage
+  // Il s'affiche uniquement après adminOpen()
+  const ab = document.getElementById('admin-btn');
+  if (ab) ab.style.display = 'none';
+})();
 
 </script>
 </body>
