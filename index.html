@@ -3459,11 +3459,27 @@ async function sbQuery(table, method, body, filter) {
     'Content-Type': 'application/json',
     'Prefer': 'return=representation'
   };
-  const res = await fetch(url, { method, headers, body: body ? JSON.stringify(body) : undefined });
-  const text = await res.text();
-  let data;
-  try { data = JSON.parse(text); } catch(e) { data = null; }
-  return { ok: res.ok, status: res.status, data };
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000); // 10s timeout
+    const res = await fetch(url, {
+      method, headers,
+      body: body ? JSON.stringify(body) : undefined,
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+    const text = await res.text();
+    let data;
+    try { data = JSON.parse(text); } catch(e) { data = null; }
+    return { ok: res.ok, status: res.status, data };
+  } catch(e) {
+    if (e.name === 'AbortError') {
+      console.error('sbQuery timeout:', table, method);
+      return { ok: false, status: 0, data: null, error: 'timeout' };
+    }
+    console.error('sbQuery error:', table, method, e);
+    return { ok: false, status: 0, data: null, error: e.message };
+  }
 }
 
 // ── Hash PIN côté client (SHA-256 via WebCrypto) ──
@@ -3600,7 +3616,14 @@ function authSetError(msg) {
 }
 function authSetLoading(on) {
   const btn = document.getElementById('auth-submit-btn');
-  if (btn) { btn.disabled = on; if(on) btn.textContent = '⏳ Chargement...'; }
+  if (!btn) return;
+  btn.disabled = on;
+  if (on) {
+    btn._originalText = btn.textContent;
+    btn.textContent = '⏳ Connexion en cours...';
+  } else {
+    btn.textContent = btn._originalText || 'Valider →';
+  }
 }
 
 async function authRegister() {
@@ -3608,51 +3631,90 @@ async function authRegister() {
   const pin = authGetPin();
   if (!username) { authSetError('Entre un pseudo.'); return; }
   if (!/^[a-zA-ZÀ-ÿ0-9 _\-\.]{2,20}$/.test(username)) { authSetError('Pseudo invalide (2-20 caractères).'); return; }
-  if (pin.length < 4) { authSetError('PIN = 4 chiffres.'); return; }
+  if (pin.length < 4 || !/^\d{4}$/.test(pin)) { authSetError('PIN = 4 chiffres.'); return; }
   authSetLoading(true);
 
-  // Vérifie si le pseudo existe déjà
-  const check = await sbQuery('users', 'GET', null, `username=eq.${encodeURIComponent(username)}&select=id`);
-  if (check.ok && Array.isArray(check.data) && check.data.length > 0) {
-    authSetLoading(false); authSetError('Ce pseudo est déjà pris.'); return;
+  try {
+    const check = await sbQuery('users', 'GET', null, 'username=eq.' + encodeURIComponent(username) + '&select=id');
+    if (check.error === 'timeout') {
+      authSetLoading(false);
+      authSetError('Connexion à la base trop lente. Vérifie ta connexion.');
+      return;
+    }
+    if (check.ok && Array.isArray(check.data) && check.data.length > 0) {
+      authSetLoading(false);
+      authSetError('Ce pseudo est déjà pris, choisis-en un autre.');
+      return;
+    }
+
+    const pin_hash = await hashPin(pin);
+    const r = await sbQuery('users', 'POST', { username, pin_hash });
+    authSetLoading(false);
+
+    if (!r.ok) {
+      if (r.status === 409 || (r.data && r.data.code === '23505')) {
+        authSetError('Ce pseudo est déjà pris, choisis-en un autre.');
+      } else {
+        const msg = r.data && r.data.message ? r.data.message : 'Vérifie ta connexion internet.';
+        authSetError('Erreur création : ' + msg);
+      }
+      return;
+    }
+
+    const user = Array.isArray(r.data) ? r.data[0] : r.data;
+    if (!user || !user.id) {
+      renderAuthContent('login');
+      authSetError('Compte créé ! Connecte-toi maintenant.');
+      return;
+    }
+    const session = { id: user.id, username: user.username, joined: new Date().toLocaleDateString('fr-FR') };
+    setCurrentUser(session);
+    hideAuthOverlay();
+    showNavProfile(session);
+  } catch(e) {
+    authSetLoading(false);
+    authSetError('Erreur inattendue. Réessaie dans un instant.');
+    console.error('authRegister error:', e);
   }
-
-  const pin_hash = await hashPin(pin);
-  const r = await sbQuery('users', 'POST', { username, pin_hash });
-  authSetLoading(false);
-  if (!r.ok) { authSetError('Erreur : ' + (r.data?.message || 'Réessaie.')); return; }
-  const user = Array.isArray(r.data) ? r.data[0] : r.data;
-  const session = { id: user.id, username: user.username, joined: new Date().toLocaleDateString('fr-FR') };
-  setCurrentUser(session);
-  hideAuthOverlay();
-  showNavProfile(session);
 }
-
 async function authLogin() {
   const username = (document.getElementById('auth-username')||{}).value?.trim();
   const pin = authGetPin();
+
+  // ── Vérification admin ──
+  if (username === 'Administrateur' && pin === '7539') {
+    hideAuthOverlay();
+    adminOpen();
+    return;
+  }
+
   if (!username) { authSetError('Entre ton pseudo.'); return; }
   if (pin.length < 4) { authSetError('Entre les 4 chiffres.'); return; }
   authSetLoading(true);
 
-  const pin_hash = await hashPin(pin);
-  const r = await sbQuery('users', 'GET', null, `username=eq.${encodeURIComponent(username)}&pin_hash=eq.${pin_hash}&select=id,username,created_at`);
-  authSetLoading(false);
-  if (!r.ok || !Array.isArray(r.data) || r.data.length === 0) {
-    authSetError('Pseudo ou PIN incorrect.'); return;
+  try {
+    const pin_hash = await hashPin(pin);
+    const r = await sbQuery('users', 'GET', null, `username=eq.${encodeURIComponent(username)}&pin_hash=eq.${pin_hash}&select=id,username,created_at`);
+    authSetLoading(false);
+    if (!r.ok || !Array.isArray(r.data) || r.data.length === 0) {
+      authSetError('Pseudo ou PIN incorrect. Vérifie ta saisie.'); return;
+    }
+    const user = r.data[0];
+    sbQuery('users', 'PATCH', { last_login: new Date().toISOString() }, `id=eq.${user.id}`);
+    const session = {
+      id: user.id,
+      username: user.username,
+      joined: user.created_at ? new Date(user.created_at).toLocaleDateString('fr-FR') : '—'
+    };
+    setCurrentUser(session);
+    hideAuthOverlay();
+    showNavProfile(session);
+    profileLoadAll();
+  } catch(e) {
+    authSetLoading(false);
+    authSetError('Erreur de connexion. Vérifie ta connexion internet.');
+    console.error('authLogin error:', e);
   }
-  const user = r.data[0];
-  // Met à jour last_login
-  sbQuery('users', 'PATCH', { last_login: new Date().toISOString() }, `id=eq.${user.id}`);
-  const session = {
-    id: user.id,
-    username: user.username,
-    joined: user.created_at ? new Date(user.created_at).toLocaleDateString('fr-FR') : '—'
-  };
-  setCurrentUser(session);
-  hideAuthOverlay();
-  showNavProfile(session);
-  await profileLoadAll();
 }
 
 function showNavProfile(user) {
@@ -4951,19 +5013,6 @@ function checkAdminLogin(username, pin) {
     return true;
   }
   return false;
-}
-
-// Patch authLogin pour intercepter le compte admin
-const _origAuthLogin = authLogin;
-async function authLogin() {
-  const username = (document.getElementById('auth-username')||{}).value?.trim();
-  const pin = authGetPin();
-  if (username === ADMIN_USER && pin === ADMIN_PIN) {
-    hideAuthOverlay();
-    adminOpen();
-    return;
-  }
-  return _origAuthLogin();
 }
 
 function adminOpen() {
