@@ -703,6 +703,27 @@
   .opt-multi.correct{background:var(--green-bg);border-color:var(--green-border);color:var(--green)}
   .opt-multi.wrong{background:var(--red-bg);border-color:var(--red-border);color:var(--red)}
 
+
+  /* ── CREDITS ── */
+  .credits-wrap{max-width:600px;margin:0 auto;padding:3rem 0 6rem;text-align:center}
+  .credits-logo{font-family:var(--mono);font-size:13px;color:var(--cyan);letter-spacing:.2em;text-transform:uppercase;margin-bottom:2rem;display:inline-flex;align-items:center;gap:8px}
+  .credits-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:blink 1.6s infinite}
+  .credits-title{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-.03em;margin-bottom:.6rem}
+  .credits-title span{display:block;background:linear-gradient(130deg,var(--accent) 0%,var(--cyan) 55%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .credits-sub{font-size:13px;color:var(--muted);font-family:var(--mono);margin-bottom:3rem;line-height:1.8}
+  .credits-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:3rem;text-align:left}
+  .credits-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.5rem 1.5rem 1.25rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+  .credits-card:hover{border-color:var(--border3);transform:translateY(-2px)}
+  .credits-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--card-gradient,linear-gradient(90deg,var(--accent),var(--cyan)))}
+  .credits-role{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:.6rem}
+  .credits-name{font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:.3rem}
+  .credits-desc{font-size:12px;color:var(--text2);line-height:1.7;font-family:var(--mono)}
+  .credits-badge{display:inline-flex;align-items:center;gap:5px;margin-top:.75rem;padding:4px 10px;background:var(--surface2);border:1px solid var(--border2);border-radius:99px;font-size:10px;font-family:var(--mono);color:var(--muted)}
+  .credits-divider{height:1px;background:var(--border);margin:2rem 0}
+  .credits-stack{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:2rem}
+  .credits-tech{padding:5px 12px;background:var(--surface);border:1px solid var(--border2);border-radius:99px;font-size:11px;font-family:var(--mono);color:var(--muted)}
+  .credits-version{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;margin-top:1.5rem}
+
 </style>
 </head>
 <body>
@@ -763,7 +784,8 @@
 
   <div class="nav-right">
     <div class="nav-profile" id="nav-profile" onclick="showSection('profile')" style="display:none"></div>
-    <button class="nav-btn" onclick="showSection('profile')" id="nav-profile-btn" style="display:none;padding:0 .6rem">👤</button>
+    <button class="nav-btn" onclick="showSection('credits');closeNavGroups()">🏅 Crédits</button>
+  <button class="nav-btn" onclick="showSection('profile')" id="nav-profile-btn" style="display:none;padding:0 .6rem">👤</button>
   </div>
 </nav>
 
@@ -810,6 +832,7 @@
     <button onclick="showSection('ports');closeMobileMenus()">🔌 Ports</button>
     <button onclick="showSection('sprint');closeMobileMenus()">⚡ Sprint</button>
     <button onclick="showSection('tp');closeMobileMenus()">🧪 TPs</button>
+    <button onclick="showSection('credits');closeMobileMenus()">🏅 Crédits</button>
     <button onclick="showSection('import');closeMobileMenus()">📂 Import</button>
     <button onclick="showSection('notes');closeMobileMenus()">📓 Notes</button>
   </div>
@@ -883,6 +906,7 @@
 <div class="section" id="section-bloc"><div id="bloc-container"></div></div>
 <div class="section" id="section-tp"><div id="tp-container"></div></div>
 <div class="section" id="section-mesnotes"><div id="mesnotes-container"></div></div>
+<div class="section" id="section-credits"><div id="credits-container"></div></div>
 <div class="section" id="section-sprint"><div id="sprint-container"></div></div>
 
 <script>
@@ -928,7 +952,22 @@ const MODULES = {
       {q:"Quels répertoires contiennent des binaires exécutables sous Linux ?",opts:["/bin","/sbin","/usr/bin","/etc"],ans:[0,1,2],expl:"/bin contient les binaires essentiels (cp, ls, cat). /sbin contient les binaires d'administration (fdisk, ifconfig). /usr/bin contient les binaires utilisateurs installés. /etc contient uniquement des fichiers de configuration."},
       {q:"Quelles options de 'tar' permettent de créer une archive compressée gzip ?",opts:["-c (create)","-z (gzip)","-v (verbose)","-x (extract)"],ans:[0,1],expl:"-c crée l'archive, -z compresse avec gzip. -v affiche les fichiers (optionnel), -x extrait au lieu de créer. Exemple : tar -czf archive.tar.gz dossier/"},
       {q:"Lesquelles de ces affirmations sur systemd sont correctes ?",opts:["systemctl enable démarre le service immédiatement","systemctl enable active le démarrage automatique","journalctl -f suit les logs en temps réel","systemctl status affiche l'état d'un service"],ans:[1,2,3],expl:"systemctl enable active au boot mais ne démarre pas. Pour démarrer immédiatement : systemctl start (ou enable --now). journalctl -f = suivi temps réel. systemctl status = état + derniers logs."},
-      {q:"Quels sont les fichiers de configuration réseau essentiels sous Debian/Ubuntu ?",opts:["/etc/netplan/*.yaml","/etc/resolv.conf","/etc/network/interfaces","/etc/hostname"],ans:[0,1,3],expl:"/etc/netplan/*.yaml est la config réseau sur Ubuntu 18+. /etc/resolv.conf configure les DNS. /etc/hostname = nom de la machine. /etc/network/interfaces est l'ancienne méthode (Debian classique)."}
+      {q:"Quels sont les fichiers de configuration réseau essentiels sous Debian/Ubuntu ?",opts:["/etc/netplan/*.yaml","/etc/resolv.conf","/etc/network/interfaces","/etc/hostname"],ans:[0,1,3],expl:"/etc/netplan/*.yaml est la config réseau sur Ubuntu 18+. /etc/resolv.conf configure les DNS. /etc/hostname = nom de la machine. /etc/network/interfaces est l'ancienne méthode (Debian classique)."},
+      {q:"Quelle commande permet de voir l'utilisation CPU en temps réel avec le détail par processus ?",opts:["top","htop","ps aux","vmstat"],ans:1,expl:"htop est une version améliorée de top : barre de progression colorée, tri interactif, kill direct. top est l'outil de base disponible partout."},
+      {q:"Quelle est la signification de chmod 755 ?",opts:["rwxr-xr-x : propriétaire tout, groupe/autres lecture+exécution","rw-rw-rw- : lecture-écriture pour tous","rwx------ : propriétaire seulement","r-xr-xr-x : lecture et exécution pour tous"],ans:0,expl:"7=rwx (propriétaire), 5=r-x (groupe), 5=r-x (autres). Typique pour les exécutables et répertoires web."},
+      {q:"Quelle commande affiche la version du noyau Linux ?",opts:["uname -a","kernel -v","lskernel","version"],ans:0,expl:"uname -a affiche tout : noyau, hostname, architecture. uname -r affiche uniquement la version du noyau."},
+      {q:"Comment créer un utilisateur avec son répertoire home sous Linux ?",opts:["useradd alice","useradd -m alice","adduser --no-home alice","usermod -m alice"],ans:1,expl:"useradd -m alice crée l'utilisateur ET son répertoire /home/alice. Sans -m, le répertoire n'est pas créé."},
+      {q:"Quelle commande vérifie et répare un système de fichiers ext4 ?",opts:["fsck /dev/sda1","mkfs.ext4 /dev/sda1","tune2fs /dev/sda1","badblocks /dev/sda1"],ans:0,expl:"fsck (file system check) vérifie et répare. À exécuter sur une partition non montée. mkfs reformate (efface tout)."},
+      {q:"Comment monter une partition automatiquement au démarrage sous Linux ?",opts:["mount -a","Ajouter une entrée dans /etc/fstab","Créer un service systemd","Modifier /etc/mtab"],ans:1,expl:"/etc/fstab liste les systèmes de fichiers à monter au démarrage. Format : <périphérique> <point de montage> <type> <options> <dump> <pass>"},
+      {q:"Quelle commande affiche les 10 processus consommant le plus de CPU ?",opts:["ps aux --sort=-%cpu | head -11","top -n 1","pstree -c","lsof -p"],ans:0,expl:"ps aux --sort=-%cpu trie par CPU décroissant. head -11 = header + 10 lignes. Ou utiliser : top puis appuyer sur P."},
+      {q:"Quelle est la différence entre kill et kill -9 ?",opts:["Aucune différence","kill envoie SIGTERM (arrêt propre), kill -9 envoie SIGKILL (arrêt forcé)","kill -9 est plus lent","kill -9 nécessite les droits root"],ans:1,expl:"SIGTERM (15) : demande au processus de s'arrêter proprement (il peut ignorer). SIGKILL (9) : le noyau tue le processus immédiatement, non ignorable."},
+      {q:"Quelle commande affiche les partitions et leur taille ?",opts:["lsblk","fdisk -l","parted -l","Les trois fonctionnent"],ans:3,expl:"lsblk : arborescence lisible. fdisk -l : détails des partitions. parted -l : compatible GPT. Les trois affichent les partitions."},
+      {q:"Comment ajouter une route statique persistante sous Linux ?",opts:["route add","Ajouter dans /etc/netplan/*.yaml ou /etc/network/interfaces","ip route add","sysctl -w"],ans:1,expl:"ip route add est temporaire (perdu au reboot). Pour la persistance : /etc/netplan/ (Ubuntu) ou /etc/network/interfaces (Debian) selon la distribution."},
+      {q:"Quelle commande permet de tester la résolution DNS ?",opts:["ping","nslookup","traceroute","netstat"],ans:1,expl:"nslookup et dig permettent de tester la résolution DNS. dig est plus complet. nslookup est disponible sur Windows et Linux."},
+      {q:"Que fait la commande 'crontab -e' ?",opts:["Affiche les tâches planifiées","Édite les tâches cron de l'utilisateur courant","Supprime toutes les tâches cron","Liste les tâches de tous les utilisateurs"],ans:1,expl:"crontab -e édite les tâches cron de l'utilisateur. crontab -l les liste. crontab -r les supprime. Format : minute heure jour mois jour_semaine commande"},
+      {q:"Quelle commande affiche les dernières connexions au système ?",opts:["lastlog","last","who","w"],ans:1,expl:"last affiche l'historique des connexions (succès). lastlog = dernière connexion par utilisateur. who = connexions actuelles. w = connexions actuelles + activité."},
+      {q:"Comment chercher un texte dans plusieurs fichiers récursivement ?",opts:["find -name 'texte'","grep -r 'texte' /chemin","locate texte","awk 'texte'"],ans:1,expl:"grep -r 'texte' /chemin cherche récursivement. Ajouter -i pour ignorer la casse, -n pour les numéros de ligne, -l pour n'afficher que les noms de fichiers."},
+      {q:"Quelle commande affiche les variables d'environnement ?",opts:["env","set","printenv","Les trois fonctionnent"],ans:3,expl:"env, printenv et set affichent tous les variables d'environnement. echo $NOM_VAR affiche une variable spécifique. export VAR=valeur crée une variable d'environnement.",}
     ]
   },
   reseau: {
@@ -967,7 +1006,19 @@ const MODULES = {
       {q:"Quels protocoles fonctionnent à la fois en TCP et UDP ?",opts:["DNS (port 53)","DHCP (port 67/68)","Kerberos (port 88)","HTTP (port 80)"],ans:[0,2],expl:"DNS utilise UDP pour les requêtes courantes et TCP pour les transferts de zone (>512 octets). Kerberos utilise TCP et UDP. DHCP = UDP uniquement. HTTP = TCP uniquement."},
       {q:"Quelles adresses font partie des plages IP privées (RFC 1918) ?",opts:["10.0.0.1","172.20.5.10","192.168.1.100","8.8.8.8"],ans:[0,1,2],expl:"Les plages privées RFC 1918 : 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16. 8.8.8.8 est le DNS public Google — adresse publique."},
       {q:"Quelles affirmations sur TCP sont exactes ?",opts:["TCP est orienté connexion","TCP garantit l'ordre des paquets","TCP utilise un handshake à 3 étapes","TCP est plus rapide qu'UDP"],ans:[0,1,2],expl:"TCP : connexion établie par handshake SYN/SYN-ACK/ACK, accusés de réception, retrasmission en cas de perte, ordre garanti. UDP est plus rapide car sans ces mécanismes."},
-      {q:"Lesquels de ces équipements travaillent en couche 3 (réseau) du modèle OSI ?",opts:["Routeur","Switch de couche 3","Hub","Répéteur"],ans:[0,1],expl:"Routeur : couche 3, route les paquets IP entre réseaux. Switch L3 : switch capable de router. Hub = couche 1 (répète tous les signaux). Répéteur = couche 1."}
+      {q:"Lesquels de ces équipements travaillent en couche 3 (réseau) du modèle OSI ?",opts:["Routeur","Switch de couche 3","Hub","Répéteur"],ans:[0,1],expl:"Routeur : couche 3, route les paquets IP entre réseaux. Switch L3 : switch capable de router. Hub = couche 1 (répète tous les signaux). Répéteur = couche 1."},
+      {q:"Quelle est la commande pour afficher la table ARP sous Linux ?",opts:["arp -a","ip neigh","Les deux fonctionnent","netstat -r"],ans:2,expl:"arp -a et ip neigh affichent tous deux la table ARP. ip neigh est la commande moderne. La table ARP associe les IP aux adresses MAC sur le réseau local."},
+      {q:"Qu'est-ce que le protocole STP (Spanning Tree Protocol) ?",opts:["Un protocole de routage","Un protocole qui évite les boucles réseau dans les réseaux Ethernet commutés","Un protocole VPN","Un protocole de supervision"],ans:1,expl:"STP (IEEE 802.1D) élit un root bridge et bloque les ports redondants pour éviter les boucles. RSTP (802.1w) est la version rapide. Sans STP, les trames se dupliquent à l'infini."},
+      {q:"Combien d'hôtes utilisables dans un réseau /22 ?",opts:["512","1022","2046","4094"],ans:1,expl:"/22 = 4 octets de hôtes sur 10 bits → 2^10 = 1024 adresses - 2 = 1022 hôtes. /22 couvre 4 réseaux /24 consécutifs."},
+      {q:"Qu'est-ce que le protocole LACP/802.3ad ?",opts:["Un protocole de supervision","L'agrégation de liens réseau pour la redondance et la bande passante","Un protocole de routage dynamique","Un standard Wi-Fi"],ans:1,expl:"LACP (Link Aggregation Control Protocol) regroupe plusieurs interfaces physiques en un lien logique. Avantages : double bande passante, tolérance de panne si un lien tombe."},
+      {q:"Quelle est la différence entre un switch manageable et non-manageable ?",opts:["La vitesse","Le switch manageable permet la configuration VLAN, QoS, SNMP, supervision","Le prix uniquement","Le nombre de ports"],ans:1,expl:"Switch manageable = configurable (VLAN, trunks, RSTP, SNMP, mirror de port, QoS). Indispensable en production. Un switch non-manageable est plug-and-play mais sans contrôle."},
+      {q:"Qu'est-ce que le protocole BGP et où est-il utilisé ?",opts:["Un protocole de supervision interne","Le protocole de routage entre opérateurs Internet (inter-AS)","Un protocole Wi-Fi","Un protocole de VPN"],ans:1,expl:"BGP (Border Gateway Protocol) est le protocole de routage d'Internet. Il gère le routage entre Systèmes Autonomes (AS). Port 179 TCP. Chaque opérateur a son numéro d'AS."},
+      {q:"Quelle adresse IPv6 correspond à la loopback ?",opts:["::0","::1","fe80::1","ff02::1"],ans:1,expl:"::1 est l'adresse de loopback IPv6 (équivalent de 127.0.0.1 en IPv4). fe80::/10 = link-local. ff02::1 = multicast tous les noeuds."},
+      {q:"Qu'est-ce que le QoS (Quality of Service) réseau ?",opts:["Un protocole de sécurité","Un mécanisme qui priorise certains types de trafic réseau","Un type de VPN","Un protocole de supervision"],ans:1,expl:"QoS priorise le trafic critique (VoIP, vidéo, temps réel) sur les liens saturés. Marquage DSCP, files d'attente prioritaires. Sans QoS, la VoIP saccade quand le réseau est chargé."},
+      {q:"Qu'est-ce que le NAT statique ?",opts:["Une adresse IP fixe","La traduction d'une IP privée fixe vers une IP publique fixe (1:1)","Un type de VPN","Le NAT avec pool d'adresses"],ans:1,expl:"NAT statique = association permanente 1:1 entre une IP privée et une IP publique. Utilisé pour exposer un serveur interne (ex: serveur web) sur Internet avec une IP publique dédiée."},
+      {q:"Qu'est-ce que le concept de 'port mirroring' (SPAN) ?",opts:["La redirection de port","La copie du trafic d'un port vers un autre pour analyse (ex: sonde IDS/Wireshark)","L'agrégation de ports","La limitation de débit"],ans:1,expl:"Port mirroring copie le trafic d'un port (ou VLAN) vers un port de monitoring. Indispensable pour connecter un IDS, un analyseur réseau ou Wireshark sans interrompre le trafic."},
+      {q:"Quelle est la taille maximale d'une MTU Ethernet standard ?",opts:["512 octets","1500 octets","9000 octets","65535 octets"],ans:1,expl:"MTU Ethernet standard = 1500 octets. Jumbo frames = 9000 octets (pour les SAN et datacenters). Une MTU trop grande ou trop petite cause des problèmes de fragmentation et de performance."},
+      {q:"Comment fonctionne HSRP/VRRP ?",opts:["Un protocole de routage","Un protocole de passerelle redondante : une IP virtuelle partagée entre 2 routeurs","Un protocole de sauvegarde","Un protocole VPN"],ans:1,expl:"HSRP (Cisco) et VRRP (standard) permettent deux routeurs de partager une IP virtuelle. Si le routeur actif tombe, le second prend le relais automatiquement. Transparence totale pour les clients."}
     ]
   },
   virt: {
@@ -1002,7 +1053,14 @@ const MODULES = {
       {q:"À quoi sert vCenter Server ?",opts:["À créer des VM","À gérer centralement plusieurs hôtes ESXi et leurs VM","À sauvegarder les VM","À configurer le réseau"],ans:1,expl:"vCenter Server est la console de gestion centralisée de VMware. Il gère les hôtes, clusters, VM depuis une interface unique."},
       {q:"Qu'est-ce que la RAM partagée dans la virtualisation ?",opts:["De la RAM physique supplémentaire","Une technique où des pages mémoire identiques sont partagées entre plusieurs VM","Un type de datastore","Une technique de snapshot"],ans:1,expl:"La déduplication mémoire (TPS) permet à l'hyperviseur de partager des pages mémoire identiques entre VM, économisant de la RAM."},
       {q:"Qu'est-ce que Proxmox VE ?",opts:["Un logiciel de sauvegarde","Un hyperviseur open source basé sur KVM et LXC","Un outil de supervision","Un système d'exploitation"],ans:1,expl:"Proxmox VE est un hyperviseur open source qui combine KVM (pour les VM) et LXC (pour les conteneurs)."},
-      {q:"Que signifie 'overcommit' en virtualisation ?",opts:["Allouer moins de ressources que ce que les VM demandent","Allouer plus de ressources virtuelles que de ressources physiques disponibles","Un type de migration","Un protocole de stockage"],ans:1,expl:"L'overcommit alloue plus de CPU/RAM aux VM qu'il n'en existe physiquement, en pariant sur le fait qu'elles n'utilisent pas tout en même temps."}
+      {q:"Que signifie 'overcommit' en virtualisation ?",opts:["Allouer moins de ressources que ce que les VM demandent","Allouer plus de ressources virtuelles que de ressources physiques disponibles","Un type de migration","Un protocole de stockage"],ans:1,expl:"L'overcommit alloue plus de CPU/RAM aux VM qu'il n'en existe physiquement, en pariant sur le fait qu'elles n'utilisent pas tout en même temps."},
+      {q:"Qu'est-ce que le vCPU et sa relation avec le CPU physique ?",opts:["Un CPU virtuel identique au physique","Un processeur logique présenté à la VM, qui est multiplexé sur les cœurs physiques par l'hyperviseur","Un type de processeur Intel","Un core physique dédié"],ans:1,expl:"vCPU : l'hyperviseur planifie l'exécution des vCPU sur les pCPU physiques. Overcommit possible (plus de vCPU que de pCPU) mais risque de contention (CPU Ready). Règle : max 4:1 vCPU/pCPU en production."},
+      {q:"Qu'est-ce que la haute disponibilité (HA) VMware vSphere ?",opts:["Une sauvegarde automatique","Un mécanisme qui redémarre automatiquement les VM sur un autre hôte en cas de panne de l'hôte","Une migration live","Un système de snapshot"],ans:1,expl:"VMware HA surveille les hôtes via un heartbeat. Si un hôte ne répond plus, les VM sont redémarrées sur d'autres hôtes du cluster. RTO de quelques minutes. Nécessite : stockage partagé, réseau de management redondant, quorum."},
+      {q:"Quelle est la différence entre un disque VM Thin Provisioned et Thick Provisioned ?",opts:["Aucune différence de performance","Thin : alloue l'espace au fur et à mesure. Thick Eager Zeroed : alloue et efface tout l'espace immédiatement (plus performant)","Thick est moins fiable","Thin est uniquement pour les tests"],ans:1,expl:"Thin : gain d'espace disque mais overhead de gestion. Thick Lazy : réserve l'espace mais n'efface pas. Thick Eager Zeroed : réserve ET efface = meilleur pour la production, requis pour FT. Convertible avec vmkfstools."},
+      {q:"Qu'est-ce que le DRS (Distributed Resource Scheduler) VMware ?",opts:["Un outil de sauvegarde","Un système qui équilibre automatiquement la charge CPU/RAM entre les hôtes d'un cluster via vMotion","Un protocole réseau","Un type de stockage"],ans:1,expl:"DRS analyse les métriques CPU et RAM, génère des recommandations ou migre automatiquement les VM (mode fully automated). Nécessite vMotion et un cluster vSphere. Fonctionne avec Storage DRS pour le stockage."},
+      {q:"Qu'est-ce que Kubernetes et son rôle ?",opts:["Un hyperviseur","Un orchestrateur de conteneurs qui automatise le déploiement, la mise à l'échelle et la gestion des conteneurs","Un outil de supervision","Un système de sauvegarde"],ans:1,expl:"Kubernetes (K8s) : orchestration de conteneurs Docker. Concepts : Pod (plus petite unité), Service (exposition réseau), Deployment (gestion des réplicas), Namespace (isolation). kubectl est l'outil CLI. Alternatives : Docker Swarm, Nomad."},
+      {q:"Qu'est-ce que le live migration / vMotion ?",opts:["Une sauvegarde de VM","Le déplacement d'une VM en fonctionnement d'un hôte à un autre sans interruption de service","Un snapshot","Une copie de disque VM"],ans:1,expl:"vMotion (VMware) / Live Migration (Hyper-V) / KVM Migrate : déplacement de la VM, sa mémoire et ses connexions réseau actives sans interruption. Nécessite : stockage partagé, réseau vMotion dédié (10GbE recommandé), même CPU family."},
+      {q:"Qu'est-ce que le VMDK et le OVF/OVA ?",opts:["Des formats de sauvegarde","VMDK = disque virtuel VMware. OVF/OVA = format d'export portable d'une VM complète (config + disques)","Des protocoles réseau","Des formats de log"],ans:1,expl:"VMDK : Virtual Machine Disk, format de disque dur virtuel VMware. OVF (Open Virtualization Format) : package de VM exportable. OVA = archive OVF en un seul fichier. Compatible avec VirtualBox, VMware, Proxmox."}
     ]
   },
   sauvegarde: {
@@ -1075,7 +1133,15 @@ const MODULES = {
       {q:"Qu'est-ce que le protocole Kerberos v5 et ses tickets ?",opts:["Un antivirus réseau","Un protocole d'authentification à base de tickets : TGT puis ticket de service","Un type de chiffrement","Un protocole de messagerie"],ans:1,expl:"Kerberos v5 : le client obtient un TGT (Ticket Granting Ticket) du KDC, puis échange ce TGT contre un ticket de service pour accéder à une ressource. Le mot de passe ne circule jamais sur le réseau."},
       {q:"Quels rôles FSMO sont uniques par forêt (et non par domaine) ?",opts:["Schema Master","Domain Naming Master","PDC Emulator","RID Master"],ans:[0,1],expl:"Schema Master et Domain Naming Master = 1 seul pour toute la forêt. PDC Emulator, RID Master, Infrastructure Master = 1 par domaine. Retenir : les 2 rôles 'forêt' concernent la structure globale (schéma et nommage)."},
       {q:"Quels éléments sont contenus dans une GPO (Group Policy Object) ?",opts:["Configuration ordinateur","Configuration utilisateur","Règles de pare-feu Windows","Comptes utilisateurs AD"],ans:[0,1,2],expl:"Une GPO contient : Configuration Ordinateur (s'applique au démarrage) et Configuration Utilisateur (s'applique à la connexion). Les deux peuvent contenir des paramètres, scripts, règles de sécurité, déploiement logiciels. Les comptes utilisateurs AD sont des objets AD, pas des éléments d'une GPO."},
-      {q:"Quelles affirmations sur les groupes AD sont correctes ?",opts:["Un groupe global peut contenir des utilisateurs du même domaine","Un groupe universel peut contenir des membres de toute la forêt","Un groupe domaine local est utilisé pour attribuer des permissions sur des ressources locales","On peut imbriquer un groupe universel dans un groupe global"],ans:[0,1,2],expl:"Règle IGDLA : identités (I) dans groupes Globaux (G) dans groupes Domaine Local (DL) pour Accès (A). Universels = membres de toute la forêt. On ne peut pas mettre un groupe universel dans un groupe global."}
+      {q:"Quelles affirmations sur les groupes AD sont correctes ?",opts:["Un groupe global peut contenir des utilisateurs du même domaine","Un groupe universel peut contenir des membres de toute la forêt","Un groupe domaine local est utilisé pour attribuer des permissions sur des ressources locales","On peut imbriquer un groupe universel dans un groupe global"],ans:[0,1,2],expl:"Règle IGDLA : identités (I) dans groupes Globaux (G) dans groupes Domaine Local (DL) pour Accès (A). Universels = membres de toute la forêt. On ne peut pas mettre un groupe universel dans un groupe global."},
+      {q:"Quelle est la commande PowerShell pour créer un utilisateur AD ?",opts:["New-ADUser","Add-ADUser","Create-ADUser","Set-ADUser"],ans:0,expl:"New-ADUser -Name 'Jean Dupont' -SamAccountName 'jean.dupont' -Enabled $true -AccountPassword (ConvertTo-SecureString 'P@ssw0rd' -AsPlainText -Force). Set-ADUser modifie un utilisateur existant."},
+      {q:"Qu'est-ce que le catalogue global (Global Catalog) dans AD ?",opts:["Une liste de toutes les GPO","Un contrôleur de domaine qui stocke une copie partielle de tous les objets de la forêt","Un serveur de fichiers partagés","La base de données SYSVOL"],ans:1,expl:"Le GC stocke tous les attributs des objets du domaine local + les attributs fréquemment utilisés des autres domaines. Nécessaire pour les recherches multi-domaines, l'authentification et Outlook (GAL). Port 3268 (LDAP GC), 3269 (LDAPS GC)."},
+      {q:"Qu'est-ce que SYSVOL dans Active Directory ?",opts:["La base de données AD","Un partage réseau qui contient les scripts de connexion et les templates de GPO, répliqué entre DC","Un rôle FSMO","Un type de groupe AD"],ans:1,expl:"SYSVOL est un dossier partagé (\\domaine\SYSVOL) répliqué sur tous les DC via DFS-R. Il contient : les scripts de connexion, les templates de GPO (ADMX), les politiques de sécurité. Sans SYSVOL, les GPO ne s'appliquent pas."},
+      {q:"Quelle commande permet de vérifier la santé des contrôleurs de domaine ?",opts:["dcdiag","nltest","repadmin","netdom"],ans:0,expl:"dcdiag /test:all vérifie tous les aspects du DC. Tests importants : DNS, Replication, KccEvent, Advertising, FrsEvent. repadmin /replsummary vérifie la réplication. nltest /dclist:domaine liste les DC."},
+      {q:"Comment fonctionne la réplication AD entre sites distants ?",opts:["En temps réel comme dans le même site","Via des liens de sites AD (site links) avec une planification et une fréquence configurables","Automatiquement sans configuration","Via FTP"],ans:1,expl:"Réplication intra-site : automatique, rapide (notification de changement). Réplication inter-site : via AD Sites and Services, configurable (fréquence, planification, coût). Protocoles : RPC/IP ou SMTP pour les sites sans connexion permanente."},
+      {q:"Qu'est-ce que la corbeille Active Directory (AD Recycle Bin) ?",opts:["La corbeille Windows sur le DC","Une fonctionnalité qui permet de restaurer des objets AD supprimés sans restaurer depuis une sauvegarde","Un type de snapshot","Un rôle FSMO"],ans:1,expl:"AD Recycle Bin (Windows Server 2008 R2+) conserve les objets supprimés avec tous leurs attributs pendant une période configurable (180 jours par défaut). Restauration : Restore-ADObject. À activer dès le déploiement !"},
+      {q:"Quelle est la différence entre 'Block Inheritance' et 'Enforced' sur une GPO ?",opts:["Ce sont des synonymes","Block Inheritance empêche les GPO parentes de s'appliquer sur une OU. Enforced force l'application malgré un Block Inheritance","Enforced accélère l'application","Block Inheritance supprime les GPO"],ans:1,expl:"Block Inheritance sur une OU : bloque la descente des GPO des OU parentes. Enforced (ou 'No Override') sur un lien GPO : force l'application même si une OU enfant a Block Inheritance. Enforced > Block Inheritance."},
+      {q:"Qu'est-ce que le fine-grained password policy dans AD ?",opts:["Une GPO de mot de passe","Une fonctionnalité qui permet d'avoir différentes politiques de mot de passe pour différents groupes d'utilisateurs","Le seul moyen de configurer les mots de passe","Une fonctionnalité Azure AD"],ans:1,expl:"Fine-Grained Password Policy (PSO - Password Settings Object) permet d'appliquer des politiques différentes selon les groupes. Ex : admins = 16 caractères, users = 8 caractères. Configuré via ADAC ou PowerShell (New-ADFineGrainedPasswordPolicy)."}
     ]
   },
   secu: {
@@ -1113,7 +1179,18 @@ const MODULES = {
       {q:"Qu'est-ce que le Zero Trust ?",opts:["Ne jamais utiliser de VPN","Ne faire confiance à aucun utilisateur ni équipement par défaut, même interne","Bloquer tout le trafic réseau","Un type de chiffrement"],ans:1,expl:"Zero Trust : 'ne jamais faire confiance, toujours vérifier'. Chaque accès est authentifié et vérifié, même depuis l'intérieur."},
       {q:"Quels éléments font partie d'une politique de mots de passe robuste ?",opts:["Longueur minimale de 12 caractères","Expiration tous les 30 jours maximum","Combinaison de lettres, chiffres et caractères spéciaux","Interdiction de réutiliser les 5 derniers mots de passe"],ans:[0,2,3],expl:"Bonne politique : 12+ caractères, mixte (maj/min/chiffres/spéciaux), historique (pas de réutilisation). Expiration trop fréquente (30 jours) est contre-productive : elle pousse les utilisateurs à des mots de passe prévisibles. NIST recommande de ne pas forcer l'expiration sauf compromission."},
       {q:"Quels sont les piliers du modèle CIA (triade de la sécurité) ?",opts:["Confidentialité","Intégrité","Authentification","Disponibilité"],ans:[0,1,3],expl:"CIA = Confidentiality, Integrity, Availability. Confidentialité = seuls les autorisés accèdent aux données. Intégrité = données non altérées. Disponibilité = service accessible quand nécessaire. L'authentification est un mécanisme, pas un pilier de la triade."},
-      {q:"Quelles attaques font partie de l'ingénierie sociale (social engineering) ?",opts:["Phishing par email","Vishing (phishing téléphonique)","Injection SQL","Pretexting (faux prétexte)"],ans:[0,1,3],expl:"L'ingénierie sociale manipule les humains : phishing (email), vishing (voix/téléphone), smishing (SMS), pretexting (se faire passer pour quelqu'un). L'injection SQL est une attaque technique contre les bases de données."}
+      {q:"Quelles attaques font partie de l'ingénierie sociale (social engineering) ?",opts:["Phishing par email","Vishing (phishing téléphonique)","Injection SQL","Pretexting (faux prétexte)"],ans:[0,1,3],expl:"L'ingénierie sociale manipule les humains : phishing (email), vishing (voix/téléphone), smishing (SMS), pretexting (se faire passer pour quelqu'un). L'injection SQL est une attaque technique contre les bases de données."},
+      {q:"Qu'est-ce que le chiffrement de bout en bout (E2E) ?",opts:["Le chiffrement uniquement du transport","Le chiffrement où seuls l'émetteur et le destinataire peuvent déchiffrer, même le fournisseur ne voit pas le contenu","Un type de VPN","Le chiffrement HTTPS"],ans:1,expl:"E2E (End-to-End) : le message est chiffré sur l'appareil de l'émetteur et déchiffré uniquement par le destinataire. Exemples : Signal, WhatsApp. Même le serveur intermédiaire ne peut pas lire les messages."},
+      {q:"Qu'est-ce qu'une attaque Man-in-the-Middle (MitM) ?",opts:["Une attaque par force brute","Un attaquant qui s'interpose entre deux parties pour intercepter ou modifier les communications","Une attaque DDoS","Un ransomware"],ans:1,expl:"MitM : l'attaquant se place entre le client et le serveur, peut lire et modifier les communications. Contre-mesures : HTTPS/TLS, certificats, HSTS, VPN."},
+      {q:"Qu'est-ce que le principe de défense en profondeur ?",opts:["Utiliser un seul firewall très puissant","Superposer plusieurs couches de sécurité indépendantes pour limiter l'impact d'une compromission","Chiffrer toutes les données","Utiliser uniquement des logiciels open source"],ans:1,expl:"Défense en profondeur (DiD) : si une couche est franchie, les autres limitent la propagation. Exemples : firewall + IPS + antivirus + chiffrement + MFA + SIEM. Aucune couche seule n'est suffisante."},
+      {q:"Qu'est-ce que le CVE (Common Vulnerabilities and Exposures) ?",opts:["Un antivirus","Un système de référencement unique des vulnérabilités de sécurité connues","Un protocole de chiffrement","Un type de test d'intrusion"],ans:1,expl:"CVE est la base de référence mondiale des vulnérabilités. Chaque CVE a un identifiant unique (ex: CVE-2021-44228 = Log4Shell) et un score CVSS de 0 à 10. Utilisé par tous les outils de sécurité."},
+      {q:"Quelle est la différence entre vulnérabilité et exploit ?",opts:["Ce sont des synonymes","Vulnérabilité = faille théorique, Exploit = code/méthode qui exploite concrètement cette faille","Exploit = faille théorique, Vulnérabilité = exploitation","La vulnérabilité est plus dangereuse"],ans:1,expl:"Vulnérabilité : faiblesse dans un système (ex: injection SQL possible). Exploit : code ou technique qui tire parti de cette vulnérabilité pour l'attaquer. Payload : ce que l'exploit exécute une fois dedans."},
+      {q:"Qu'est-ce que l'authentification multifacteur (MFA) et ses 3 facteurs ?",opts:["Un double mot de passe","Combinaison de : quelque chose qu'on sait (mdp), quelque chose qu'on a (téléphone), quelque chose qu'on est (biométrie)","Un certificat SSL","Un token hardware uniquement"],ans:1,expl:"MFA combine plusieurs facteurs indépendants : connaissance (PIN, mot de passe), possession (smartphone, token), inhérence (empreinte, visage). Si un facteur est compromis, les autres protègent encore."},
+      {q:"Qu'est-ce que l'OWASP Top 10 ?",opts:["Un classement d'antivirus","La liste des 10 risques de sécurité web les plus critiques, maintenue par l'OWASP","Un protocole de sécurité","Un standard de certification"],ans:1,expl:"OWASP Top 10 : Injection, Authentification cassée, Exposition de données, XXE, Contrôle d'accès, Mauvaise config, XSS, Désérialisation, Composants vulnérables, Logging insuffisant. Référence pour les développeurs et pentesters."},
+      {q:"Comment fonctionne une attaque par injection SQL ?",opts:["En saturant le serveur","En insérant du code SQL malveillant dans un champ de saisie pour manipuler la base de données","En cassant le chiffrement TLS","En volant les cookies"],ans:1,expl:"Exemple : champ login avec ' OR '1'='1 -- qui transforme la requête SELECT en une qui retourne tous les utilisateurs. Contre-mesure : requêtes paramétrées (prepared statements), jamais de concaténation de chaînes SQL."},
+      {q:"Qu'est-ce que le protocole RADIUS et son usage en sécurité réseau ?",opts:["Un protocole de supervision","Un protocole AAA (Authentication, Authorization, Accounting) pour les accès réseau centralisés","Un type de VPN","Un protocole de chiffrement"],ans:1,expl:"RADIUS centralise l'authentification pour Wi-Fi, VPN, switchs (802.1X). Un utilisateur s'authentifie → le switch demande au serveur RADIUS → RADIUS autorise ou refuse. Port 1812 UDP (auth), 1813 UDP (accounting)."},
+      {q:"Qu'est-ce que le 'privilege escalation' (escalade de privilèges) ?",opts:["L'augmentation des droits d'un admin","L'obtention de droits supérieurs à ceux initialement accordés, souvent via une faille","Un type d'attaque DDoS","Une technique de phishing"],ans:1,expl:"Escalade verticale : passer d'utilisateur standard à root/admin. Escalade horizontale : accéder aux ressources d'un autre utilisateur de même niveau. Très utilisé après un premier accès pour prendre le contrôle total."},
+      {q:"Qu'est-ce que le SIEM et ses fonctions principales ?",opts:["Un antivirus avancé","Un système qui collecte, normalise et corrèle les logs de sécurité pour détecter les incidents","Un firewall nouvelle génération","Un outil de scan de vulnérabilités"],ans:1,expl:"SIEM (Security Information and Event Management) : collecte les logs de toute l'infrastructure, les normalise, les corrèle pour détecter des attaques (règles + ML). Exemples : Splunk, IBM QRadar, Wazuh. Génère des alertes et tableaux de bord pour le SOC."}
     ]
   },
   supervision: {
@@ -1148,7 +1225,12 @@ const MODULES = {
       {q:"Qu'est-ce que la supervision black-box ?",opts:["Supervision sans connaître l'état interne du système (test de disponibilité externe)","Supervision dans un datacenter noir","Supervision nocturne uniquement","Supervision sans alertes"],ans:0,expl:"Black-box = on teste le service de l'extérieur (ping, HTTP check) sans agent ni accès interne. Simule la vue d'un utilisateur."},
       {q:"Quel outil permet de visualiser graphiquement le trafic réseau sur un routeur ?",opts:["Nagios","MRTG / Cacti","Grafana","ELK"],ans:1,expl:"MRTG et Cacti génèrent des graphiques de trafic réseau à partir des données SNMP des équipements."},
       {q:"Qu'est-ce que le check_mk ?",opts:["Une commande Linux","Un outil de supervision dérivé de Nagios avec découverte automatique des équipements","Un protocole SNMP","Un type de trap"],ans:1,expl:"Check_MK (maintenant Checkmk) est un outil de supervision basé sur Nagios avec découverte automatique et interface moderne."},
-      {q:"Qu'est-ce que l'IPAM dans une infrastructure réseau supervisée ?",opts:["Un protocole réseau","Un outil de gestion des adresses IP (attribution, suivi, documentation)","Un type de supervision","Un protocole de sauvegarde"],ans:1,expl:"L'IPAM (IP Address Management) centralise la gestion des plages IP, les assignations DHCP et les enregistrements DNS."}
+      {q:"Qu'est-ce que l'IPAM dans une infrastructure réseau supervisée ?",opts:["Un protocole réseau","Un outil de gestion des adresses IP (attribution, suivi, documentation)","Un type de supervision","Un protocole de sauvegarde"],ans:1,expl:"L'IPAM (IP Address Management) centralise la gestion des plages IP, les assignations DHCP et les enregistrements DNS."},
+      {q:"Qu'est-ce que Prometheus et son fonctionnement ?",opts:["Un outil de ticketing","Un système de monitoring qui collecte des métriques en mode pull via HTTP (scraping) et les stocke en time series","Un outil de supervision SNMP","Un remplacement de Nagios"],ans:1,expl:"Prometheus scrape les endpoints /metrics des applications à intervalles réguliers. Stockage en TSDB (Time Series Database). Langage de requête : PromQL. S'intègre avec Grafana pour la visualisation. Alertmanager pour les alertes."},
+      {q:"Qu'est-ce que le monitoring 'black box' vs 'white box' ?",opts:["Selon la couleur du serveur","Black box : teste de l'extérieur (disponibilité, temps de réponse HTTP). White box : métriques internes (CPU, mémoire, files d'attente) via agent","Black box est plus précis","White box est moins sécurisé"],ans:1,expl:"Black box = supervision externe, vue utilisateur (ping, HTTP check, certificat). White box = supervision interne via agent, donne accès aux métriques système détaillées. Les deux sont complémentaires."},
+      {q:"Qu'est-ce que le protocole Syslog et ses niveaux de sévérité ?",opts:["Un protocole de supervision SNMP","Un standard de transmission de logs avec 8 niveaux : Emergency, Alert, Critical, Error, Warning, Notice, Informational, Debug","Un format de log Apache","Un outil de monitoring"],ans:1,expl:"Syslog (RFC 5424) : port 514 UDP (514 TCP pour syslog sécurisé). Facility (0-23) + Severity (0-7). 0=Emergency (système inutilisable), 7=Debug. En prod : level Warning (4) minimum. rsyslog et syslog-ng sont les daemons courants."},
+      {q:"Qu'est-ce que le monitoring de la disponibilité (uptime monitoring) ?",opts:["La surveillance du CPU","La vérification régulière qu'un service est accessible de l'extérieur, calcul du SLA","La supervision SNMP","Le monitoring des logs"],ans:1,expl:"Uptime monitoring : checks HTTP/TCP/ICMP depuis l'extérieur à intervalles réguliers (30s-5min). Calcule le SLA (ex: 99.9% = 8.7h d'indispo/an). Alertes immédiates. Outils : UptimeRobot, Pingdom, Zabbix web checks, Blackbox Exporter."},
+      {q:"Qu'est-ce que l'alerting et les concepts de 'flapping' et 'silencing' ?",opts:["Des fonctionnalités graphiques","Flapping : service qui change d'état trop rapidement (spam d'alertes). Silencing : désactivation temporaire des alertes pendant une maintenance","Des types de supervision","Des protocoles SNMP"],ans:1,expl:"Flapping : un service oscille entre UP/DOWN → détection automatique pour éviter les spams. Silencing/Downtime : suspension des alertes pendant une maintenance planifiée. Acknowledgement : prise en charge d'une alerte sans la fermer."}
     ]
   },
   stockage: {
@@ -1332,7 +1414,7 @@ function showSection(id) {
   target.classList.add('active');
   window.scrollTo(0, 0);
   updateNavLabel(id);
-  if (id !== 'home' && id !== 'ouvert' && id !== 'ports' && id !== 'fiches' && id !== 'ia' && id !== 'import' && id !== 'sprint' && id !== 'profile' && id !== 'tp' && id !== 'notes') {
+  if (id !== 'home' && id !== 'ouvert' && id !== 'ports' && id !== 'fiches' && id !== 'ia' && id !== 'import' && id !== 'sprint' && id !== 'profile' && id !== 'tp' && id !== 'notes' && id !== 'credits') {
     initQcm(id);
   }
   if (id === 'ouvert') initOpen();
@@ -1345,6 +1427,7 @@ function showSection(id) {
   if (id === 'tp') renderTP();
   if (id === 'bloc') renderBloc();
   if (id === 'notes') renderNotesHub();
+  if (id === 'credits') renderCredits();
 }
 
 function shuffleQuestionOpts(q) {
@@ -1882,6 +1965,134 @@ log "Terminé"</pre><h3>Variables spéciales</h3><table><tr><th>Variable</th><th
   {id:"f030",cat:"Sécurité",title:"Pentest — Méthodologie & outils essentiels",content:`<h3>Phases d'un pentest (PTES)</h3><ol><li>Pre-engagement (contrat, périmètre, règles)</li><li>Reconnaissance (OSINT, scan)</li><li>Exploitation</li><li>Post-exploitation</li><li>Pivoting</li><li>Rapport</li></ol><h3>Outils principaux</h3><table><tr><th>Phase</th><th>Outil</th></tr><tr><td>Reconnaissance</td><td>Nmap, Shodan, theHarvester</td></tr><tr><td>Exploitation</td><td>Metasploit, sqlmap</td></tr><tr><td>Post-exploitation</td><td>Mimikatz, evil-winrm</td></tr><tr><td>Rapport</td><td>Faraday, Dradis</td></tr></table><h3>Commandes Nmap essentielles</h3><pre>nmap -sn 192.168.1.0/24         # Découverte hôtes
 nmap -sV -p- 192.168.1.10       # Tous les ports + versions
 nmap -A 192.168.1.10            # Scan complet</pre><h3>Règle absolue</h3><p>Jamais de test sans autorisation écrite et périmètre défini. Un pentest sans contrat = infraction pénale.</p>`}
+  ,{id:"f031",cat:"Sécurité",title:"Chiffrement — Symétrique vs Asymétrique",content:`
+<div class="fiches-badge">Sécurité</div>
+<div class="fiches-title">Chiffrement — Symétrique vs Asymétrique</div>
+<h3>Chiffrement symétrique</h3>
+<p>Une seule clé pour chiffrer et déchiffrer. Rapide, efficace pour les gros volumes.</p>
+<table><tr><th>Algorithme</th><th>Taille clé</th><th>Usage</th></tr>
+<tr><td>AES-128</td><td>128 bits</td><td>Standard WPA2, TLS</td></tr>
+<tr><td>AES-256</td><td>256 bits</td><td>Données sensibles, gouvernement</td></tr>
+<tr><td>3DES</td><td>112-168 bits</td><td>Obsolète, déconseillé</td></tr></table>
+<h3>Chiffrement asymétrique</h3>
+<p>Paire de clés : publique (chiffre) + privée (déchiffre). Résout le problème d'échange de clé.</p>
+<table><tr><th>Algorithme</th><th>Taille clé</th><th>Usage</th></tr>
+<tr><td>RSA-2048</td><td>2048 bits</td><td>TLS, signatures</td></tr>
+<tr><td>RSA-4096</td><td>4096 bits</td><td>Données très sensibles</td></tr>
+<tr><td>Ed25519</td><td>256 bits</td><td>SSH moderne (recommandé)</td></tr>
+<tr><td>ECDSA P-256</td><td>256 bits</td><td>Certificats TLS modernes</td></tr></table>
+<h3>HTTPS/TLS — Combinaison des deux</h3>
+<ol><li>Asymétrique pour l'échange de clé (handshake)</li><li>Symétrique (AES) pour les données (rapide)</li><li>Résultat : sécurité + performance</li></ol>
+<h3>Fonctions de hachage</h3>
+<table><tr><th>Algorithme</th><th>Taille</th><th>Statut</th></tr>
+<tr><td>MD5</td><td>128 bits</td><td>❌ Cassé — ne pas utiliser</td></tr>
+<tr><td>SHA-1</td><td>160 bits</td><td>❌ Déprécié</td></tr>
+<tr><td>SHA-256</td><td>256 bits</td><td>✅ Standard actuel</td></tr>
+<tr><td>SHA-3</td><td>variable</td><td>✅ Plus récent</td></tr>
+<tr><td>bcrypt</td><td>variable</td><td>✅ Mots de passe</td></tr></table>`}
+  ,{id:"f032",cat:"Réseau",title:"Protocoles applicatifs — Ports & Fonctions",content:`
+<div class="fiches-badge">Réseau</div>
+<div class="fiches-title">Protocoles applicatifs — Ports & Fonctions</div>
+<h3>Email</h3>
+<table><tr><th>Protocole</th><th>Port</th><th>Rôle</th></tr>
+<tr><td>SMTP</td><td>25 TCP</td><td>Envoi de mails (serveur→serveur)</td></tr>
+<tr><td>SMTP Auth</td><td>587 TCP</td><td>Envoi client→serveur (TLS)</td></tr>
+<tr><td>SMTPS</td><td>465 TCP</td><td>SMTP chiffré SSL (ancien)</td></tr>
+<tr><td>IMAP</td><td>143 TCP</td><td>Réception — synchronisation</td></tr>
+<tr><td>IMAPS</td><td>993 TCP</td><td>IMAP chiffré TLS</td></tr>
+<tr><td>POP3</td><td>110 TCP</td><td>Réception — téléchargement</td></tr>
+<tr><td>POP3S</td><td>995 TCP</td><td>POP3 chiffré TLS</td></tr></table>
+<h3>Gestion de fichiers</h3>
+<table><tr><th>Protocole</th><th>Port</th><th>Rôle</th></tr>
+<tr><td>FTP</td><td>21 TCP</td><td>Transfert fichiers (non chiffré)</td></tr>
+<tr><td>SFTP</td><td>22 TCP</td><td>FTP via SSH (chiffré)</td></tr>
+<tr><td>TFTP</td><td>69 UDP</td><td>Transfert simple (PXE, IOS Cisco)</td></tr>
+<tr><td>SMB</td><td>445 TCP</td><td>Partage fichiers Windows</td></tr>
+<tr><td>NFS</td><td>2049 TCP/UDP</td><td>Partage fichiers Linux</td></tr></table>
+<h3>Administration et sécurité</h3>
+<table><tr><th>Protocole</th><th>Port</th><th>Rôle</th></tr>
+<tr><td>SSH</td><td>22 TCP</td><td>Shell sécurisé, tunnels</td></tr>
+<tr><td>Telnet</td><td>23 TCP</td><td>Shell non chiffré (obsolète)</td></tr>
+<tr><td>RDP</td><td>3389 TCP</td><td>Bureau à distance Windows</td></tr>
+<tr><td>VNC</td><td>5900 TCP</td><td>Bureau à distance multi-OS</td></tr>
+<tr><td>RADIUS</td><td>1812 UDP</td><td>Authentification AAA</td></tr></table>`}
+  ,{id:"f033",cat:"Active Directory",title:"GPO — Group Policy Objects en détail",content:`
+<div class="fiches-badge">Active Directory</div>
+<div class="fiches-title">GPO — Group Policy Objects en détail</div>
+<h3>Ordre d'application LSDOU</h3>
+<p><strong>L</strong>ocal → <strong>S</strong>ite → <strong>D</strong>omaine → <strong>O</strong>U (de la racine vers l'OU la plus proche). La dernière appliquée gagne en cas de conflit.</p>
+<h3>Paramètres principaux</h3>
+<table><tr><th>Catégorie</th><th>Exemples</th></tr>
+<tr><td>Sécurité</td><td>Politique de mot de passe, verrouillage de compte, UAC</td></tr>
+<tr><td>Logiciels</td><td>Déploiement MSI, désinstallation à distance</td></tr>
+<tr><td>Scripts</td><td>Logon/Logoff, Startup/Shutdown</td></tr>
+<tr><td>Environnement</td><td>Fond d'écran, lecteurs réseau, imprimantes</td></tr>
+<tr><td>Internet Explorer/Edge</td><td>Page d'accueil, proxy, zones de sécurité</td></tr>
+<tr><td>Restrictions</td><td>Désactiver Panneau de config, Gestionnaire des tâches</td></tr></table>
+<h3>Commandes essentielles</h3>
+<pre>gpupdate /force          # Forcer l'application immédiate
+gpresult /r              # Résultat des GPO appliquées (CLI)
+gpresult /h c:\gpo.html  # Rapport HTML détaillé
+rsop.msc                 # Resultant Set of Policy (GUI)
+Get-GPO -All             # Lister toutes les GPO (PowerShell)</pre>
+<h3>Modificateurs GPO</h3>
+<table><tr><th>Option</th><th>Effet</th></tr>
+<tr><td>Enforced (No Override)</td><td>Force l'application, résiste au Block Inheritance</td></tr>
+<tr><td>Block Inheritance</td><td>Bloque les GPO des OU parentes</td></tr>
+<tr><td>Loopback Processing</td><td>Applique GPO ordinateur aux utilisateurs qui s'y connectent</td></tr>
+<tr><td>Security Filtering</td><td>Applique la GPO uniquement à certains groupes</td></tr>
+<tr><td>WMI Filter</td><td>Condition basée sur les propriétés de la machine</td></tr></table>`}
+  ,{id:"f034",cat:"Linux",title:"Script Bash — Guide pratique",content:`
+<div class="fiches-badge">Linux</div>
+<div class="fiches-title">Script Bash — Guide pratique</div>
+<h3>Structure d'un script robuste</h3>
+<pre>#!/bin/bash
+set -euo pipefail   # -e: stop sur erreur, -u: var non définie = erreur, -o pipefail
+
+LOG="/var/log/mon_script.log"
+DATE=$(date +%Y%m%d_%H%M%S)
+
+log() { echo "[$DATE] $1" | tee -a "$LOG"; }
+
+log "Début du script"</pre>
+<h3>Variables et tableaux</h3>
+<pre>NOM="Alice"                    # Variable simple
+SERVERS=("srv1" "srv2" "srv3") # Tableau
+echo "\&#36;{SERVERS[0]}"           # Premier élément
+echo "\&#36;{SERVERS[@]}"           # Tous les éléments
+echo "\&#36;{#SERVERS[@]}"          # Nombre d'éléments
+
+for srv in "&#36;{SERVERS[@]}"; do
+  ping -c1 "$srv" &>/dev/null && echo "$srv UP" || echo "$srv DOWN"
+done</pre>
+<h3>Conditions et tests</h3>
+<pre>[ -f /etc/passwd ]   # Fichier existe
+[ -d /var/log ]      # Répertoire existe
+[ -z "$VAR" ]        # Variable vide
+[ "$A" -eq "$B" ]    # Nombres égaux
+[ "$A" = "$B" ]      # Chaînes égales
+
+if command -v nginx &>/dev/null; then
+  echo "nginx installé"
+fi</pre>
+<h3>Codes de retour</h3>
+<table><tr><th>Code</th><th>Signification</th></tr>
+<tr><td>0</td><td>Succès</td></tr>
+<tr><td>1</td><td>Erreur générale</td></tr>
+<tr><td>2</td><td>Mauvais usage</td></tr>
+<tr><td>126</td><td>Permission refusée</td></tr>
+<tr><td>127</td><td>Commande introuvable</td></tr></table>
+<h3>Exemple complet : backup</h3>
+<pre>#!/bin/bash
+set -euo pipefail
+BACKUP_DIR="/backup"
+DATE=$(date +%Y%m%d)
+SOURCE="/var/www /etc"
+
+mkdir -p "$BACKUP_DIR"
+tar -czf "$BACKUP_DIR/backup_$DATE.tar.gz" $SOURCE
+find "$BACKUP_DIR" -name "backup_*.tar.gz" -mtime +7 -delete
+echo "Backup $DATE terminé"</pre>`}
 ];
 
 // FICHES FUNCTIONS
@@ -1963,7 +2174,18 @@ const MODULES_V5 = {
       {q:"Quelle est la commande PowerShell pour créer une nouvelle GPO liée à une OU ?",opts:["New-GPO -Name GPO-Test -OU Users","New-GPO -Name GPO-Securite puis New-GPLink -Name GPO-Securite -Target 'OU=Users,DC=entreprise,DC=local'","Create-GPO -Name GPO-Securite -Link OU=Users","Add-GPO -Name GPO-Test"],ans:1,expl:"La création et liaison d'une GPO se fait en deux étapes : 1) New-GPO -Name GPO-Securite crée l'objet GPO dans le domaine. 2) New-GPLink -Name GPO-Securite -Target 'OU=Users,DC=entreprise,DC=local' la lie à l'OU cible. On peut aussi utiliser GPMC.msc graphiquement. Après création, modifier la GPO avec Set-GPRegistryValue ou via Group Policy Management Editor."},
       {q:"Qu'est-ce que l'option IP Helper (DHCP Relay) et quand est-elle nécessaire ?",opts:["Toujours nécessaire sur chaque réseau","Nécessaire quand le serveur DHCP est dans un VLAN différent des clients — les broadcasts DHCP ne franchissent pas les routeurs, le relay les convertit en unicast","Optionnelle, le DHCP fonctionne sans","Uniquement nécessaire pour la VoIP"],ans:1,expl:"Les broadcasts DHCP Discover sont bloqués par les routeurs. Si les clients sont dans VLAN20 et le serveur DHCP dans VLAN10, les Discover n'arrivent jamais. Le DHCP Relay (ip helper-address) sur l'interface du VLAN client intercepte le broadcast et le retransmet en unicast vers le serveur DHCP. Sans relay → tous les clients obtiennent 169.254.x.x (APIPA)."},
       {q:"Qu'est-ce que le Split DNS et dans quel cas l'utilise-t-on ?",opts:["Un DNS en panne","Deux vues DNS différentes pour le même domaine : vue interne (IP LAN) et vue externe (IP publique) — permet d'éviter que les clients internes passent par l'IP publique pour accéder aux serveurs internes","Un DNS secondaire","Un protocole de réplication DNS"],ans:1,expl:"Split DNS (ou split-brain DNS) : srv01.entreprise.local répond 192.168.10.50 en interne et l'IP publique en externe. Avantages : le trafic interne reste sur le LAN (pas de hairpin NAT), les IP internes ne sont pas exposées en externe. Sur Windows Server, on configure deux zones avec le même nom mais des enregistrements différents. Courant en entreprise avec firewall pfSense ou Fortigate."},
-      {q:"Quelle est la commande Cisco pour configurer DHCP Relay sur une interface VLAN ?",opts:["dhcp relay 192.168.10.10","ip helper-address 192.168.10.10","dhcp-relay 192.168.10.10","service dhcp-relay 192.168.10.10"],ans:1,expl:"Sur le switch L3 ou routeur Cisco, sous l'interface du VLAN client (interface vlan 20), on ajoute : ip helper-address 192.168.10.10 (IP du serveur DHCP). Possible d'avoir plusieurs ip helper-address sur la même interface pour envoyer vers plusieurs serveurs. C'est une commande Cisco IOS standard, l'équivalent sur HP/Aruba est dhcp-relay server-address."}
+      {q:"Quelle est la commande Cisco pour configurer DHCP Relay sur une interface VLAN ?",opts:["dhcp relay 192.168.10.10","ip helper-address 192.168.10.10","dhcp-relay 192.168.10.10","service dhcp-relay 192.168.10.10"],ans:1,expl:"Sur le switch L3 ou routeur Cisco, sous l'interface du VLAN client (interface vlan 20), on ajoute : ip helper-address 192.168.10.10 (IP du serveur DHCP). Possible d'avoir plusieurs ip helper-address sur la même interface pour envoyer vers plusieurs serveurs. C'est une commande Cisco IOS standard, l'équivalent sur HP/Aruba est dhcp-relay server-address."},
+      {q:"Quelle est la commande PowerShell pour lister les services Windows ?",opts:["Get-Service","list-services","services -list","net services"],ans:0,expl:"Get-Service liste tous les services. Get-Service -Name 'wuauserv' cible un service. Start-Service, Stop-Service, Restart-Service pour les gérer. Get-Service | Where-Object Status -eq 'Running' pour filtrer."},
+      {q:"Qu'est-ce que le rôle DHCP Server sous Windows Server ?",opts:["Un serveur DNS","Un serveur qui distribue automatiquement les configurations IP aux clients du réseau","Un serveur de fichiers","Un contrôleur de domaine"],ans:1,expl:"Windows Server DHCP : gestion des plages (scopes), réservations par MAC, options DHCP (passerelle, DNS, NTP), haute disponibilité (failover DHCP). Autorisation dans AD obligatoire pour éviter les DHCP pirates."},
+      {q:"Qu'est-ce que le rôle Print Server et le spouleur d'impression ?",opts:["Un serveur d'application web","Un serveur qui centralise la gestion des imprimantes et files d'impression du réseau","Un serveur de sauvegarde","Un service de messagerie"],ans:1,expl:"Print Server centralise les imprimantes : installation des drivers sur le serveur, pas sur les postes. Spouleur (spooler) = file d'attente des impressions. Commandes : Get-Printer, Add-Printer, Restart-Service Spooler."},
+      {q:"Qu'est-ce que Windows Defender Firewall with Advanced Security ?",opts:["Un antivirus","Le pare-feu intégré à Windows qui gère les règles entrantes/sortantes et les profils réseau (Domaine/Privé/Public)","Un outil de supervision","Un proxy"],ans:1,expl:"WF.msc gère 3 profils : Domaine (réseau d'entreprise), Privé (réseau personnel), Public (réseau inconnu). Règles basées sur port, programme, IP source/destination, protocole. GPO pour déploiement en masse."},
+      {q:"Qu'est-ce que le service de clichés instantanés (VSS) Windows ?",opts:["Un service de virtualisation","Un service qui crée des copies instantanées cohérentes des volumes pour les sauvegardes et la restauration de fichiers précédents","Un service de supervision","Un service DNS"],ans:1,expl:"VSS (Volume Shadow Copy Service) : snapshots cohérents même pour les fichiers ouverts (BDD, Exchange). Utilisé par : Windows Backup, Veeam, la restauration 'Versions précédentes'. vssadmin list shadows pour lister les clichés."},
+      {q:"Comment configurer un partage réseau avec des permissions spécifiques sous Windows Server ?",opts:["Uniquement via l'interface graphique","Via Server Manager ou PowerShell : New-SmbShare avec les paramètres de sécurité, puis gérer les ACL NTFS en plus des permissions de partage","Via le registre uniquement","Via GPO uniquement"],ans:1,expl:"Deux niveaux de permissions : partage (SMB) et NTFS (ACL). La permission effective = la plus restrictive des deux. Best practice : Full Control en partage, gérer finement via NTFS. New-SmbShare -Name 'Data' -Path 'C:\\Data' -FullAccess 'Admins'."},
+      {q:"Qu'est-ce que ZFS et ses avantages pour le stockage ?",opts:["Un type de RAID classique","Un système de fichiers avancé avec intégrité des données (checksums), snapshots intégrés, compression et déduplication natives","Un protocole SAN","Un format de disque"],ans:1,expl:"ZFS (Zettabyte File System) : auto-guérison des données corrompues (scrubbing), snapshots et clones instantanés, compression LZ4, déduplication, RAID-Z (1/2/3). Utilisé sur TrueNAS, Proxmox, Solaris. Nécessite beaucoup de RAM."},
+      {q:"Quelle est la différence entre une sauvegarde 3-2-1 et 3-2-1-1-0 ?",opts:["Aucune différence","3-2-1-1-0 ajoute 1 copie air-gap (déconnectée/immuable) et 0 erreur vérifiée lors des tests de restauration","3-2-1-1-0 est plus ancienne","3-2-1 est plus fiable"],ans:1,expl:"3-2-1 : 3 copies, 2 supports différents, 1 hors site. 3-2-1-1-0 (Veeam) ajoute : 1 copie immuable ou air-gap (hors ligne, résistante aux ransomwares) + 0 erreur vérifiée par les tests SureBackup. Standard recommandé aujourd'hui."},
+      {q:"Qu'est-ce que le WORM storage (Write Once Read Many) ?",opts:["Un type de RAID","Un stockage où les données ne peuvent être écrites qu'une seule fois et ne peuvent pas être modifiées ou supprimées, utilisé pour la conformité","Un protocole de sauvegarde","Un système de cache"],ans:1,expl:"WORM est utilisé pour la conformité réglementaire (RGPD, SOX, HIPAA) : journaux d'audit, données légales. Peut être implémenté en hardware (cartouches WORM) ou software (Object Lock S3). Protège contre les ransomwares qui ne peuvent pas modifier les sauvegardes."},
+      {q:"Qu'est-ce que le snapshot storage et ses limites ?",opts:["Une sauvegarde complète","Une photo de l'état d'un volume à un instant T, rapide et peu coûteuse mais dépendante du stockage source","Un type de RAID","Une réplication"],ans:1,expl:"Snapshot : capture les blocs modifiés depuis le dernier snapshot (copy-on-write ou redirect-on-write). Très rapide (secondes). Limites : dépend du datastore source (si le NAS brûle, les snapshots aussi !), ne remplace pas une vraie sauvegarde externalisée."},
+      {q:"Qu'est-ce que la tiering de stockage automatique (Auto-Tiering) ?",opts:["Un type de RAID","Un système qui déplace automatiquement les données chaudes (fréquentes) vers des SSD rapides et les données froides vers des HDD lents","Un protocole NAS","Un système de compression"],ans:1,expl:"Auto-tiering (ex : Dell EMC FAST, NetApp FabricPool) analyse les patterns d'accès et déplace les blocs les plus accédés sur le tier le plus rapide (SSD NVMe > SSD SATA > HDD > Cloud). Optimise le rapport performances/coût sans intervention manuelle."}
     ]
   },
   linux_avance: {
@@ -4365,6 +4587,74 @@ function mnesExportAll() {
   a.download = 'mes_notes_TSSR_' + new Date().toISOString().slice(0,10) + '.txt';
   a.click();
   URL.revokeObjectURL(url);
+}
+
+
+// ============================================================
+// CRÉDITS
+// ============================================================
+function renderCredits() {
+  const el = document.getElementById('credits-container');
+  if (!el) return;
+  el.innerHTML = `
+  <div class="credits-wrap">
+    <div class="credits-logo"><span class="credits-logo-dot"></span>TSSR · Révisions</div>
+    <h1 class="credits-title">
+      Fait avec ❤️
+      <span>par des étudiants,<br>pour des étudiants</span>
+    </h1>
+    <p class="credits-sub">
+      Plateforme de révision pour la formation<br>
+      Technicien Systèmes et Réseaux (TSSR)
+    </p>
+
+    <div class="credits-cards">
+      <div class="credits-card" style="--card-gradient:linear-gradient(90deg,var(--accent),var(--cyan))">
+        <div class="credits-role">👑 Main — Développeur principal</div>
+        <div class="credits-name">Louis</div>
+        <div class="credits-desc">
+          Conception et développement de la plateforme.<br>
+          Architecture, modules QCM, Sprint, Profil,<br>
+          intégration Supabase et déploiement.
+        </div>
+        <div class="credits-badge">💻 Dev & Design</div>
+      </div>
+
+      <div class="credits-card" style="--card-gradient:linear-gradient(90deg,var(--purple),var(--accent))">
+        <div class="credits-role">🎨 Vernis — Finitions & UX</div>
+        <div class="credits-name">Julien</div>
+        <div class="credits-desc">
+          Retours utilisateurs, tests, suggestions<br>
+          d'améliorations et polissage de l'expérience.<br>
+          Les petits détails qui font la différence.
+        </div>
+        <div class="credits-badge">✨ UX & Tests</div>
+      </div>
+    </div>
+
+    <div class="credits-divider"></div>
+
+    <p style="font-size:12px;color:var(--muted);font-family:var(--mono);margin-bottom:1.25rem">Stack technique</p>
+    <div class="credits-stack">
+      <span class="credits-tech">HTML5</span>
+      <span class="credits-tech">CSS3</span>
+      <span class="credits-tech">Vanilla JS</span>
+      <span class="credits-tech">Supabase</span>
+      <span class="credits-tech">GitHub Pages</span>
+      <span class="credits-tech">Space Mono</span>
+      <span class="credits-tech">Syne</span>
+    </div>
+
+    <div class="credits-divider"></div>
+
+    <p style="font-size:13px;color:var(--text2);line-height:1.8;font-family:var(--mono);max-width:480px;margin:0 auto">
+      Ce site est un projet étudiant open source.<br>
+      Toutes les questions et fiches sont rédigées<br>
+      spécifiquement pour la formation TSSR.
+    </p>
+
+    <div class="credits-version">TSSR Révisions · v6.0 · 2025</div>
+  </div>`;
 }
 
 </script>
