@@ -724,6 +724,63 @@
   .credits-tech{padding:5px 12px;background:var(--surface);border:1px solid var(--border2);border-radius:99px;font-size:11px;font-family:var(--mono);color:var(--muted)}
   .credits-version{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;margin-top:1.5rem}
 
+
+  /* ── ADMIN PANEL ── */
+  .admin-overlay{position:fixed;inset:0;z-index:8000;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1rem}
+  .admin-modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);width:100%;max-width:900px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+  .admin-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--surface2);flex-shrink:0}
+  .admin-header-left{display:flex;align-items:center;gap:.75rem}
+  .admin-badge{font-family:var(--mono);font-size:9px;letter-spacing:.18em;padding:3px 10px;background:rgba(255,95,109,.12);border:1px solid rgba(255,95,109,.3);color:var(--red);border-radius:99px;text-transform:uppercase}
+  .admin-title{font-size:14px;font-weight:700;letter-spacing:-.01em}
+  .admin-close{background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:0 4px;-webkit-appearance:none}
+  .admin-body{display:flex;flex:1;overflow:hidden}
+  .admin-sidebar{width:180px;border-right:1px solid var(--border);padding:.75rem;flex-shrink:0;display:flex;flex-direction:column;gap:4px}
+  .admin-nav-btn{width:100%;padding:.6rem .85rem;background:none;border:none;border-radius:var(--radius);font-size:12px;font-family:var(--mono);color:var(--muted);cursor:pointer;text-align:left;transition:.12s;-webkit-appearance:none}
+  .admin-nav-btn:hover{background:var(--surface2);color:var(--text2)}
+  .admin-nav-btn.active{background:rgba(79,142,255,.1);color:var(--accent2);border:1px solid rgba(79,142,255,.2)}
+  .admin-content{flex:1;overflow-y:auto;padding:1.25rem}
+  .admin-section{display:none}
+  .admin-section.active{display:block}
+  .admin-section-title{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+  .admin-section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+  /* Stats */
+  .admin-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1.5rem}
+  .admin-stat{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);padding:.85rem 1rem;text-align:center}
+  .admin-stat-val{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--accent2)}
+  .admin-stat-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+  /* Users table */
+  .admin-table{width:100%;border-collapse:collapse;font-size:12px}
+  .admin-table th{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;text-align:left;padding:.5rem .75rem;border-bottom:1px solid var(--border)}
+  .admin-table td{padding:.6rem .75rem;border-bottom:1px solid rgba(100,180,255,.05);color:var(--text2);vertical-align:middle}
+  .admin-table tr:hover td{background:rgba(79,142,255,.04)}
+  .admin-online-dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;margin-right:5px;box-shadow:0 0 5px var(--green);animation:blink 2s infinite}
+  .admin-offline-dot{width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block;margin-right:5px}
+  .admin-activity-badge{font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:99px;background:var(--surface3);color:var(--muted)}
+  /* Announce */
+  .admin-announce-form{display:flex;flex-direction:column;gap:.75rem}
+  .admin-announce-input{width:100%;padding:.75rem 1rem;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:13px;font-family:var(--sans);outline:none;resize:none;min-height:80px;box-sizing:border-box}
+  .admin-announce-input:focus{border-color:var(--accent)}
+  .admin-announce-type{display:flex;gap:6px}
+  .admin-type-btn{padding:5px 14px;background:var(--surface2);border:1px solid var(--border2);border-radius:99px;font-size:11px;font-family:var(--mono);color:var(--muted);cursor:pointer;transition:.12s;-webkit-appearance:none}
+  .admin-type-btn.active{background:rgba(79,142,255,.12);border-color:rgba(79,142,255,.35);color:var(--accent2)}
+  .admin-send-btn{padding:.7rem 1.5rem;background:var(--accent);border:none;border-radius:var(--radius);color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--sans);transition:.15s;align-self:flex-start;-webkit-appearance:none}
+  .admin-send-btn:hover{opacity:.88}
+  /* Announce toast — visible to all users */
+  .announce-toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:7000;background:var(--surface);border:1px solid var(--accent);border-radius:var(--radius-lg);padding:.85rem 1.25rem 1rem;min-width:300px;max-width:500px;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:slideDown .3s ease;display:none}
+  .announce-toast.show{display:block}
+  @keyframes slideDown{from{transform:translateX(-50%) translateY(-20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+  .announce-toast-header{display:flex;align-items:center;gap:6px;margin-bottom:.4rem;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+  .announce-toast-header.info{color:var(--accent2)}
+  .announce-toast-header.warning{color:var(--amber)}
+  .announce-toast-header.urgent{color:var(--red)}
+  .announce-toast-text{font-size:13px;color:var(--text);line-height:1.6}
+  .announce-toast-close{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;-webkit-appearance:none}
+  .admin-log{font-family:var(--mono);font-size:11px;color:var(--text2);background:var(--surface2);border-radius:var(--radius);padding:.75rem 1rem;max-height:300px;overflow-y:auto;line-height:1.8}
+  .admin-log-entry{border-bottom:1px solid var(--border);padding:.3rem 0}
+  .admin-log-time{color:var(--muted);margin-right:.5rem}
+  .admin-log-user{color:var(--accent2)}
+  .admin-log-action{color:var(--text2)}
+
 </style>
 </head>
 <body>
@@ -738,6 +795,73 @@
 
 <!-- Theme toggle top-left fixed -->
 <button id="theme-btn" onclick="toggleTheme()" aria-label="Changer le thème" title="Dark / Light">🌙</button>
+
+
+<!-- ── ADMIN OVERLAY ── -->
+<div id="admin-overlay" class="admin-overlay" style="display:none" onclick="if(event.target===this)adminClose()">
+  <div class="admin-modal">
+    <div class="admin-header">
+      <div class="admin-header-left">
+        <span class="admin-badge">⚡ Admin</span>
+        <span class="admin-title">Panneau d'administration TSSR</span>
+      </div>
+      <button class="admin-close" onclick="adminClose()">✕</button>
+    </div>
+    <div class="admin-body">
+      <div class="admin-sidebar">
+        <button class="admin-nav-btn active" onclick="adminTab('overview')">📊 Vue d'ensemble</button>
+        <button class="admin-nav-btn" onclick="adminTab('users')">👥 Utilisateurs</button>
+        <button class="admin-nav-btn" onclick="adminTab('online')">🟢 En ligne</button>
+        <button class="admin-nav-btn" onclick="adminTab('announce')">📢 Annonces</button>
+        <button class="admin-nav-btn" onclick="adminTab('logs')">📋 Activité</button>
+      </div>
+      <div class="admin-content">
+        <div class="admin-section active" id="admin-sec-overview">
+          <div class="admin-section-title">Vue d'ensemble</div>
+          <div class="admin-stats-grid" id="admin-stats"></div>
+          <div class="admin-section-title" style="margin-top:1rem">Dernières inscriptions</div>
+          <div id="admin-recent-users"></div>
+        </div>
+        <div class="admin-section" id="admin-sec-users">
+          <div class="admin-section-title">Tous les utilisateurs</div>
+          <div id="admin-users-table"></div>
+        </div>
+        <div class="admin-section" id="admin-sec-online">
+          <div class="admin-section-title">Utilisateurs actifs <span id="admin-online-count" style="color:var(--green);font-family:var(--mono)"></span></div>
+          <div id="admin-online-list"></div>
+          <div style="margin-top:1rem;font-size:11px;color:var(--muted);font-family:var(--mono)">⟳ Rafraîchissement auto toutes les 30s</div>
+        </div>
+        <div class="admin-section" id="admin-sec-announce">
+          <div class="admin-section-title">Envoyer une annonce à tous</div>
+          <div class="admin-announce-form">
+            <div class="admin-announce-type" id="admin-announce-types">
+              <button class="admin-type-btn active" data-type="info" onclick="adminAnnounceType(this)">ℹ️ Info</button>
+              <button class="admin-type-btn" data-type="warning" onclick="adminAnnounceType(this)">⚠️ Attention</button>
+              <button class="admin-type-btn" data-type="urgent" onclick="adminAnnounceType(this)">🚨 Urgent</button>
+            </div>
+            <textarea class="admin-announce-input" id="admin-announce-text" placeholder="Message pour tous les utilisateurs connectés..."></textarea>
+            <button class="admin-send-btn" onclick="adminSendAnnounce()">📢 Envoyer l'annonce</button>
+          </div>
+          <div style="margin-top:1.5rem">
+            <div class="admin-section-title">Annonces envoyées</div>
+            <div id="admin-announce-history"></div>
+          </div>
+        </div>
+        <div class="admin-section" id="admin-sec-logs">
+          <div class="admin-section-title">Journal d'activité</div>
+          <div class="admin-log" id="admin-log-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ANNOUNCE TOAST ── -->
+<div class="announce-toast" id="announce-toast">
+  <button class="announce-toast-close" onclick="document.getElementById('announce-toast').classList.remove('show')">✕</button>
+  <div class="announce-toast-header" id="announce-toast-header"></div>
+  <div class="announce-toast-text" id="announce-toast-text"></div>
+</div>
 
 <nav>
   <span class="nav-logo" onclick="showSection('home')" style="cursor:pointer">TSSR</span>
@@ -1851,248 +1975,402 @@ function checkPorts() {
 
 // FICHES DE REVISION
 const FICHES = [
-  {id:"f001",cat:"Réseau",title:"Modèle OSI — Les 7 couches",content:`<h3>Les 7 couches OSI</h3><table><tr><th>N°</th><th>Nom</th><th>Rôle</th><th>Exemples</th></tr><tr><td>7</td><td>Application</td><td>Services aux applications</td><td>HTTP, DNS, SMB, SSH</td></tr><tr><td>6</td><td>Présentation</td><td>Format, chiffrement</td><td>TLS/SSL</td></tr><tr><td>5</td><td>Session</td><td>Gestion des sessions</td><td>RPC, NetBIOS</td></tr><tr><td>4</td><td>Transport</td><td>Ports, fiabilité</td><td>TCP, UDP</td></tr><tr><td>3</td><td>Réseau</td><td>Adressage IP, routage</td><td>IP, ICMP</td></tr><tr><td>2</td><td>Liaison</td><td>MAC, VLAN, trames</td><td>Ethernet, WiFi</td></tr><tr><td>1</td><td>Physique</td><td>Transmission de signaux</td><td>RJ45, fibre optique</td></tr></table><h3>Méthode de dépannage OSI</h3><p>Toujours dépanner du bas vers le haut : Couche 1 (câble) → Couche 2 (VLAN/MAC) → Couche 3 (IP/gateway) → Couche 4 (port/firewall) → Couche 7 (application/DNS)</p><h3>Encapsulation</h3><p>Données → Segment TCP → Paquet IP → Trame Ethernet → Bits sur le câble</p>`},
-  {id:"f002",cat:"Réseau",title:"Modèle TCP/IP — Les 4 couches",content:`<h3>Les 4 couches TCP/IP</h3><table><tr><th>Couche</th><th>Protocoles</th><th>OSI</th></tr><tr><td>Application</td><td>HTTP, DNS, SMTP, SSH</td><td>5-6-7</td></tr><tr><td>Transport</td><td>TCP, UDP</td><td>4</td></tr><tr><td>Internet</td><td>IP, ICMP, ARP</td><td>3</td></tr><tr><td>Accès réseau</td><td>Ethernet, Wi-Fi</td><td>1-2</td></tr></table><h3>TCP vs UDP</h3><table><tr><th>TCP</th><th>UDP</th></tr><tr><td>Fiable, orienté connexion, handshake 3-way</td><td>Non fiable, sans connexion, rapide</td></tr><tr><td>HTTP, HTTPS, SSH, SMB, FTP</td><td>DNS, DHCP, VoIP, streaming</td></tr></table><h3>Ports importants</h3><p>0-1023 = ports connus (SSH:22, HTTP:80, HTTPS:443, DNS:53). 1024-49151 = enregistrés. 49152-65535 = dynamiques (clients).</p>`},
-  {id:"f003",cat:"Réseau",title:"Adressage IPv4 — Masques & Subnetting",content:`<h3>Adresses privées RFC 1918</h3><table><tr><th>Classe</th><th>Plage</th><th>CIDR</th></tr><tr><td>A</td><td>10.0.0.0 – 10.255.255.255</td><td>/8</td></tr><tr><td>B</td><td>172.16.0.0 – 172.31.255.255</td><td>/12</td></tr><tr><td>C</td><td>192.168.0.0 – 192.168.255.255</td><td>/16</td></tr></table><h3>Tableau CIDR essentiel</h3><table><tr><th>CIDR</th><th>Masque</th><th>Hôtes utiles</th></tr><tr><td>/24</td><td>255.255.255.0</td><td>254</td></tr><tr><td>/25</td><td>255.255.255.128</td><td>126</td></tr><tr><td>/26</td><td>255.255.255.192</td><td>62</td></tr><tr><td>/27</td><td>255.255.255.224</td><td>30</td></tr><tr><td>/28</td><td>255.255.255.240</td><td>14</td></tr><tr><td>/30</td><td>255.255.255.252</td><td>2</td></tr></table><h3>Formule</h3><p>Hôtes utiles = 2^(32-CIDR) - 2. Première adresse = réseau, dernière = broadcast.</p>`},
-  {id:"f004",cat:"Réseau",title:"VLAN & Trunk — Segmentation réseau",content:`<h3>Concepts VLAN</h3><p>1 VLAN = 1 sous-réseau = 1 domaine de broadcast. Les VLANs ne communiquent pas entre eux sans routage.</p><h3>Types de ports</h3><table><tr><th>Type</th><th>Usage</th><th>Exemple</th></tr><tr><td>Access</td><td>Un seul VLAN (non tagué)</td><td>Port PC/imprimante</td></tr><tr><td>Trunk</td><td>Plusieurs VLANs (taguês 802.1Q)</td><td>Switch↔Switch, Switch↔Hyperviseur</td></tr></table><h3>Configuration Cisco</h3><pre>vlan 10
+  {id:"f001",cat:"Réseau",title:"Modèle OSI — Les 7 couches",content:`<h3>Les 7 couches OSI</h3>
+<table><tr><th>N°</th><th>Nom</th><th>Rôle</th><th>Protocoles / Matériel</th></tr>
+<tr><td>7</td><td><strong>Application</strong></td><td>Services aux applications</td><td>HTTP, HTTPS, DNS, SMTP, FTP, SSH, SMB</td></tr>
+<tr><td>6</td><td><strong>Présentation</strong></td><td>Format, chiffrement, compression</td><td>TLS/SSL, JPEG, MPEG, ASCII</td></tr>
+<tr><td>5</td><td><strong>Session</strong></td><td>Gestion des sessions</td><td>RPC, NetBIOS, PPTP</td></tr>
+<tr><td>4</td><td><strong>Transport</strong></td><td>Ports, fiabilité, flux</td><td>TCP, UDP, QUIC</td></tr>
+<tr><td>3</td><td><strong>Réseau</strong></td><td>Adressage IP, routage</td><td>IP, ICMP, OSPF, BGP — Routeur</td></tr>
+<tr><td>2</td><td><strong>Liaison</strong></td><td>MAC, trames, VLAN</td><td>Ethernet, Wi-Fi, STP — Switch, Bridge</td></tr>
+<tr><td>1</td><td><strong>Physique</strong></td><td>Signaux électriques/optiques</td><td>RJ45, fibre, câble coaxial — Hub, Répéteur</td></tr></table>
+<h3>Mémo : "Ah! Pour Sauvegarder Tout Réseau Liaison Physique"</h3>
+<p>Application · Présentation · Session · Transport · Réseau · Liaison · Physique</p>
+<h3>Méthode de dépannage OSI (du bas vers le haut)</h3>
+<ol><li><strong>L1</strong> : câble branché ? lien allumé ? (ip link show)</li>
+<li><strong>L2</strong> : VLAN correct ? adresse MAC visible ? (arp -a)</li>
+<li><strong>L3</strong> : IP correcte ? gateway joignable ? (ping, route -n)</li>
+<li><strong>L4</strong> : port ouvert ? firewall bloque ? (ss -tlnp, telnet IP PORT)</li>
+<li><strong>L7</strong> : service démarré ? config correcte ? DNS résout ?</li></ol>
+<h3>Encapsulation des données</h3>
+<p>L7 Données → L4 Segment (TCP) ou Datagramme (UDP) → L3 Paquet IP → L2 Trame Ethernet → L1 Bits sur le câble</p>`},
+
+  {id:"f002",cat:"Réseau",title:"TCP vs UDP — Comparaison détaillée",content:`<h3>TCP (Transmission Control Protocol)</h3>
+<table><tr><th>Caractéristique</th><th>Détail</th></tr>
+<tr><td>Connexion</td><td>Orienté connexion (handshake 3 voies : SYN → SYN-ACK → ACK)</td></tr>
+<tr><td>Fiabilité</td><td>Accusés de réception, retransmission automatique, ordre garanti</td></tr>
+<tr><td>Contrôle flux</td><td>Fenêtre glissante, évite la saturation du récepteur</td></tr>
+<tr><td>Vitesse</td><td>Plus lent qu'UDP (overhead du contrôle)</td></tr>
+<tr><td>Usage</td><td>HTTP/HTTPS, SSH, FTP, SMTP, SMB, bases de données</td></tr></table>
+<h3>Handshake TCP à 3 voies</h3>
+<pre>Client  →  SYN  →  Serveur      (je veux me connecter)
+Client  ←  SYN-ACK  ←  Serveur  (ok, je suis prêt)
+Client  →  ACK  →  Serveur      (connexion établie)</pre>
+<h3>UDP (User Datagram Protocol)</h3>
+<table><tr><th>Caractéristique</th><th>Détail</th></tr>
+<tr><td>Connexion</td><td>Sans connexion — envoi direct</td></tr>
+<tr><td>Fiabilité</td><td>Pas d'accusé de réception, ordre non garanti, perte possible</td></tr>
+<tr><td>Vitesse</td><td>Très rapide, faible latence</td></tr>
+<tr><td>Usage</td><td>DNS, DHCP, VoIP, streaming, jeux en ligne, NTP, SNMP</td></tr></table>
+<h3>Ports importants à retenir</h3>
+<table><tr><th>Port</th><th>Protocole</th><th>TCP/UDP</th></tr>
+<tr><td>22</td><td>SSH</td><td>TCP</td></tr>
+<tr><td>53</td><td>DNS</td><td>TCP/UDP</td></tr>
+<tr><td>67/68</td><td>DHCP</td><td>UDP</td></tr>
+<tr><td>80</td><td>HTTP</td><td>TCP</td></tr>
+<tr><td>443</td><td>HTTPS</td><td>TCP</td></tr>
+<tr><td>3389</td><td>RDP</td><td>TCP</td></tr>
+<tr><td>445</td><td>SMB</td><td>TCP</td></tr></table>`},
+
+  {id:"f003",cat:"Réseau",title:"Adressage IPv4 — Subnetting complet",content:`<h3>Structure d'une adresse IPv4</h3>
+<p>4 octets (32 bits) séparés par des points : <strong>192.168.10.50 /24</strong></p>
+<table><tr><th>Partie</th><th>Valeur</th><th>Rôle</th></tr>
+<tr><td>Réseau</td><td>192.168.10.0</td><td>Identifie le réseau</td></tr>
+<tr><td>Hôte</td><td>.50</td><td>Identifie la machine</td></tr>
+<tr><td>Broadcast</td><td>192.168.10.255</td><td>Diffusion sur le réseau</td></tr>
+<tr><td>1ère IP dispo</td><td>192.168.10.1</td><td>Souvent la gateway</td></tr>
+<tr><td>Dernière IP dispo</td><td>192.168.10.254</td><td>Dernier hôte</td></tr></table>
+<h3>Tableau CIDR de référence</h3>
+<table><tr><th>CIDR</th><th>Masque</th><th>Hôtes utiles</th><th>Usage typique</th></tr>
+<tr><td>/8</td><td>255.0.0.0</td><td>16 777 214</td><td>Classe A privée (10.x.x.x)</td></tr>
+<tr><td>/16</td><td>255.255.0.0</td><td>65 534</td><td>Grande entreprise</td></tr>
+<tr><td>/24</td><td>255.255.255.0</td><td>254</td><td>LAN standard</td></tr>
+<tr><td>/25</td><td>255.255.255.128</td><td>126</td><td>Moitié de /24</td></tr>
+<tr><td>/26</td><td>255.255.255.192</td><td>62</td><td>Petit réseau</td></tr>
+<tr><td>/27</td><td>255.255.255.224</td><td>30</td><td>Très petit réseau</td></tr>
+<tr><td>/28</td><td>255.255.255.240</td><td>14</td><td>Serveurs DMZ</td></tr>
+<tr><td>/30</td><td>255.255.255.252</td><td>2</td><td>Lien point à point</td></tr></table>
+<h3>Formules clés</h3>
+<p>Hôtes utiles = 2<sup>(32-CIDR)</sup> - 2</p>
+<p>Adresse réseau = IP AND Masque (en binaire)</p>
+<h3>Plages privées RFC 1918</h3>
+<table><tr><th>Plage</th><th>CIDR</th><th>Nb d'adresses</th></tr>
+<tr><td>10.0.0.0 – 10.255.255.255</td><td>/8</td><td>16,7 millions</td></tr>
+<tr><td>172.16.0.0 – 172.31.255.255</td><td>/12</td><td>1 million</td></tr>
+<tr><td>192.168.0.0 – 192.168.255.255</td><td>/16</td><td>65 536</td></tr></table>`},
+
+  {id:"f004",cat:"Réseau",title:"VLAN & Trunk — Segmentation réseau",content:`<h3>Pourquoi les VLAN ?</h3>
+<p>1 VLAN = 1 domaine de broadcast = 1 sous-réseau logique. Objectifs : <strong>isolation de sécurité</strong>, <strong>réduction du broadcast</strong>, <strong>organisation logique</strong> sans câblage physique supplémentaire.</p>
+<h3>Types de ports switch</h3>
+<table><tr><th>Type</th><th>Nombre de VLAN</th><th>Trame</th><th>Connecté à</th></tr>
+<tr><td><strong>Access</strong></td><td>1 seul</td><td>Non taguée (native)</td><td>PC, imprimante, serveur</td></tr>
+<tr><td><strong>Trunk</strong></td><td>Plusieurs (802.1Q)</td><td>Taguée (VLAN ID ajouté)</td><td>Switch, routeur, hyperviseur</td></tr></table>
+<h3>Configuration Cisco IOS</h3>
+<pre>! Créer les VLANs
+vlan 10
+ name BUREAUX
+vlan 20
  name SERVEURS
-interface gi0/1
- switchport mode trunk
- switchport trunk allowed vlan 10,20,30
-interface gi0/3
+vlan 99
+ name NATIF
+
+! Port Access (poste utilisateur)
+interface GigabitEthernet0/1
  switchport mode access
- switchport access vlan 20</pre><h3>Bonnes pratiques</h3><ul><li>Changer le VLAN natif (jamais VLAN 1)</li><li>Séparer VoIP/Serveurs/Bureaux/Invités</li><li>Activer BPDU Guard sur ports access</li></ul>`},
-  {id:"f005",cat:"Réseau",title:"DHCP — Protocole DORA",content:`<h3>Processus DORA</h3><p><b>D</b>iscover → <b>O</b>ffer → <b>R</b>equest → <b>A</b>cknowledge</p><h3>Options DHCP essentielles</h3><table><tr><th>Option</th><th>Rôle</th></tr><tr><td>3</td><td>Passerelle par défaut</td></tr><tr><td>6</td><td>Serveurs DNS</td></tr><tr><td>15</td><td>Suffixe DNS</td></tr><tr><td>42</td><td>Serveur NTP</td></tr><tr><td>66/67</td><td>Serveur PXE (déploiement OS)</td></tr></table><h3>DHCP Relay (IP Helper)</h3><p>Indispensable quand le serveur DHCP est dans un VLAN différent des clients. Sur routeur Cisco : <code>ip helper-address IP_DHCP</code></p><h3>APIPA</h3><p>169.254.x.x = adresse attribuée automatiquement quand le DHCP ne répond pas. Signe d'un problème DHCP ou RELAY.</p>`},
-  {id:"f006",cat:"Réseau",title:"DNS — Domain Name System",content:`<h3>Types d'enregistrements</h3><table><tr><th>Type</th><th>Rôle</th></tr><tr><td>A</td><td>Nom → IPv4</td></tr><tr><td>AAAA</td><td>Nom → IPv6</td></tr><tr><td>PTR</td><td>IP → Nom (zone inverse)</td></tr><tr><td>CNAME</td><td>Alias</td></tr><tr><td>MX</td><td>Serveur mail</td></tr><tr><td>SRV</td><td>Localisation de service (AD)</td></tr></table><h3>DNS et Active Directory</h3><p>AD dépend totalement du DNS. Les enregistrements SRV permettent aux clients de trouver les DC. Sans DNS interne → AD tombe.</p><h3>Règle d'or</h3><p>Jamais 8.8.8.8 comme DNS dans un domaine AD ! Utiliser uniquement les DC comme serveurs DNS.</p><h3>Commandes de diagnostic</h3><pre>nslookup -type=SRV _ldap._tcp.dc._msdcs.domaine.local
-dig @DNS_IP google.com
-ipconfig /flushdns</pre>`},
-  {id:"f007",cat:"Réseau",title:"Routage — Statique & OSPF",content:`<h3>Routes statiques</h3><pre>Cisco: ip route 192.168.20.0 255.255.255.0 10.0.0.2
-Linux: ip route add 192.168.20.0/24 via 10.0.0.2
-Windows: route add 192.168.20.0 mask 255.255.255.0 10.0.0.2</pre><h3>OSPF — Protocole de routage dynamique</h3><table><tr><th>Caractéristique</th><th>Valeur</th></tr><tr><td>Type</td><td>Link-state (IGP)</td></tr><tr><td>Algorithme</td><td>Dijkstra (SPF)</td></tr><tr><td>Convergence</td><td>Rapide</td></tr><tr><td>Standard</td><td>RFC 2328, ouvert</td></tr></table><pre>router ospf 1
+ switchport access vlan 10
+ spanning-tree portfast
+
+! Port Trunk (vers autre switch/routeur)
+interface GigabitEthernet0/24
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,20,99</pre>
+<h3>Bonnes pratiques VLAN</h3>
+<ul><li>Ne jamais laisser le VLAN natif en VLAN 1 (risque de VLAN hopping)</li>
+<li>Créer un VLAN dédié pour les équipements de management</li>
+<li>Séparer : Bureaux / VoIP / Serveurs / Wi-Fi invités / Management</li>
+<li>Activer BPDU Guard + PortFast sur tous les ports access</li></ul>`},
+
+  {id:"f005",cat:"Réseau",title:"DHCP — Protocole DORA & options",content:`<h3>Processus DORA — Attribution d'une IP</h3>
+<table><tr><th>Étape</th><th>Type</th><th>Description</th></tr>
+<tr><td><strong>D</strong>iscover</td><td>Broadcast</td><td>Client cherche un serveur DHCP (src: 0.0.0.0, dst: 255.255.255.255)</td></tr>
+<tr><td><strong>O</strong>ffer</td><td>Unicast/Broadcast</td><td>Serveur propose une IP avec bail</td></tr>
+<tr><td><strong>R</strong>equest</td><td>Broadcast</td><td>Client accepte l'offre (informe tous les serveurs)</td></tr>
+<tr><td><strong>A</strong>cknowledge</td><td>Unicast</td><td>Serveur confirme, le client configure son interface</td></tr></table>
+<h3>Options DHCP essentielles</h3>
+<table><tr><th>Option</th><th>Rôle</th><th>Exemple</th></tr>
+<tr><td>1</td><td>Masque de sous-réseau</td><td>255.255.255.0</td></tr>
+<tr><td>3</td><td>Passerelle par défaut</td><td>192.168.1.1</td></tr>
+<tr><td>6</td><td>Serveurs DNS</td><td>192.168.1.10, 1.1.1.1</td></tr>
+<tr><td>15</td><td>Suffixe DNS (domaine)</td><td>corp.local</td></tr>
+<tr><td>42</td><td>Serveur NTP</td><td>192.168.1.10</td></tr>
+<tr><td>66/67</td><td>Serveur/fichier TFTP (PXE)</td><td>déploiement OS</td></tr></table>
+<h3>DHCP Relay (ip helper-address)</h3>
+<p>Problème : DHCP utilise le broadcast → ne passe pas les routeurs. Solution : configurer un <strong>DHCP Relay Agent</strong> sur le routeur/switch L3 pour relayer en unicast.</p>
+<pre>! Sur le routeur/switch L3, interface du VLAN client :
+interface vlan 10
+ ip helper-address 192.168.0.10  ! IP du serveur DHCP</pre>
+<h3>Diagnostic DHCP</h3>
+<p>Adresse <strong>169.254.x.x (APIPA)</strong> = le client n'a pas reçu de réponse DHCP. Vérifier : serveur DHCP démarré, relay configuré, scope actif et non épuisé.</p>`},
+
+  {id:"f006",cat:"Réseau",title:"DNS — Résolution de noms",content:`<h3>Types d'enregistrements DNS</h3>
+<table><tr><th>Type</th><th>Rôle</th><th>Exemple</th></tr>
+<tr><td><strong>A</strong></td><td>Nom → IPv4</td><td>server01.corp.local → 192.168.1.10</td></tr>
+<tr><td><strong>AAAA</strong></td><td>Nom → IPv6</td><td>server01 → 2001:db8::1</td></tr>
+<tr><td><strong>PTR</strong></td><td>IP → Nom (zone inverse)</td><td>10.1.168.192.in-addr.arpa → server01</td></tr>
+<tr><td><strong>CNAME</strong></td><td>Alias vers un autre nom</td><td>www → server01.corp.local</td></tr>
+<tr><td><strong>MX</strong></td><td>Serveur de messagerie</td><td>corp.local → mail.corp.local (priorité 10)</td></tr>
+<tr><td><strong>SRV</strong></td><td>Localisation de service</td><td>_ldap._tcp.dc._msdcs.corp.local</td></tr>
+<tr><td><strong>NS</strong></td><td>Serveur de noms autoritaire</td><td>corp.local → dc01.corp.local</td></tr>
+<tr><td><strong>TXT</strong></td><td>Texte arbitraire</td><td>SPF, DKIM, vérification de domaine</td></tr></table>
+<h3>DNS et Active Directory</h3>
+<p>AD dépend TOTALEMENT du DNS. Les enregistrements SRV permettent aux clients de localiser les DC. <strong>Règle absolue : ne jamais utiliser 8.8.8.8 comme DNS primaire dans un domaine AD !</strong> Toujours pointer vers les DC.</p>
+<h3>Commandes de diagnostic DNS</h3>
+<pre>nslookup server01.corp.local          # Résolution simple
+nslookup -type=MX corp.local          # Enregistrement MX
+nslookup -type=SRV _ldap._tcp.corp.local  # SRV AD
+dig @192.168.1.10 google.com          # Tester un serveur DNS spécifique
+ipconfig /flushdns                    # Vider le cache DNS Windows
+systemd-resolve --flush-caches        # Vider le cache Linux</pre>
+<h3>Résolution DNS récursive</h3>
+<p>Client → Résolveur local → Serveur racine → TLD (.com, .fr) → Serveur autoritaire → Réponse</p>`},
+
+  {id:"f007",cat:"Réseau",title:"Routage — Statique, dynamique & OSPF",content:`<h3>Routes statiques</h3>
+<pre>! Cisco
+ip route 192.168.20.0 255.255.255.0 10.0.0.2
+ip route 0.0.0.0 0.0.0.0 10.0.0.1   ! Route par défaut
+
+# Linux
+ip route add 192.168.20.0/24 via 10.0.0.2 dev eth0
+ip route add default via 10.0.0.1
+
+# Windows
+route add 192.168.20.0 mask 255.255.255.0 10.0.0.2 -p  ! -p = persistant</pre>
+<h3>OSPF — Protocole link-state</h3>
+<table><tr><th>Caractéristique</th><th>OSPF</th><th>RIP v2</th></tr>
+<tr><td>Type</td><td>Link-state</td><td>Distance-vector</td></tr>
+<tr><td>Algorithme</td><td>Dijkstra (SPF)</td><td>Bellman-Ford</td></tr>
+<tr><td>Métrique</td><td>Coût (basé sur bande passante)</td><td>Nombre de sauts (max 15)</td></tr>
+<tr><td>Convergence</td><td>Rapide</td><td>Lente (30s updates)</td></tr>
+<tr><td>Usage</td><td>Entreprises, ISP</td><td>Petit réseaux, obsolète</td></tr></table>
+<pre>! Configuration OSPF Cisco
+router ospf 1
  router-id 1.1.1.1
  network 192.168.10.0 0.0.0.255 area 0
-show ip ospf neighbor</pre><h3>OSPF vs RIP</h3><p>RIP = vecteur de distance, max 15 sauts, lent. OSPF = link-state, rapide, scalable. OSPF est le standard en entreprise.</p>`},
-  {id:"f008",cat:"Réseau",title:"ARP, ICMP & Diagnostic réseau",content:`<h3>ARP (Address Resolution Protocol)</h3><p>Résout IP → MAC sur le réseau local. Broadcast : "Qui a 192.168.1.1 ?" → réponse unicast avec la MAC. En IPv6 : NDP.</p><pre>arp -a          # Windows
-ip neigh         # Linux</pre><h3>ICMP</h3><table><tr><th>Message</th><th>Usage</th></tr><tr><td>Echo Request/Reply (8/0)</td><td>ping</td></tr><tr><td>Time Exceeded (11)</td><td>traceroute</td></tr><tr><td>Destination Unreachable (3)</td><td>Filtre firewall ou route manquante</td></tr></table><h3>Diagnostic par couches</h3><ol><li>ping loopback (127.0.0.1)</li><li>ping IP locale</li><li>ping gateway</li><li>ping IP distante</li><li>ping DNS puis nom de domaine</li></ol>`},
-  {id:"f009",cat:"Active Directory",title:"Active Directory — Concepts essentiels",content:`<h3>Structure AD</h3><p>Forêt > Domaine > OU > Objets (Users, Computers, Groups, GPO)</p><h3>Rôles FSMO (5 rôles)</h3><table><tr><th>Rôle</th><th>Fonction</th></tr><tr><td>PDC Emulator</td><td>Heure du domaine, mots de passe</td></tr><tr><td>RID Master</td><td>Identifiants uniques pour les objets AD</td></tr><tr><td>Infrastructure Master</td><td>Références inter-domaines</td></tr><tr><td>Schema Master</td><td>Modifications du schéma AD</td></tr><tr><td>Domain Naming Master</td><td>Ajout/suppression de domaines</td></tr></table><h3>Commandes de santé AD</h3><pre>dcdiag /test:dns
-repadmin /replsummary
-nltest /dclist:domaine.local</pre><h3>Règle d'or</h3><p>Toujours au moins 2 DC. DNS interne uniquement. IP fixe obligatoire sur les DC.</p>`},
-  {id:"f010",cat:"Active Directory",title:"GPO — Group Policy Objects",content:`<h3>Ordre d'application LSDOU</h3><p>Local → Site → Domaine → OU. La GPO la plus proche (OU) a la priorité.</p><h3>Types de GPO</h3><table><tr><th>Type</th><th>S'applique à</th></tr><tr><td>Computer Configuration</td><td>Machines (démarrage)</td></tr><tr><td>User Configuration</td><td>Utilisateurs (ouverture de session)</td></tr></table><h3>Filtrage</h3><ul><li>Security Filtering : appliquer à un groupe spécifique uniquement</li><li>WMI Filter : cibler un OS ou type de machine</li></ul><h3>Commandes GPO</h3><pre>gpupdate /force        # Force l'application immédiate
-gpresult /r           # Affiche les GPO appliquées
-rsop.msc              # Resultant Set of Policy</pre>`},
-  {id:"f011",cat:"Active Directory",title:"Kerberos & Authentification Windows",content:`<h3>Processus Kerberos</h3><ol><li>Client envoie identité au KDC (DC)</li><li>DC renvoie un TGT chiffré</li><li>Client demande un ticket de service (ST) avec le TGT</li><li>Client présente le ST à la ressource</li></ol><p>Le mot de passe ne transite jamais sur le réseau.</p><h3>NTLM vs Kerberos</h3><table><tr><th>Kerberos</th><th>NTLM</th></tr><tr><td>Tickets, sécurisé, rapide</td><td>Challenge/réponse, héritage, lent</td></tr><tr><td>Standard en AD</td><td>Fallback uniquement (si DNS KO)</td></tr></table><h3>Commandes de diagnostic</h3><pre>klist                    # Voir les tickets actifs
-w32tm /query /status     # Vérifier l'heure (max 5 min !)
-klist purge              # Purger les tickets
-nltest /dsgetdc:domaine  # Trouver un DC</pre><h3>Causes d'échec Kerberos</h3><ul><li>DNS incorrect (8.8.8.8 → SRV introuvables)</li><li>Horloge désynchronisée > 5 minutes</li><li>Un seul DC (SPOF)</li></ul>`},
-  {id:"f012",cat:"Active Directory",title:"AGDLP — Organisation des permissions",content:`<h3>Méthode AGDLP</h3><p><b>A</b>ccount → <b>G</b>lobal Group → <b>D</b>omain <b>L</b>ocal Group → <b>P</b>ermissions NTFS</p><h3>Exemple concret</h3><p>jdupont → GG-Finance → DL-Finance-RW → Permission Modify sur \\\\SRV\\Finance</p><h3>Types de groupes</h3><table><tr><th>Type</th><th>Usage</th></tr><tr><td>Global Group (GG)</td><td>Regroupe les utilisateurs d'un service</td></tr><tr><td>Domain Local (DL)</td><td>Reçoit les permissions NTFS</td></tr><tr><td>Universal (UG)</td><td>Multi-domaines</td></tr></table><h3>Structure OU recommandée</h3><pre>01-Users (Finance, RH, IT, Commercial)
-02-Computers (PC, Laptops, Servers)
-03-Groups (GG-*, DL-*)
-04-GPO</pre>`},
-  {id:"f013",cat:"Virtualisation",title:"Virtualisation — Concepts fondamentaux",content:`<h3>Hyperviseurs</h3><table><tr><th>Type</th><th>Exemples</th><th>Usage</th></tr><tr><td>Type 1 (bare-metal)</td><td>ESXi, Hyper-V, Proxmox</td><td>Production, datacenter</td></tr><tr><td>Type 2 (hosted)</td><td>VirtualBox, Workstation</td><td>Tests, formation</td></tr></table><h3>Formats de disques virtuels</h3><table><tr><th>Format</th><th>Hyperviseur</th><th>Snapshots</th></tr><tr><td>VHDX</td><td>Hyper-V</td><td>Oui (64 To max)</td></tr><tr><td>VMDK</td><td>VMware</td><td>Oui</td></tr><tr><td>QCOW2</td><td>Proxmox/KVM</td><td>Oui</td></tr><tr><td>RAW</td><td>Tous</td><td>Non (performance max)</td></tr></table><h3>Règles sur les snapshots</h3><ul><li>Ne jamais garder > 48h en production</li><li>Ne pas en accumuler (dégradation des perfs)</li><li>Un snapshot N'EST PAS une sauvegarde</li></ul>`},
-  {id:"f014",cat:"Virtualisation",title:"VMware ESXi — Architecture & gestion",content:`<h3>Architecture VMware</h3><p>ESXi (hyperviseur) → vCenter (gestion centrale) → Cluster (HA + DRS + vMotion)</p><h3>Fonctionnalités clés vCenter</h3><table><tr><th>Fonction</th><th>Rôle</th></tr><tr><td>vMotion</td><td>Migration à chaud d'une VM sans interruption</td></tr><tr><td>HA</td><td>Redémarrage auto des VM si un hôte tombe</td></tr><tr><td>DRS</td><td>Équilibrage de charge automatique</td></tr><tr><td>Storage vMotion</td><td>Migration du stockage à chaud</td></tr></table><h3>Réseau VMware</h3><p>VM → vNIC → Port Group → vSwitch → NIC physique → Switch physique</p><h3>Bonnes pratiques ESXi</h3><ul><li>Désactiver SSH quand inutile</li><li>Séparer réseaux management / VM / stockage</li><li>Ne jamais garder les snapshots > 48h</li><li>Toujours installer VMware Tools dans les VM</li></ul>`},
-  {id:"f015",cat:"Virtualisation",title:"Proxmox VE — Architecture & Cluster",content:`<h3>Architecture Proxmox</h3><p>Proxmox VE (Debian custom) + KVM (VMs) + LXC (containers) + Ceph (stockage distribué optionnel) + Corosync (cluster)</p><h3>Stockage Proxmox</h3><table><tr><th>Type</th><th>Usage</th><th>Snapshots</th></tr><tr><td>ZFS</td><td>RAID logiciel, résilience, auto-healing</td><td>Oui</td></tr><tr><td>LVM-Thin</td><td>VMs, thin provisioning</td><td>Oui</td></tr><tr><td>NFS/CIFS</td><td>Stockage partagé NAS</td><td>Non</td></tr><tr><td>Ceph</td><td>Stockage distribué cluster</td><td>Oui</td></tr></table><h3>Cluster Proxmox</h3><pre>pvecm create CLUSTER-NAME
-pvecm add IP_NODE_MAITRE
-pvecm status</pre><p>Minimum 3 nœuds pour le quorum. 2 nœuds = cluster instable.</p>`},
-  {id:"f016",cat:"Virtualisation",title:"Hyper-V — Gestion & clustering",content:`<h3>Types de vSwitch Hyper-V</h3><table><tr><th>Type</th><th>Accès</th></tr><tr><td>Externe</td><td>VM ↔ LAN physique</td></tr><tr><td>Interne</td><td>VM ↔ hôte uniquement</td></tr><tr><td>Privé</td><td>VM ↔ VM uniquement</td></tr></table><h3>Génération VM</h3><p>Toujours utiliser <b>Generation 2</b> : UEFI, Secure Boot, GPT, meilleures performances. Gen1 = BIOS/MBR (legacy).</p><h3>PowerShell Hyper-V essentiel</h3><pre>New-VM -Name "SRV-AD" -MemoryStartupBytes 4GB -Generation 2 ...
-Start-VM SRV-AD
-Checkpoint-VM SRV-AD -SnapshotName "avant-maj"
-Get-VM | Where-Object State -eq Running</pre>`},
-  {id:"f017",cat:"Sécurité",title:"Firewall, VPN & Sécurité réseau",content:`<h3>Types de firewall</h3><table><tr><th>Type</th><th>Caractéristique</th></tr><tr><td>Stateless</td><td>Analyse chaque paquet isolément</td></tr><tr><td>Stateful</td><td>Suit l'état des connexions</td></tr><tr><td>Applicatif L7</td><td>pfSense, Fortigate, Palo Alto</td></tr></table><h3>Architecture DMZ</h3><p>Internet → Firewall → DMZ (serveurs web/mail) → Firewall → LAN interne. Les serveurs publics sont en DMZ, isolés du LAN.</p><h3>Protocoles VPN</h3><table><tr><th>Protocole</th><th>Usage</th></tr><tr><td>IPsec/IKEv2</td><td>VPN site-à-site entreprise</td></tr><tr><td>OpenVPN</td><td>VPN flexibles</td></tr><tr><td>WireGuard</td><td>VPN moderne, très performant</td></tr></table>`},
-  {id:"f018",cat:"Sécurité",title:"Active Directory — Sécurité & Hardening",content:`<h3>Menaces AD principales</h3><table><tr><th>Attaque</th><th>Description</th></tr><tr><td>Pass-the-Hash</td><td>Utilisation du hash NTLM sans connaître le mdp</td></tr><tr><td>Kerberoasting</td><td>Extraction et crack de tickets de service</td></tr><tr><td>Golden Ticket</td><td>TGT forgé avec le hash KRBTGT — accès total</td></tr><tr><td>DCSync</td><td>Simulation d'un DC pour récupérer tous les hashes</td></tr></table><h3>Hardening AD</h3><ul><li>LAPS : mots de passe admin locaux uniques par machine</li><li>Tiering Model : séparer admin DC / serveurs / postes</li><li>gMSA : comptes de service avec rotation automatique</li><li>Auditer Event ID 4624, 4625, 4648</li></ul>`},
-  {id:"f019",cat:"Sécurité",title:"EDR, SIEM & SOC",content:`<h3>Architecture SOC</h3><p>Events → SIEM (parsing + corrélation) → Alertes → Analyste L1 → Investigation L2 → Threat Hunting L3</p><h3>EDR vs Antivirus</h3><table><tr><th>Antivirus</th><th>EDR</th></tr><tr><td>Détection par signatures</td><td>Détection par comportements</td></tr><tr><td>Réactif</td><td>Proactif</td></tr><tr><td>Pas d'isolation</td><td>Isolation automatique de la machine</td></tr></table><h3>MITRE ATT&CK — Exemples</h3><table><tr><th>ID</th><th>Technique</th></tr><tr><td>T1059</td><td>PowerShell (exécution de commandes)</td></tr><tr><td>T1566</td><td>Phishing (initial access)</td></tr><tr><td>T1041</td><td>Exfiltration via HTTP/HTTPS</td></tr></table>`},
-  {id:"f020",cat:"Supervision",title:"SNMP — Supervision réseau",content:`<h3>Versions SNMP</h3><table><tr><th>Version</th><th>Sécurité</th></tr><tr><td>v1</td><td>Aucune (obsolète)</td></tr><tr><td>v2c</td><td>Community string en clair (public/private)</td></tr><tr><td>v3</td><td>Authentification + chiffrement (recommandé)</td></tr></table><h3>Concepts clés</h3><ul><li>OID : identifiant unique d'une variable sur l'équipement</li><li>MIB : fichier décrivant les OID disponibles</li><li>Trap : alerte envoyée spontanément (port 162 UDP)</li><li>Polling : interrogation régulière (port 161 UDP)</li></ul><h3>Commandes</h3><pre>snmpwalk -v2c -c public 192.168.1.1
-snmpget -v2c -c public 192.168.1.1 sysName.0</pre>`},
-  {id:"f021",cat:"Supervision",title:"Centreon & Zabbix — Supervision complète",content:`<h3>Architecture Centreon</h3><p>Poller (checks) → Broker (transport) → Central (UI + DB) → Alertes</p><h3>États des services</h3><table><tr><th>État</th><th>Signification</th></tr><tr><td>OK</td><td>Tout va bien</td></tr><tr><td>WARNING</td><td>Seuil d'alerte dépassé</td></tr><tr><td>CRITICAL</td><td>Seuil critique, intervention urgente</td></tr><tr><td>UNKNOWN</td><td>Check impossible à exécuter</td></tr></table><h3>Zabbix — Concepts clés</h3><ul><li>Host = équipement supervisé</li><li>Item = métrique collectée</li><li>Trigger = condition d'alerte</li><li>Action = notification ou commande</li></ul>`},
-  {id:"f022",cat:"Linux",title:"Linux — Architecture & commandes essentielles",content:`<h3>Arborescence Linux (FHS)</h3><table><tr><th>Répertoire</th><th>Contenu</th></tr><tr><td>/etc</td><td>Fichiers de configuration</td></tr><tr><td>/var/log</td><td>Logs système</td></tr><tr><td>/home</td><td>Répertoires personnels des utilisateurs</td></tr><tr><td>/usr/bin</td><td>Binaires utilisateurs</td></tr><tr><td>/tmp</td><td>Fichiers temporaires (sticky bit)</td></tr></table><h3>Commandes essentielles</h3><pre>ls -la         # Lister avec détails et fichiers cachés
-find /etc -name "*.conf"    # Rechercher des fichiers
-grep -r "error" /var/log    # Rechercher dans les logs
-chmod 755 script.sh         # Modifier les permissions
-chown user:group fichier    # Changer propriétaire</pre><h3>Pipes & redirections</h3><pre>cmd1 | cmd2      # Sortie de cmd1 → entrée de cmd2
-cmd > fichier    # Rediriger vers fichier (écrase)
-cmd >> fichier   # Ajouter au fichier</pre>`},
-  {id:"f023",cat:"Linux",title:"systemd — Gestion des services Linux",content:`<h3>Commandes systemctl essentielles</h3><pre>systemctl start ssh         # Démarrer
-systemctl stop ssh          # Arrêter
-systemctl restart ssh       # Redémarrer
-systemctl status ssh        # Voir l'état
-systemctl enable ssh        # Activer au démarrage
-systemctl disable ssh       # Désactiver
-systemctl list-units --type=service  # Lister les services</pre><h3>Structure d'un service systemd</h3><pre>[Unit]
-Description=Mon Service
-After=network.target
+ network 10.0.0.0 0.0.0.3 area 0
+ passive-interface GigabitEthernet0/1  ! Pas de hello sur les ports clients
 
-[Service]
-ExecStart=/usr/local/bin/monscript.sh
-Restart=always
+show ip ospf neighbor    ! Vérifier les voisins
+show ip route ospf       ! Routes apprises via OSPF</pre>
+<h3>Table de routage Linux</h3>
+<pre>ip route show
+# Exemple de sortie :
+default via 192.168.1.1 dev eth0
+192.168.1.0/24 dev eth0 proto kernel scope link src 192.168.1.50</pre>`},
 
-[Install]
-WantedBy=multi-user.target</pre><p>Après modification : <code>systemctl daemon-reload</code> puis <code>systemctl enable monservice</code></p><h3>Journalctl</h3><pre>journalctl -f      # Logs en temps réel
-journalctl -u ssh  # Logs d'un service
-journalctl -b      # Logs du boot actuel</pre>`},
-  {id:"f024",cat:"Linux",title:"Permissions Linux & SSH",content:`<h3>Système de permissions rwx</h3><table><tr><th>Lettre</th><th>Valeur</th><th>Signification</th></tr><tr><td>r</td><td>4</td><td>Lecture</td></tr><tr><td>w</td><td>2</td><td>Écriture</td></tr><tr><td>x</td><td>1</td><td>Exécution</td></tr></table><h3>chmod numérique</h3><p>755 = rwxr-xr-x | 644 = rw-r--r-- | 700 = rwx------</p><h3>SSH — Authentification par clé</h3><pre>ssh-keygen -t ed25519 -C "mon@email"
-ssh-copy-id user@serveur</pre><h3>Durcissement SSH (/etc/ssh/sshd_config)</h3><pre>PermitRootLogin no
-PasswordAuthentication no
-AllowUsers admin tssr</pre><h3>Fail2ban (/etc/fail2ban/jail.local)</h3><pre>[sshd]
-enabled = true
-maxretry = 5
-bantime = 1h</pre>`},
-  {id:"f025",cat:"Sauvegarde",title:"Stratégies de sauvegarde — TSSR",content:`<h3>Types de sauvegarde</h3><table><tr><th>Type</th><th>Sauvegarde</th><th>Restauration</th></tr><tr><td>Complète</td><td>Tout</td><td>Simple (1 fichier)</td></tr><tr><td>Différentielle</td><td>Depuis dernière complète</td><td>Complète + dernière diff</td></tr><tr><td>Incrémentielle</td><td>Depuis dernière sauvegarde</td><td>Complète + toutes incréments</td></tr></table><h3>Règle 3-2-1</h3><ul><li>3 copies des données</li><li>2 types de supports différents</li><li>1 copie hors site</li></ul><h3>RTO & RPO</h3><table><tr><th>Indicateur</th><th>Définition</th></tr><tr><td>RTO</td><td>Temps maximum pour restaurer le service</td></tr><tr><td>RPO</td><td>Perte de données maximale acceptable (en temps)</td></tr></table><h3>Règle importante</h3><p>Le RAID n'est PAS une sauvegarde. Un ransomware affecte aussi le RAID.</p>`},
-  {id:"f026",cat:"Stockage",title:"RAID — Niveaux et comparatif",content:`<h3>Tableau comparatif RAID</h3><table><tr><th>RAID</th><th>Disques min</th><th>Tolérance panne</th><th>Capacité utile</th><th>Usage</th></tr><tr><td>RAID 0</td><td>2</td><td>0</td><td>100%</td><td>Performance (données temporaires)</td></tr><tr><td>RAID 1</td><td>2</td><td>1</td><td>50%</td><td>OS, données critiques</td></tr><tr><td>RAID 5</td><td>3</td><td>1</td><td>(n-1)×taille</td><td>Serveur de fichiers PME</td></tr><tr><td>RAID 6</td><td>4</td><td>2</td><td>(n-2)×taille</td><td>Stockage sensible</td></tr><tr><td>RAID 10</td><td>4</td><td>1 par paire</td><td>50%</td><td>BDD, serveurs critiques</td></tr></table><h3>NAS vs SAN</h3><table><tr><th>NAS</th><th>SAN</th></tr><tr><td>Partage de fichiers (SMB, NFS)</td><td>Stockage bloc (FC, iSCSI)</td></tr><tr><td>Simple, économique</td><td>Haute performance, réseau dédié</td></tr></table>`},
-  {id:"f027",cat:"Windows Server",title:"SMB, NTFS & DFS — Partages professionnels",content:`<h3>NTFS vs SMB</h3><p>NTFS = permissions réelles (sur le disque). SMB = filtre de premier niveau. Toujours gérer les droits via NTFS.</p><h3>AGDLP pour les partages</h3><p>Users → GG-Finance → DL-Finance-RW → Permission NTFS Modify sur \\\\SRV\\Finance</p><h3>DFS (Distributed File System)</h3><table><tr><th>Composant</th><th>Rôle</th></tr><tr><td>DFS-N (Namespace)</td><td>Chemin logique unique \\\\domaine\\DATA</td></tr><tr><td>DFS-R (Replication)</td><td>Synchronisation entre sites distants</td></tr></table><h3>ABE (Access Based Enumeration)</h3><pre>Set-SmbShare -Name "DATA" -FolderEnumerationMode AccessBased</pre><h3>Désactiver SMBv1</h3><pre>Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol</pre>`},
-  {id:"f028",cat:"PowerShell",title:"PowerShell — Bases avancées & Remoting",content:`<h3>PowerShell = langage orienté objets .NET</h3><pre>Get-Process | Where-Object CPU -gt 10 | Sort-Object CPU -Descending | Select Name, CPU</pre><h3>Types de commandes (verbes)</h3><table><tr><th>Verbe</th><th>Action</th></tr><tr><td>Get-*</td><td>Lecture</td></tr><tr><td>Set-*</td><td>Modification</td></tr><tr><td>New-*</td><td>Création</td></tr><tr><td>Remove-*</td><td>Suppression</td></tr><tr><td>Test-*</td><td>Vérification</td></tr></table><h3>Gestion des erreurs</h3><pre>Try {
-   Restart-Service -Name Spooler -ErrorAction Stop
-} Catch {
-   Write-Error "Erreur : $_"
-} Finally {
-   Write-Output "Terminé"
-}</pre><h3>PowerShell Remoting</h3><pre>Enable-PSRemoting -Force
-Invoke-Command -ComputerName SRV01 -ScriptBlock { Get-Service }
-Enter-PSSession -ComputerName SRV01</pre>`},
-  {id:"f029",cat:"Linux",title:"Bash Scripting professionnel",content:`<h3>Structure d'un script pro</h3><pre>#!/bin/bash
-set -euo pipefail    # Arrêt sur erreur, variable non déclarée
+  {id:"f008",cat:"Linux",title:"Commandes Linux essentielles TSSR",content:`<h3>Gestion des fichiers et répertoires</h3>
+<table><tr><th>Commande</th><th>Usage</th></tr>
+<tr><td>ls -lah</td><td>Liste détaillée avec droits, taille lisible, fichiers cachés</td></tr>
+<tr><td>cp -r src/ dst/</td><td>Copie récursive d'un répertoire</td></tr>
+<tr><td>mv fichier /dest/</td><td>Déplacer ou renommer</td></tr>
+<tr><td>rm -rf /dir/</td><td>Suppression forcée récursive (DANGER)</td></tr>
+<tr><td>find /chemin -name "*.log" -mtime +30</td><td>Chercher des fichiers de plus de 30 jours</td></tr>
+<tr><td>grep -r "erreur" /var/log/</td><td>Chercher dans tous les fichiers</td></tr>
+<tr><td>tail -f /var/log/syslog</td><td>Suivre un fichier en temps réel</td></tr></table>
+<h3>Droits et permissions</h3>
+<table><tr><th>Commande</th><th>Exemple</th><th>Effet</th></tr>
+<tr><td>chmod</td><td>chmod 755 script.sh</td><td>rwxr-xr-x</td></tr>
+<tr><td>chmod</td><td>chmod u+x fichier</td><td>Ajoute l'exécution au propriétaire</td></tr>
+<tr><td>chown</td><td>chown alice:dev fichier</td><td>Change propriétaire et groupe</td></tr>
+<tr><td>chown -R</td><td>chown -R www-data /var/www</td><td>Récursif</td></tr></table>
+<h3>Valeurs numériques chmod</h3>
+<p>r=4 / w=2 / x=1. Exemples : 777=rwxrwxrwx · 755=rwxr-xr-x · 644=rw-r--r-- · 600=rw-------</p>
+<h3>Gestion des services systemd</h3>
+<table><tr><th>Commande</th><th>Action</th></tr>
+<tr><td>systemctl start/stop/restart nginx</td><td>Démarrer/arrêter/redémarrer</td></tr>
+<tr><td>systemctl enable/disable nginx</td><td>Activer/désactiver au boot</td></tr>
+<tr><td>systemctl status nginx</td><td>État + derniers logs</td></tr>
+<tr><td>journalctl -u nginx -f</td><td>Logs en temps réel</td></tr>
+<tr><td>journalctl -u nginx --since "1h ago"</td><td>Logs de la dernière heure</td></tr></table>
+<h3>Diagnostic système</h3>
+<pre>free -h           # RAM disponible
+df -h             # Espace disque
+du -sh /var/log/  # Taille d'un répertoire
+top / htop        # Processus en temps réel
+ss -tulnp         # Ports en écoute
+ps aux | grep nginx  # Chercher un processus</pre>`},
 
-LOG="/var/log/script.log"
-function log() { echo "$(date '+%F %T') - $1" >> $LOG; }
+  {id:"f009",cat:"Active Directory",title:"Active Directory — Architecture complète",content:`<h3>Hiérarchie AD</h3>
+<p>Forêt → Arbre de domaines → Domaine → Unités d'Organisation (OU) → Objets (Users, Computers, Groups)</p>
+<h3>Les 5 rôles FSMO</h3>
+<table><tr><th>Rôle</th><th>Portée</th><th>Fonction</th></tr>
+<tr><td>Schema Master</td><td>Forêt</td><td>Modification du schéma AD (structure des objets)</td></tr>
+<tr><td>Domain Naming Master</td><td>Forêt</td><td>Ajout/suppression de domaines dans la forêt</td></tr>
+<tr><td>PDC Emulator</td><td>Domaine</td><td>Synchronisation horloge, gestion mots de passe, verrouillages</td></tr>
+<tr><td>RID Master</td><td>Domaine</td><td>Attribution des identifiants relatifs uniques aux objets</td></tr>
+<tr><td>Infrastructure Master</td><td>Domaine</td><td>Références d'objets inter-domaines</td></tr></table>
+<h3>Types de groupes AD</h3>
+<table><tr><th>Étendue</th><th>Membres de</th><th>Permissions sur</th><th>Usage</th></tr>
+<tr><td>Domaine local</td><td>N'importe où</td><td>Domaine local seulement</td><td>Accès aux ressources locales</td></tr>
+<tr><td>Global</td><td>Même domaine</td><td>N'importe où dans la forêt</td><td>Regrouper les utilisateurs</td></tr>
+<tr><td>Universel</td><td>Forêt entière</td><td>Forêt entière</td><td>Multi-domaines</td></tr></table>
+<h3>Règle IGDLA</h3>
+<p><strong>I</strong>dentités (users) → <strong>G</strong>roupes Globaux → <strong>D</strong>omaine Local → <strong>A</strong>ccès (permissions)</p>
+<h3>Commandes PowerShell essentielles AD</h3>
+<pre>Get-ADUser -Filter * | Select Name, Enabled     # Lister users
+Get-ADGroup -Filter * | Select Name              # Lister groupes
+Get-ADGroupMember "GRP-Admins"                   # Membres d'un groupe
+New-ADUser -Name "Jean Dupont" -SamAccountName "jean.dupont" -Enabled $true
+Add-ADGroupMember "GRP-Admins" -Members "jean.dupont"
+Search-ADAccount -LockedOut                       # Comptes verrouillés
+Unlock-ADAccount -Identity "jean.dupont"          # Déverrouiller</pre>`},
 
-function backup() {
-  rsync -av /data /backup || { log "Erreur backup"; exit 1; }
-}
+  {id:"f010",cat:"Active Directory",title:"GPO — Group Policy Objects",content:`<h3>Ordre d'application LSDOU</h3>
+<p>Les GPO s'appliquent dans cet ordre — la dernière gagne en cas de conflit :</p>
+<ol><li><strong>L</strong>ocal — Politique locale de la machine</li>
+<li><strong>S</strong>ite — Politique liée au site AD</li>
+<li><strong>D</strong>omaine — Politique liée au domaine</li>
+<li><strong>O</strong>U — Politiques des OU (de la racine vers l'OU la plus proche)</li></ol>
+<h3>Modificateurs GPO</h3>
+<table><tr><th>Option</th><th>Où</th><th>Effet</th></tr>
+<tr><td>Enforced (No Override)</td><td>Sur le lien GPO</td><td>Force l'application, résiste au Block Inheritance</td></tr>
+<tr><td>Block Inheritance</td><td>Sur l'OU</td><td>Bloque les GPO des OU parentes</td></tr>
+<tr><td>Loopback Processing</td><td>Dans la GPO</td><td>Applique les GPO ordinateur aux utilisateurs qui s'y connectent</td></tr>
+<tr><td>Security Filtering</td><td>Onglet Scope</td><td>Applique uniquement à certains groupes (par défaut : Authenticated Users)</td></tr></table>
+<h3>Paramètres clés en prod</h3>
+<table><tr><th>Catégorie</th><th>Chemin</th><th>Exemples</th></tr>
+<tr><td>Mots de passe</td><td>Computer\Windows Settings\Security Settings</td><td>Longueur min, complexité, expiration</td></tr>
+<tr><td>Scripts</td><td>Computer/User\Windows Settings\Scripts</td><td>Logon, Logoff, Startup, Shutdown</td></tr>
+<tr><td>Restrictions</td><td>User\Admin Templates\Control Panel</td><td>Désactiver Panneau config, Registre</td></tr>
+<tr><td>Déploiement logiciels</td><td>Computer\Software Installation</td><td>Installer MSI silencieusement</td></tr></table>
+<h3>Commandes GPO</h3>
+<pre>gpupdate /force              # Forcer l'application immédiate
+gpresult /r                  # GPO appliquées (résumé)
+gpresult /h C:\gpo.html      # Rapport HTML complet
+Get-GPO -All                 # Lister toutes les GPO
+New-GPO -Name "Ma_GPO" | New-GPLink -Target "OU=Users,DC=corp,DC=local"</pre>`},
 
-log "Démarrage"
-backup
-log "Terminé"</pre><h3>Variables spéciales</h3><table><tr><th>Variable</th><th>Signification</th></tr><tr><td>$?</td><td>Code retour de la dernière commande</td></tr><tr><td>$0</td><td>Nom du script</td></tr><tr><td>$1, $2...</td><td>Arguments positionnels</td></tr></table><h3>Cron — Tâches planifiées</h3><pre>crontab -e
-# minute heure jour mois jour_semaine commande
-0 2 * * * /usr/local/bin/backup.sh    # Chaque jour à 2h</pre>`},
-  {id:"f030",cat:"Sécurité",title:"Pentest — Méthodologie & outils essentiels",content:`<h3>Phases d'un pentest (PTES)</h3><ol><li>Pre-engagement (contrat, périmètre, règles)</li><li>Reconnaissance (OSINT, scan)</li><li>Exploitation</li><li>Post-exploitation</li><li>Pivoting</li><li>Rapport</li></ol><h3>Outils principaux</h3><table><tr><th>Phase</th><th>Outil</th></tr><tr><td>Reconnaissance</td><td>Nmap, Shodan, theHarvester</td></tr><tr><td>Exploitation</td><td>Metasploit, sqlmap</td></tr><tr><td>Post-exploitation</td><td>Mimikatz, evil-winrm</td></tr><tr><td>Rapport</td><td>Faraday, Dradis</td></tr></table><h3>Commandes Nmap essentielles</h3><pre>nmap -sn 192.168.1.0/24         # Découverte hôtes
-nmap -sV -p- 192.168.1.10       # Tous les ports + versions
-nmap -A 192.168.1.10            # Scan complet</pre><h3>Règle absolue</h3><p>Jamais de test sans autorisation écrite et périmètre défini. Un pentest sans contrat = infraction pénale.</p>`}
-  ,{id:"f031",cat:"Sécurité",title:"Chiffrement — Symétrique vs Asymétrique",content:`
-<div class="fiches-badge">Sécurité</div>
-<div class="fiches-title">Chiffrement — Symétrique vs Asymétrique</div>
-<h3>Chiffrement symétrique</h3>
-<p>Une seule clé pour chiffrer et déchiffrer. Rapide, efficace pour les gros volumes.</p>
-<table><tr><th>Algorithme</th><th>Taille clé</th><th>Usage</th></tr>
-<tr><td>AES-128</td><td>128 bits</td><td>Standard WPA2, TLS</td></tr>
-<tr><td>AES-256</td><td>256 bits</td><td>Données sensibles, gouvernement</td></tr>
-<tr><td>3DES</td><td>112-168 bits</td><td>Obsolète, déconseillé</td></tr></table>
-<h3>Chiffrement asymétrique</h3>
-<p>Paire de clés : publique (chiffre) + privée (déchiffre). Résout le problème d'échange de clé.</p>
-<table><tr><th>Algorithme</th><th>Taille clé</th><th>Usage</th></tr>
-<tr><td>RSA-2048</td><td>2048 bits</td><td>TLS, signatures</td></tr>
-<tr><td>RSA-4096</td><td>4096 bits</td><td>Données très sensibles</td></tr>
-<tr><td>Ed25519</td><td>256 bits</td><td>SSH moderne (recommandé)</td></tr>
-<tr><td>ECDSA P-256</td><td>256 bits</td><td>Certificats TLS modernes</td></tr></table>
-<h3>HTTPS/TLS — Combinaison des deux</h3>
-<ol><li>Asymétrique pour l'échange de clé (handshake)</li><li>Symétrique (AES) pour les données (rapide)</li><li>Résultat : sécurité + performance</li></ol>
+  {id:"f011",cat:"Sécurité",title:"Sécurité réseau — Firewall, VPN, IDS/IPS",content:`<h3>Types de pare-feu</h3>
+<table><tr><th>Type</th><th>Couche OSI</th><th>Fonctionnement</th></tr>
+<tr><td>Stateless (ACL)</td><td>L3/L4</td><td>Filtre par IP/port, sans contexte</td></tr>
+<tr><td>Stateful</td><td>L4</td><td>Suit les connexions établies (état)</td></tr>
+<tr><td>Applicatif (NGFW)</td><td>L7</td><td>Inspection du contenu, DPI, IPS intégré</td></tr>
+<tr><td>WAF</td><td>L7</td><td>Spécialisé HTTP/HTTPS, protège les webapps</td></tr></table>
+<h3>VPN — Types principaux</h3>
+<table><tr><th>Type</th><th>Usage</th><th>Protocoles</th></tr>
+<tr><td>Site à site</td><td>Connecter deux sites</td><td>IPSec, MPLS</td></tr>
+<tr><td>Accès distant</td><td>Télétravail</td><td>OpenVPN, IPSec/IKEv2, WireGuard</td></tr>
+<tr><td>SSL/TLS VPN</td><td>Accès via navigateur</td><td>HTTPS (port 443)</td></tr></table>
+<h3>IDS vs IPS</h3>
+<table><tr><th></th><th>IDS (Intrusion Detection)</th><th>IPS (Intrusion Prevention)</th></tr>
+<tr><td>Position</td><td>Hors-ligne (span port)</td><td>En ligne (inline)</td></tr>
+<tr><td>Action</td><td>Détecte et alerte</td><td>Détecte, alerte ET bloque</td></tr>
+<tr><td>Risque</td><td>Aucun impact trafic</td><td>Faux positifs = coupures</td></tr></table>
+<h3>Règles UFW Linux</h3>
+<pre>ufw default deny incoming
+ufw default allow outgoing
+ufw allow 22/tcp          # SSH
+ufw allow 80,443/tcp      # Web
+ufw deny from 1.2.3.4     # Bloquer une IP
+ufw enable
+ufw status verbose</pre>
+<h3>Zones de sécurité réseau</h3>
+<p><strong>LAN</strong> (interne) → <strong>DMZ</strong> (serveurs exposés : web, mail, DNS) → <strong>WAN</strong> (Internet)</p>
+<p>Règle : le trafic DMZ→LAN doit être explicitement autorisé et minimal.</p>`},
+
+  {id:"f012",cat:"Sécurité",title:"Chiffrement & PKI — Certificats SSL/TLS",content:`<h3>Chiffrement symétrique vs asymétrique</h3>
+<table><tr><th></th><th>Symétrique</th><th>Asymétrique</th></tr>
+<tr><td>Clés</td><td>1 seule clé partagée</td><td>Paire publique/privée</td></tr>
+<tr><td>Vitesse</td><td>Très rapide</td><td>Lent (10-1000x)</td></tr>
+<tr><td>Problème</td><td>Échange de clé sécurisé</td><td>Pas de problème d'échange</td></tr>
+<tr><td>Algorithmes</td><td>AES-128/256, 3DES</td><td>RSA-2048/4096, ECC, Ed25519</td></tr>
+<tr><td>Usage</td><td>Données en masse</td><td>Échange de clé, signatures</td></tr></table>
+<h3>Comment TLS combine les deux</h3>
+<ol><li>Handshake asymétrique : le client et le serveur s'authentifient et échangent une clé de session</li>
+<li>Chiffrement symétrique (AES) pour les données : rapide et sécurisé</li>
+<li>Résultat : sécurité de l'asymétrique + performance du symétrique</li></ol>
+<h3>PKI — Infrastructure à Clé Publique</h3>
+<table><tr><th>Composant</th><th>Rôle</th></tr>
+<tr><td>CA racine (Root CA)</td><td>Autorité de certification racine, hors ligne</td></tr>
+<tr><td>CA intermédiaire</td><td>Émet les certificats, en ligne</td></tr>
+<tr><td>Certificat</td><td>Lien entre clé publique et identité, signé par la CA</td></tr>
+<tr><td>CRL / OCSP</td><td>Liste/vérification des certificats révoqués</td></tr></table>
 <h3>Fonctions de hachage</h3>
 <table><tr><th>Algorithme</th><th>Taille</th><th>Statut</th></tr>
-<tr><td>MD5</td><td>128 bits</td><td>❌ Cassé — ne pas utiliser</td></tr>
+<tr><td>MD5</td><td>128 bits</td><td>❌ Cassé</td></tr>
 <tr><td>SHA-1</td><td>160 bits</td><td>❌ Déprécié</td></tr>
-<tr><td>SHA-256</td><td>256 bits</td><td>✅ Standard actuel</td></tr>
-<tr><td>SHA-3</td><td>variable</td><td>✅ Plus récent</td></tr>
-<tr><td>bcrypt</td><td>variable</td><td>✅ Mots de passe</td></tr></table>`}
-  ,{id:"f032",cat:"Réseau",title:"Protocoles applicatifs — Ports & Fonctions",content:`
-<div class="fiches-badge">Réseau</div>
-<div class="fiches-title">Protocoles applicatifs — Ports & Fonctions</div>
-<h3>Email</h3>
-<table><tr><th>Protocole</th><th>Port</th><th>Rôle</th></tr>
-<tr><td>SMTP</td><td>25 TCP</td><td>Envoi de mails (serveur→serveur)</td></tr>
-<tr><td>SMTP Auth</td><td>587 TCP</td><td>Envoi client→serveur (TLS)</td></tr>
-<tr><td>SMTPS</td><td>465 TCP</td><td>SMTP chiffré SSL (ancien)</td></tr>
-<tr><td>IMAP</td><td>143 TCP</td><td>Réception — synchronisation</td></tr>
-<tr><td>IMAPS</td><td>993 TCP</td><td>IMAP chiffré TLS</td></tr>
-<tr><td>POP3</td><td>110 TCP</td><td>Réception — téléchargement</td></tr>
-<tr><td>POP3S</td><td>995 TCP</td><td>POP3 chiffré TLS</td></tr></table>
-<h3>Gestion de fichiers</h3>
-<table><tr><th>Protocole</th><th>Port</th><th>Rôle</th></tr>
-<tr><td>FTP</td><td>21 TCP</td><td>Transfert fichiers (non chiffré)</td></tr>
-<tr><td>SFTP</td><td>22 TCP</td><td>FTP via SSH (chiffré)</td></tr>
-<tr><td>TFTP</td><td>69 UDP</td><td>Transfert simple (PXE, IOS Cisco)</td></tr>
-<tr><td>SMB</td><td>445 TCP</td><td>Partage fichiers Windows</td></tr>
-<tr><td>NFS</td><td>2049 TCP/UDP</td><td>Partage fichiers Linux</td></tr></table>
-<h3>Administration et sécurité</h3>
-<table><tr><th>Protocole</th><th>Port</th><th>Rôle</th></tr>
-<tr><td>SSH</td><td>22 TCP</td><td>Shell sécurisé, tunnels</td></tr>
-<tr><td>Telnet</td><td>23 TCP</td><td>Shell non chiffré (obsolète)</td></tr>
-<tr><td>RDP</td><td>3389 TCP</td><td>Bureau à distance Windows</td></tr>
-<tr><td>VNC</td><td>5900 TCP</td><td>Bureau à distance multi-OS</td></tr>
-<tr><td>RADIUS</td><td>1812 UDP</td><td>Authentification AAA</td></tr></table>`}
-  ,{id:"f033",cat:"Active Directory",title:"GPO — Group Policy Objects en détail",content:`
-<div class="fiches-badge">Active Directory</div>
-<div class="fiches-title">GPO — Group Policy Objects en détail</div>
-<h3>Ordre d'application LSDOU</h3>
-<p><strong>L</strong>ocal → <strong>S</strong>ite → <strong>D</strong>omaine → <strong>O</strong>U (de la racine vers l'OU la plus proche). La dernière appliquée gagne en cas de conflit.</p>
-<h3>Paramètres principaux</h3>
-<table><tr><th>Catégorie</th><th>Exemples</th></tr>
-<tr><td>Sécurité</td><td>Politique de mot de passe, verrouillage de compte, UAC</td></tr>
-<tr><td>Logiciels</td><td>Déploiement MSI, désinstallation à distance</td></tr>
-<tr><td>Scripts</td><td>Logon/Logoff, Startup/Shutdown</td></tr>
-<tr><td>Environnement</td><td>Fond d'écran, lecteurs réseau, imprimantes</td></tr>
-<tr><td>Internet Explorer/Edge</td><td>Page d'accueil, proxy, zones de sécurité</td></tr>
-<tr><td>Restrictions</td><td>Désactiver Panneau de config, Gestionnaire des tâches</td></tr></table>
-<h3>Commandes essentielles</h3>
-<pre>gpupdate /force          # Forcer l'application immédiate
-gpresult /r              # Résultat des GPO appliquées (CLI)
-gpresult /h c:\gpo.html  # Rapport HTML détaillé
-rsop.msc                 # Resultant Set of Policy (GUI)
-Get-GPO -All             # Lister toutes les GPO (PowerShell)</pre>
-<h3>Modificateurs GPO</h3>
-<table><tr><th>Option</th><th>Effet</th></tr>
-<tr><td>Enforced (No Override)</td><td>Force l'application, résiste au Block Inheritance</td></tr>
-<tr><td>Block Inheritance</td><td>Bloque les GPO des OU parentes</td></tr>
-<tr><td>Loopback Processing</td><td>Applique GPO ordinateur aux utilisateurs qui s'y connectent</td></tr>
-<tr><td>Security Filtering</td><td>Applique la GPO uniquement à certains groupes</td></tr>
-<tr><td>WMI Filter</td><td>Condition basée sur les propriétés de la machine</td></tr></table>`}
-  ,{id:"f034",cat:"Linux",title:"Script Bash — Guide pratique",content:`
-<div class="fiches-badge">Linux</div>
-<div class="fiches-title">Script Bash — Guide pratique</div>
-<h3>Structure d'un script robuste</h3>
-<pre>#!/bin/bash
-set -euo pipefail   # -e: stop sur erreur, -u: var non définie = erreur, -o pipefail
+<tr><td>SHA-256</td><td>256 bits</td><td>✅ Standard</td></tr>
+<tr><td>bcrypt/Argon2</td><td>variable</td><td>✅ Pour les mots de passe</td></tr></table>`},
 
-LOG="/var/log/mon_script.log"
-DATE=$(date +%Y%m%d_%H%M%S)
+  {id:"f013",cat:"Supervision",title:"Supervision — Zabbix, Prometheus, Grafana",content:`<h3>Protocoles de supervision</h3>
+<table><tr><th>Protocole</th><th>Port</th><th>Mode</th><th>Usage</th></tr>
+<tr><td>SNMP v2c/v3</td><td>161/162 UDP</td><td>Poll + Trap</td><td>Équipements réseau, serveurs</td></tr>
+<tr><td>Zabbix Agent</td><td>10050/10051 TCP</td><td>Passif/Actif</td><td>Serveurs Linux/Windows</td></tr>
+<tr><td>Prometheus</td><td>9090 TCP</td><td>Pull (scrape)</td><td>Microservices, Kubernetes</td></tr>
+<tr><td>Syslog</td><td>514 UDP/TCP</td><td>Push</td><td>Logs centralisés</td></tr>
+<tr><td>ICMP</td><td>—</td><td>Ping</td><td>Disponibilité basique</td></tr></table>
+<h3>Zabbix — Concepts clés</h3>
+<table><tr><th>Concept</th><th>Description</th></tr>
+<tr><td>Item</td><td>Métrique collectée (ex: system.cpu.util[,user])</td></tr>
+<tr><td>Trigger</td><td>Condition d'alerte sur un item (ex: CPU > 80% pendant 5min)</td></tr>
+<tr><td>Action</td><td>Ce qui se passe quand un trigger se déclenche (email, SMS)</td></tr>
+<tr><td>Template</td><td>Ensemble d'items + triggers prêts à l'emploi</td></tr>
+<tr><td>Host group</td><td>Regroupement logique de serveurs</td></tr></table>
+<h3>Seuils d'alerte recommandés</h3>
+<table><tr><th>Métrique</th><th>Warning</th><th>Critical</th></tr>
+<tr><td>CPU</td><td>&gt;75% / 5min</td><td>&gt;90% / 5min</td></tr>
+<tr><td>RAM</td><td>&gt;80%</td><td>&gt;95%</td></tr>
+<tr><td>Disque</td><td>&lt;20% libre</td><td>&lt;10% libre</td></tr>
+<tr><td>IO Wait</td><td>&gt;20%</td><td>&gt;40%</td></tr>
+<tr><td>Perte paquets</td><td>&gt;1%</td><td>&gt;5%</td></tr></table>
+<h3>SLA — Calcul des disponibilités</h3>
+<table><tr><th>SLA</th><th>Indisponibilité/an</th><th>Indisponibilité/mois</th></tr>
+<tr><td>99%</td><td>87h 36min</td><td>7h 18min</td></tr>
+<tr><td>99.9%</td><td>8h 46min</td><td>43min</td></tr>
+<tr><td>99.99%</td><td>52min</td><td>4min</td></tr>
+<tr><td>99.999%</td><td>5min</td><td>26s</td></tr></table>`},
 
-log() { echo "[$DATE] $1" | tee -a "$LOG"; }
+  {id:"f014",cat:"Virtualisation",title:"Virtualisation — Hyperviseurs & Conteneurs",content:`<h3>Hyperviseur Type 1 vs Type 2</h3>
+<table><tr><th></th><th>Type 1 (Bare-metal)</th><th>Type 2 (Hosted)</th></tr>
+<tr><td>Installation</td><td>Directement sur le matériel</td><td>Sur un OS hôte</td></tr>
+<tr><td>Performance</td><td>Excellente (accès direct HW)</td><td>Moins bonne (overhead OS)</td></tr>
+<tr><td>Usage</td><td>Production, datacenter</td><td>Dev, test, desktop</td></tr>
+<tr><td>Exemples</td><td>VMware ESXi, Proxmox, Hyper-V, KVM</td><td>VirtualBox, VMware Workstation</td></tr></table>
+<h3>VM vs Conteneurs</h3>
+<table><tr><th></th><th>Machine Virtuelle</th><th>Conteneur (Docker)</th></tr>
+<tr><td>Isolation</td><td>Totale (OS complet)</td><td>Partielle (noyau partagé)</td></tr>
+<tr><td>Taille</td><td>Go (image disque)</td><td>Mo (image légère)</td></tr>
+<tr><td>Démarrage</td><td>Minutes</td><td>Secondes</td></tr>
+<tr><td>Usage mémoire</td><td>Important</td><td>Minimal</td></tr>
+<tr><td>Usage</td><td>Services avec OS différents</td><td>Microservices, DevOps</td></tr></table>
+<h3>Fonctionnalités avancées VMware/Proxmox</h3>
+<table><tr><th>Fonctionnalité</th><th>Description</th></tr>
+<tr><td>vMotion / Live Migration</td><td>Déplacer une VM sans interruption</td></tr>
+<tr><td>HA (High Availability)</td><td>Redémarre les VM si un hôte tombe</td></tr>
+<tr><td>DRS</td><td>Équilibre automatique des ressources</td></tr>
+<tr><td>Snapshot</td><td>Photo de l'état de la VM à un instant T</td></tr>
+<tr><td>Template</td><td>VM modèle pour déploiement rapide</td></tr></table>
+<h3>Commandes Docker essentielles</h3>
+<pre>docker ps -a                    # Lister tous les conteneurs
+docker run -d -p 80:80 nginx    # Lancer nginx en arrière-plan
+docker logs -f mon_conteneur    # Logs en temps réel
+docker exec -it mon_conteneur bash  # Shell dans le conteneur
+docker-compose up -d            # Stack multi-conteneurs</pre>`},
 
-log "Début du script"</pre>
-<h3>Variables et tableaux</h3>
-<pre>NOM="Alice"                    # Variable simple
-SERVERS=("srv1" "srv2" "srv3") # Tableau
-echo "\&#36;{SERVERS[0]}"           # Premier élément
-echo "\&#36;{SERVERS[@]}"           # Tous les éléments
-echo "\&#36;{#SERVERS[@]}"          # Nombre d'éléments
-
-for srv in "&#36;{SERVERS[@]}"; do
-  ping -c1 "$srv" &>/dev/null && echo "$srv UP" || echo "$srv DOWN"
-done</pre>
-<h3>Conditions et tests</h3>
-<pre>[ -f /etc/passwd ]   # Fichier existe
-[ -d /var/log ]      # Répertoire existe
-[ -z "$VAR" ]        # Variable vide
-[ "$A" -eq "$B" ]    # Nombres égaux
-[ "$A" = "$B" ]      # Chaînes égales
-
-if command -v nginx &>/dev/null; then
-  echo "nginx installé"
-fi</pre>
-<h3>Codes de retour</h3>
-<table><tr><th>Code</th><th>Signification</th></tr>
-<tr><td>0</td><td>Succès</td></tr>
-<tr><td>1</td><td>Erreur générale</td></tr>
-<tr><td>2</td><td>Mauvais usage</td></tr>
-<tr><td>126</td><td>Permission refusée</td></tr>
-<tr><td>127</td><td>Commande introuvable</td></tr></table>
-<h3>Exemple complet : backup</h3>
-<pre>#!/bin/bash
-set -euo pipefail
-BACKUP_DIR="/backup"
-DATE=$(date +%Y%m%d)
-SOURCE="/var/www /etc"
-
-mkdir -p "$BACKUP_DIR"
-tar -czf "$BACKUP_DIR/backup_$DATE.tar.gz" $SOURCE
-find "$BACKUP_DIR" -name "backup_*.tar.gz" -mtime +7 -delete
-echo "Backup $DATE terminé"</pre>`}
+  {id:"f015",cat:"Sauvegarde",title:"Sauvegarde — Stratégies & Outils",content:`<h3>Types de sauvegardes</h3>
+<table><tr><th>Type</th><th>Quoi</th><th>Durée</th><th>Espace</th><th>Restauration</th></tr>
+<tr><td><strong>Complète</strong></td><td>Tout</td><td>Longue</td><td>Beaucoup</td><td>Rapide (1 seule)</td></tr>
+<tr><td><strong>Différentielle</strong></td><td>Changements depuis la dernière complète</td><td>Moyenne</td><td>Croissant</td><td>Complète + 1 diff</td></tr>
+<tr><td><strong>Incrémentielle</strong></td><td>Changements depuis la dernière sauvegarde</td><td>Courte</td><td>Minimal</td><td>Complète + toutes les incréments</td></tr></table>
+<h3>Règle 3-2-1-1-0</h3>
+<table><tr><th>Chiffre</th><th>Signification</th></tr>
+<tr><td>3</td><td>3 copies des données</td></tr>
+<tr><td>2</td><td>Sur 2 supports différents (disque + bande, ou NAS + cloud)</td></tr>
+<tr><td>1</td><td>1 copie hors site (cloud, site distant)</td></tr>
+<tr><td>1</td><td>1 copie immuable / air-gap (non modifiable, résistante aux ransomwares)</td></tr>
+<tr><td>0</td><td>0 erreur lors des tests de restauration</td></tr></table>
+<h3>RTO et RPO</h3>
+<table><tr><th>Sigle</th><th>Signification</th><th>Question</th></tr>
+<tr><td>RTO</td><td>Recovery Time Objective</td><td>Combien de temps pour remettre le service ?</td></tr>
+<tr><td>RPO</td><td>Recovery Point Objective</td><td>Quelle quantité de données peut-on perdre ?</td></tr></table>
+<h3>RAID — Niveaux importants</h3>
+<table><tr><th>RAID</th><th>Disques min</th><th>Tolérance</th><th>Capacité utile</th></tr>
+<tr><td>RAID 0</td><td>2</td><td>Aucune</td><td>100% — Vitesse uniquement</td></tr>
+<tr><td>RAID 1</td><td>2</td><td>1 disque</td><td>50%</td></tr>
+<tr><td>RAID 5</td><td>3</td><td>1 disque</td><td>(n-1)/n</td></tr>
+<tr><td>RAID 6</td><td>4</td><td>2 disques</td><td>(n-2)/n</td></tr>
+<tr><td>RAID 10</td><td>4</td><td>1 disque/miroir</td><td>50%</td></tr></table>
+<p><strong>RAID ≠ Sauvegarde</strong> : le RAID protège contre la panne hardware mais pas contre la suppression accidentelle, le ransomware ou l'incendie.</p>`}
 ];
 
 // FICHES FUNCTIONS
@@ -3050,7 +3328,7 @@ function sprintRenderCard() {
       <div class="sprint-card-hint">Formule ta réponse, puis révèle.</div>
       <button class="sprint-reveal-btn" onclick="sprintReveal()">Voir la réponse</button>
       <div class="sprint-answer" id="sprint-answer">
-        <div class="sprint-answer-key">${q.opts[q.ans]}</div>
+        <div class="sprint-answer-key">${Array.isArray(q.ans) ? q.ans.map(a=>q.opts[a]).join(' + ') : q.opts[q.ans]}</div>
         <div class="sprint-answer-detail">${q.expl}</div>
       </div>
     </div>
@@ -3540,64 +3818,64 @@ const TP_TEMPLATES = {
     title: 'Serveurs Linux', icon: '🐧',
     scenarios: [
       {
-        title: 'Administration de base d\'un serveur Debian',
-        context: 'Tu administres un serveur Debian 12 fraîchement installé. Tu dois le configurer pour un environnement de production.',
+        title: "Securisation d'un serveur Debian",
+        context: "Un serveur Debian 12 vient d'etre livre. Tu dois le securiser avant la mise en production.",
         tasks: [
-          { type: 'pratique', text: 'Crée un utilisateur "adminweb" avec un répertoire home dans /srv/web et le shell /bin/bash.' },
-          { type: 'pratique', text: 'Configure les droits sudo pour cet utilisateur (sans mot de passe pour les commandes systemctl).' },
-          { type: 'pratique', text: 'Installe Apache2 et active-le au démarrage. Vérifie qu\'il écoute sur le port 80.' },
-          { type: 'réflexion', text: 'Explique la différence entre "apt remove" et "apt purge". Dans quel cas utiliser l\'un ou l\'autre ?' },
-          { type: 'pratique', text: 'Crée un script bash /srv/web/backup.sh qui archive /var/www/html dans /backup/ avec la date du jour dans le nom.' },
-          { type: 'analyse', text: 'Quelle commande utiliser pour voir les 50 dernières lignes des logs Apache en temps réel ?' }
+          { type: 'pratique', text: "Cree un compte de service nologin uniquement pour les deploiements automatises." },
+          { type: 'pratique', text: "Configure SSH : interdire la connexion root, desactiver le mot de passe, changer le port sur 2222." },
+          { type: 'reflexion', text: "Explique pourquoi on prefere l'authentification par cle SSH. Decris le mecanisme de fonctionnement." },
+          { type: 'pratique', text: "Configure UFW : autoriser SSH (2222), HTTP (80), HTTPS (443), bloquer tout le reste." },
+          { type: 'analyse', text: "Des centaines de tentatives de connexion SSH sont detectees. Quelle solution deployer pour bloquer automatiquement ces IPs ?" },
+          { type: 'pratique', text: "Ecris une regle cron qui execute une mise a jour de securite silencieuse tous les dimanches a 3h." }
         ],
         correction: [
-          'useradd -m -d /srv/web -s /bin/bash adminweb',
-          'Fichier /etc/sudoers.d/adminweb : adminweb ALL=(ALL) NOPASSWD: /bin/systemctl',
-          'apt install apache2 && systemctl enable apache2 && ss -tulnp | grep :80',
-          'apt remove : garde les fichiers de config (/etc) — utile si réinstallation prévue. apt purge : supprime tout — pour une désinstallation propre.',
-          '#!/bin/bash\nDATE=$(date +%Y%m%d_%H%M%S)\ntar -czf /backup/html_$DATE.tar.gz /var/www/html',
-          'journalctl -u apache2 -f -n 50  ou  tail -f -n 50 /var/log/apache2/access.log'
+          "useradd --system --shell /usr/sbin/nologin --no-create-home deployer",
+          "/etc/ssh/sshd_config : Port 2222 / PermitRootLogin no / PasswordAuthentication no / PubkeyAuthentication yes",
+          "Cle SSH : paire publique/privee (ssh-keygen). Cle publique dans ~/.ssh/authorized_keys. Le client prouve possession de la cle privee sans la transmettre.",
+          "ufw default deny incoming && ufw allow 2222/tcp && ufw allow 80,443/tcp && ufw enable",
+          "Fail2ban : /etc/fail2ban/jail.local -> [sshd] enabled=true / port=2222 / maxretry=3 / bantime=24h",
+          "Crontab root : 0 3 * * 0 apt-get update -qq && apt-get upgrade -y >> /var/log/auto-upgrade.log 2>&1"
         ]
       },
       {
-        title: 'Gestion LVM et système de fichiers',
-        context: 'Un serveur de fichiers a besoin d\'espace supplémentaire. Tu dois étendre une partition LVM à chaud.',
+        title: "Gestion avancee des droits et LVM",
+        context: "Plusieurs equipes doivent acceder a des repertoires partages. Tu dois aussi etendre le stockage.",
         tasks: [
-          { type: 'analyse', text: 'Liste les volumes physiques, groupes de volumes et volumes logiques présents sur le système.' },
-          { type: 'pratique', text: 'Ajoute un nouveau disque /dev/sdb comme PV et intègre-le au VG existant "vg_data".' },
-          { type: 'pratique', text: 'Étends le LV "lv_data" de 20 Go et redimensionne le système de fichiers ext4 sans démonter.' },
-          { type: 'réflexion', text: 'Quelle est la différence entre lvextend et resize2fs ? Dans quel ordre doit-on les exécuter ?' },
-          { type: 'pratique', text: 'Ajoute une entrée dans /etc/fstab pour monter automatiquement /dev/vg_data/lv_data sur /data au démarrage.' }
+          { type: 'pratique', text: "Cree les groupes equipe-dev et equipe-ops. Configure /srv/dev avec sticky bit pour le groupe dev." },
+          { type: 'analyse', text: "Explique la difference entre droits POSIX (rwx) et ACL Linux. Dans quel cas les ACL sont-elles indispensables ?" },
+          { type: 'pratique', text: "Ajoute /dev/sdb au VG vg_data et etends le LV lv_data de 30 Go sans demonter." },
+          { type: 'reflexion', text: "Quelle est la difference entre ext4 et XFS ? Lequel choisir pour un serveur de fichiers haute performance ?" },
+          { type: 'calcul', text: "Un LV de 100 Go est utilise a 73%. Combien d'espace libre ? A quel seuil declencher une alerte a 90% ?" }
         ],
         correction: [
-          'pvs && vgs && lvs',
-          'pvcreate /dev/sdb && vgextend vg_data /dev/sdb',
-          'lvextend -L +20G /dev/vg_data/lv_data && resize2fs /dev/vg_data/lv_data',
-          'lvextend agrandit le conteneur LVM. resize2fs agrandit le FS pour utiliser l\'espace. Ordre : lvextend PUIS resize2fs.',
-          '/dev/vg_data/lv_data  /data  ext4  defaults  0 2'
+          "groupadd equipe-dev && groupadd equipe-ops && mkdir -p /srv/dev && chown root:equipe-dev /srv/dev && chmod 2770 /srv/dev",
+          "POSIX : 3 niveaux seulement. ACL : granulaire par user/groupe (setfacl). Indispensables quand plusieurs groupes ont des droits differents.",
+          "pvcreate /dev/sdb && vgextend vg_data /dev/sdb && lvextend -L +30G /dev/vg_data/lv_data && resize2fs /dev/vg_data/lv_data",
+          "ext4 : stable, universel. XFS : haute perf gros fichiers, I/O paralleles. Pour fileserver haute perf : XFS.",
+          "27 Go libres (100 x 0.27). Seuil 90% = 90 Go utilises. Actuellement 73 Go donc 17 Go avant alerte."
         ]
       }
     ]
   },
   reseau: {
-    title: 'Réseau IP', icon: '🌐',
+    title: 'Reseau IP', icon: '🌐',
     scenarios: [
       {
-        title: 'Segmentation réseau et sous-réseaux',
-        context: 'Une PME de 80 personnes réparties en 3 services (Admin 20p, Dev 40p, Serveurs 10p) doit être segmentée en sous-réseaux depuis le réseau 192.168.10.0/24.',
+        title: "Architecture reseau multi-VLAN",
+        context: "Une PME de 120 personnes te confie la conception de son infra reseau depuis 10.10.0.0/22.",
         tasks: [
-          { type: 'calcul', text: 'Découpe le réseau 192.168.10.0/24 en 3 sous-réseaux adaptés à chaque service. Indique pour chaque sous-réseau : adresse réseau, masque, plage d\'hôtes, broadcast.' },
-          { type: 'réflexion', text: 'Pourquoi segmenter le réseau en VLAN plutôt qu\'en sous-réseaux physiques ? Quels sont les avantages ?' },
-          { type: 'pratique', text: 'Configure l\'interface eth0 d\'un poste Admin avec une IP fixe en utilisant la commande "ip".' },
-          { type: 'analyse', text: 'Un poste du réseau Dev (192.168.10.128/26) peut-il communiquer directement avec un serveur (192.168.10.192/27) sans routeur ? Justifie.' },
-          { type: 'pratique', text: 'Quelle règle iptables permet de bloquer tout le trafic entrant sauf SSH depuis le réseau Admin ?' }
+          { type: 'calcul', text: "Decoupe 10.10.0.0/22 en 4 sous-reseaux pour : 60 bureaux, 30 IT, 15 serveurs, 15 invites." },
+          { type: 'reflexion', text: "Justifie VLAN 10/20/30/40. Pourquoi isoler les invites dans leur propre VLAN ?" },
+          { type: 'pratique', text: "Decris la config d'un port trunk inter-switches et d'un port access pour un poste bureautique (Cisco IOS)." },
+          { type: 'analyse', text: "Un poste du VLAN Bureaux ne peut pas joindre un serveur du VLAN Serveurs. Methode de diagnostic OSI ?" },
+          { type: 'reflexion', text: "Qu'est-ce que HSRP et pourquoi le deployer sur les routeurs ?" }
         ],
         correction: [
-          'Admin: 192.168.10.0/26 → 62 hôtes (192.168.10.1-62), BC: .63\nDev: 192.168.10.64/26 → 62 hôtes (192.168.10.65-126), BC: .127\nServeurs: 192.168.10.128/27 → 30 hôtes (192.168.10.129-158), BC: .159',
-          'VLAN : segmentation logique sur un même switch physique, moins de câblage, isolation du broadcast, sécurité renforcée, facilité de gestion.',
-          'ip addr add 192.168.10.1/26 dev eth0 && ip link set eth0 up && ip route add default via 192.168.10.62',
-          'Non — réseaux différents (/26 vs /27), il faut un routeur ou un switch L3 pour router entre eux.',
-          'iptables -A INPUT -i eth0 -s 192.168.10.0/26 -p tcp --dport 22 -j ACCEPT\niptables -A INPUT -i eth0 -p tcp --dport 22 -j DROP'
+          "Bureaux: 10.10.0.0/26 (62h). IT: 10.10.0.64/26 (62h). Serveurs: 10.10.0.128/27 (30h). Invites: 10.10.0.160/27 (30h).",
+          "VLANs par dizaines pour lisibilite. Invites isoles : pas d'acces aux ressources internes, limitation propagation malwares, tracabilite legale.",
+          "Trunk : switchport mode trunk / allowed vlan 10,20,30,40 / native vlan 99. Access : switchport mode access / vlan 10 / spanning-tree portfast",
+          "L1: cable ok ? L2: VLAN correct ? L3: routage inter-VLAN ? IP correcte ? L4: firewall bloque ? L7: service demarre ?",
+          "HSRP : 2 routeurs partagent une IP virtuelle. Si l'actif tombe, le standby prend le relais <10s. Evite le SPOF sur la passerelle."
         ]
       }
     ]
@@ -3606,48 +3884,44 @@ const TP_TEMPLATES = {
     title: 'Active Directory', icon: '🏢',
     scenarios: [
       {
-        title: 'Déploiement et configuration AD DS',
-        context: 'Tu dois configurer un domaine Active Directory "tssr.local" pour une entreprise de 50 utilisateurs répartis en 3 OU (Direction, Informatique, Commercial).',
+        title: "Deploiement d'un domaine AD multi-sites",
+        context: "80 utilisateurs, 3 sites. Tu dois deployer corp.local avec GPO et structure OU.",
         tasks: [
-          { type: 'pratique', text: 'Installe le rôle AD DS et promeut le serveur en contrôleur de domaine primaire pour "tssr.local".' },
-          { type: 'pratique', text: 'Crée la structure d\'OU suivante : tssr.local > Entreprise > {Direction, Informatique, Commercial}.' },
-          { type: 'pratique', text: 'Crée un utilisateur "jean.dupont" dans l\'OU Commercial, avec mot de passe imposé au premier login.' },
-          { type: 'pratique', text: 'Crée une GPO "Restrictions_Commercial" liée à l\'OU Commercial qui : désactive le panneau de configuration et définit un fond d\'écran obligatoire.' },
-          { type: 'réflexion', text: 'Explique la différence entre un groupe de sécurité de domaine local, global et universel. Quand utiliser chacun ?' },
-          { type: 'analyse', text: 'Quelle commande force l\'application immédiate des GPO sur un poste client ?' }
+          { type: 'pratique', text: "Installe AD DS et promeut en DC pour corp.local. Quels prerequis verifier ?" },
+          { type: 'pratique', text: "Cree la structure OU : corp.local > Sites > Paris/Lyon/Bordeaux > Utilisateurs/Ordinateurs/Groupes." },
+          { type: 'reflexion', text: "Pourquoi minimum 2 DC ? Que se passe-t-il si l'unique DC tombe ?" },
+          { type: 'pratique', text: "Cree une GPO Securite_Postes : ecran veille + mdp 10min, USB desactive, acces registre bloque." },
+          { type: 'analyse', text: "GPO non appliquees apres modification. Procedure de diagnostic ?" }
         ],
         correction: [
-          'Install-WindowsFeature AD-Domain-Services ; Install-ADDSForest -DomainName "tssr.local"',
-          'New-ADOrganizationalUnit -Name "Entreprise" -Path "DC=tssr,DC=local"\nNew-ADOrganizationalUnit -Name "Direction" -Path "OU=Entreprise,DC=tssr,DC=local"\n(idem pour Informatique et Commercial)',
-          'New-ADUser -Name "Jean Dupont" -SamAccountName "jean.dupont" -UserPrincipalName "jean.dupont@tssr.local" -Path "OU=Commercial,OU=Entreprise,DC=tssr,DC=local" -ChangePasswordAtLogon $true -Enabled $true',
-          'GPO : Disable Control Panel (User Config > Admin Templates > Control Panel > Prohibit access) + Desktop Wallpaper (User Config > Admin Templates > Desktop > Desktop Wallpaper)',
-          'Domaine local : ressources du même domaine. Global : membres du même domaine, permissions sur n\'importe quel domaine. Universel : membres de toute la forêt.',
-          'gpupdate /force'
+          "Prerequis : IP fixe, DNS correct, .NET installe. Install-WindowsFeature AD-Domain-Services puis Install-ADDSForest -DomainName 'corp.local'",
+          "New-ADOrganizationalUnit -Name 'Sites' -Path 'DC=corp,DC=local' puis repeter pour Paris/Lyon/Bordeaux et sous-OUs.",
+          "DC unique tombe = personne ne peut se connecter, GPO inapplicables, DFS indisponible. 2 DC = redondance et repartition de charge.",
+          "Screen Saver : timeout 600s + password. Removable Storage : Deny. Prevent registry editing : Enabled.",
+          "gpupdate /force → gpresult /r → verifier Security Filtering → WMI filters → Block Inheritance → dcdiag"
         ]
       }
     ]
   },
   secu: {
-    title: 'Sécurité', icon: '🔐',
+    title: 'Securite', icon: '🔐',
     scenarios: [
       {
-        title: 'Durcissement d\'un serveur Linux',
-        context: 'Suite à un audit de sécurité, tu dois durcir un serveur Ubuntu 22.04 exposé sur Internet.',
+        title: "Reponse a incident de securite",
+        context: "Le SIEM alerte sur des connexions sortantes suspectes depuis un poste Windows vers le port 4444.",
         tasks: [
-          { type: 'pratique', text: 'Configure SSH pour : désactiver l\'authentification par mot de passe, changer le port par défaut (2222), interdire la connexion root directe.' },
-          { type: 'pratique', text: 'Configure UFW pour n\'autoriser que les ports 2222 (SSH), 80 (HTTP) et 443 (HTTPS). Bloque tout le reste.' },
-          { type: 'pratique', text: 'Installe Fail2ban et configure-le pour bannir une IP après 3 tentatives SSH échouées pendant 24h.' },
-          { type: 'réflexion', text: 'Explique le principe du moindre privilège. Donne 3 exemples concrets d\'application sur un serveur Linux.' },
-          { type: 'analyse', text: 'Un utilisateur a les droits sudo complets. Quelle commande permet de restreindre ses droits sudo à /usr/bin/systemctl uniquement ?' },
-          { type: 'pratique', text: 'Comment vérifier si des ports inattendus sont en écoute sur le serveur ? Quelle commande utiliser ?' }
+          { type: 'analyse', text: "Connexions sortantes vers IP inconnue port 4444. Quelles sont tes premieres actions ?" },
+          { type: 'reflexion', text: "Explique les 4 phases NIST : Preparation, Detection, Confinement/Eradication, Recuperation." },
+          { type: 'pratique', text: "Comment isoler le poste compromis sans l'eteindre ? Pourquoi ne pas l'eteindre immediatement ?" },
+          { type: 'analyse', text: "Quels artefacts forensiques collecter sur le poste compromis ?" },
+          { type: 'reflexion', text: "Mesures preventives recommandees pour eviter la recidive ?" }
         ],
         correction: [
-          '/etc/ssh/sshd_config :\nPort 2222\nPermitRootLogin no\nPasswordAuthentication no\nPubkeyAuthentication yes\nsystemctl restart sshd',
-          'ufw default deny incoming\nufw default allow outgoing\nufw allow 2222/tcp\nufw allow 80/tcp\nufw allow 443/tcp\nufw enable',
-          '/etc/fail2ban/jail.local :\n[sshd]\nenabled = true\nport = 2222\nmaxretry = 3\nbantime = 86400\nsystemctl restart fail2ban',
-          'Principe du moindre privilège : chaque utilisateur/service n\'a que les droits strictement nécessaires. Exemples : compte apache non-root, service avec user dédié, sudo limité par commandes.',
-          'Dans /etc/sudoers.d/user : user ALL=(ALL) NOPASSWD: /usr/bin/systemctl',
-          'ss -tulnp  ou  netstat -tulnp — affiche tous les ports en écoute avec les processus associés.'
+          "1. Documenter (heure/IP/port/processus) 2. Identifier poste et user 3. Verifier autres postes 4. Alerter responsable securite 5. Ne PAS eteindre.",
+          "Preparation → Detection (confirmer incident) → Confinement/Eradication (isoler, corriger) → Recuperation (restaurer, surveiller) → Post-incident (rapport).",
+          "Isolation : desactiver port switch ou regle firewall. Garder allume : RAM volatile (preuves), connexions actives, processus malveillants visibles.",
+          "Dump RAM, tasklist /svc, netstat -anob, logs Security/System, historique PowerShell, cles Run/RunOnce registre.",
+          "MFA partout, EDR, segmentation reseau, patches reguliers, sensibilisation phishing, principe moindre privilege, SIEM affine."
         ]
       }
     ]
@@ -3656,44 +3930,44 @@ const TP_TEMPLATES = {
     title: 'Virtualisation', icon: '💻',
     scenarios: [
       {
-        title: 'Déploiement d\'une infrastructure VMware/Proxmox',
-        context: 'Tu dois déployer et configurer une infrastructure de virtualisation pour héberger 5 VM de production.',
+        title: "Cluster Proxmox haute disponibilite",
+        context: "Tu dois concevoir et deployer un cluster Proxmox HA pour 20 VMs de production.",
         tasks: [
-          { type: 'réflexion', text: 'Explique la différence entre un hyperviseur de type 1 et de type 2. Donne 2 exemples de chaque.' },
-          { type: 'calcul', text: 'Un serveur a 32 Go de RAM et 16 cœurs vCPU. Tu veux faire de l\'overcommit à 150% pour la RAM. Combien de RAM peux-tu allouer au total aux VM ?' },
-          { type: 'pratique', text: 'Décris les étapes pour créer un snapshot d\'une VM en production et les précautions à prendre.' },
-          { type: 'réflexion', text: 'Quelle est la différence entre un snapshot et une sauvegarde complète de VM ? Peut-on se passer de sauvegardes avec les snapshots ?' },
-          { type: 'analyse', text: 'Une VM consomme 100% de CPU en permanence. Quels outils utiliser pour diagnostiquer et quelle solution proposer ?' }
+          { type: 'reflexion', text: "Combien de noeuds minimum pour Proxmox HA ? Pourquoi ? Qu'est-ce que le quorum ?" },
+          { type: 'pratique', text: "Decris l'architecture reseau : management, VM, stockage, migration. Quelles cartes reseau prevoir ?" },
+          { type: 'analyse', text: "Dimensionne le cluster pour 20 VMs (4 vCPU / 8 Go RAM) avec N+1. Ressources par noeud ?" },
+          { type: 'reflexion', text: "Compare NFS, Ceph, iSCSI pour le stockage partage du cluster." },
+          { type: 'pratique', text: "Comment configurer la HA d'une VM critique sur Proxmox ? Quels parametres ajuster ?" }
         ],
         correction: [
-          'Type 1 (bare-metal) : ESXi, Proxmox, Hyper-V — tourne directement sur le matériel.\nType 2 (hosted) : VirtualBox, VMware Workstation — tourne sur un OS hôte.',
-          '32 Go × 1.5 = 48 Go allouables aux VM. Attention au risque de contention si toutes les VM sollicitent la RAM simultanément.',
-          'Snapshot VM : 1) S\'assurer que la VM est dans un état stable 2) Créer le snapshot depuis le gestionnaire 3) Documenter la raison 4) Ne pas garder les snapshots > 72h en prod (impact performances).',
-          'Snapshot : dépend de la VM d\'origine, non portable, impact perf avec le temps. Sauvegarde : copie indépendante, stockée ailleurs. Non — les snapshots ne remplacent pas les sauvegardes.',
-          'Outils : esxtop/htop, vCenter performance graphs. Solutions : vCPU limit, CPU affinity, migration vers hôte moins chargé (vMotion/DRS).'
+          "Minimum 3 noeuds. Quorum = majorite de votes (>50%). 2 noeuds : split-brain possible. 3 noeuds : tolere 1 panne.",
+          "Reseaux separes : Management 1G, VM 10G, Stockage 10G dedie, Migration 10G. Minimum 4 NIC par noeud.",
+          "2 noeuds actifs : 80 vCPU / 160 Go RAM total → 40 vCPU / 80 Go par noeud. Recommande : 3 noeuds 128 Go / 2x16 coeurs.",
+          "NFS : simple, SPOF. iSCSI : bonnes perf, complexe. Ceph : distribue, natif Proxmox, necessite 3+ noeuds et disques dedies.",
+          "VM > Options > HA > Enable. Configurer groupe HA, max_restart, max_relocate. Test : ha-manager status."
         ]
       }
     ]
   },
   sauvegarde: {
-    title: 'Sauvegarde', icon: '💾',
+    title: 'Sauvegarde & PRA', icon: '💾',
     scenarios: [
       {
-        title: 'Plan de sauvegarde et reprise d\'activité',
-        context: 'Une PME doit mettre en place une stratégie de sauvegarde pour ses serveurs critiques (fichiers, AD, SQL).',
+        title: "Plan de reprise d'activite",
+        context: "Ton entreprise doit formaliser son PRA pour 5 serveurs critiques.",
         tasks: [
-          { type: 'réflexion', text: 'Définis RTO et RPO pour cette PME : les sauvegardes se font toutes les 24h, la remise en service prend 4h.' },
-          { type: 'pratique', text: 'Décris une stratégie de sauvegarde selon la règle 3-2-1 pour ce contexte.' },
-          { type: 'analyse', text: 'Compare les types de sauvegardes complète, différentielle et incrémentielle en termes de durée et espace disque.' },
-          { type: 'réflexion', text: 'Pourquoi est-il indispensable de tester régulièrement les sauvegardes ? Quelles procédures mettre en place ?' },
-          { type: 'pratique', text: 'Écris un script bash qui sauvegarde /var/www et /etc, compresse l\'archive, et efface les sauvegardes de plus de 7 jours.' }
+          { type: 'reflexion', text: "Definis RTO et RPO pour : AD (critique), Messagerie, ERP (critique), Fichiers, Web public." },
+          { type: 'pratique', text: "Decris la strategie 3-2-1-1-0 adaptee a ce contexte avec les outils et supports." },
+          { type: 'analyse', text: "Calcule l'espace : 5 serveurs x 500 Go, sauvegarde complete hebdo + differentielle quotidienne (10%), 4 semaines." },
+          { type: 'reflexion', text: "Pourquoi tester les sauvegardes ? Quelle procedure de test recommandes-tu ?" },
+          { type: 'pratique', text: "Ransomware lundi matin. Decris ta procedure de recuperation etape par etape." }
         ],
         correction: [
-          'RTO = 4h (temps pour remettre le service). RPO = 24h (données potentiellement perdues entre 2 sauvegardes).',
-          '3-2-1 : 3 copies (prod + NAS local + cloud), 2 supports différents (disque NAS + cloud S3), 1 copie hors site (cloud ou site distant).',
-          'Complète : longue, beaucoup d\'espace, restauration rapide. Différentielle : moyenne, espace croissant, restaure complète+dernière diff. Incrémentielle : rapide, peu d\'espace, restaure complète + toutes les increments.',
-          'Sans test : on ne découvre les problèmes qu\'en cas de sinistre. Procédures : test de restauration mensuel sur VM de test, validation des données restaurées, documentation des procédures.',
-          '#!/bin/bash\nDATE=$(date +%Y%m%d)\ntar -czf /backup/backup_$DATE.tar.gz /var/www /etc\nfind /backup -name "backup_*.tar.gz" -mtime +7 -delete'
+          "AD: RTO 2h/RPO 4h. Messagerie: RTO 4h/RPO 24h. ERP: RTO 2h/RPO 1h. Fichiers: RTO 8h/RPO 24h. Web: RTO 1h/RPO 0.",
+          "3 copies (prod+NAS+cloud), 2 supports differents, 1 hors site, 1 immuable (Object Lock S3), 0 erreur verifiee. Outils: Veeam, Acronis.",
+          "Complete: 5x500Go x4sem = 10 To. Differentielle: 50Go/jour x6j x4sem = 1,2 To. Avec compression 50% : ~5,6 To. Prevoir 8 To.",
+          "Sans test = surprises en cas de sinistre. Test mensuel sur env. isole, restauration complete, validation donnees, mesure RTO reel.",
+          "1.Isoler 2.Identifier vecteur 3.Evaluer etendue 4.ANSSI+assurance 5.Sauvegarde saine 6.Restaurer env. propre 7.Corriger faille 8.Surveiller 72h."
         ]
       }
     ]
@@ -3702,28 +3976,27 @@ const TP_TEMPLATES = {
     title: 'Supervision', icon: '📡',
     scenarios: [
       {
-        title: 'Mise en place d\'une supervision avec Zabbix',
-        context: 'Tu dois mettre en place une supervision complète d\'une infrastructure de 10 serveurs Linux et Windows.',
+        title: "Stack de monitoring moderne",
+        context: "Tu dois deployer une supervision complete pour 15 serveurs Linux/Windows.",
         tasks: [
-          { type: 'pratique', text: 'Installe l\'agent Zabbix sur un serveur Debian et configure-le pour pointer vers le serveur Zabbix 192.168.1.10.' },
-          { type: 'réflexion', text: 'Explique la différence entre le mode actif et passif de l\'agent Zabbix. Quand utiliser l\'un ou l\'autre ?' },
-          { type: 'pratique', text: 'Décris comment créer un trigger Zabbix qui alerte si la charge CPU dépasse 80% pendant 5 minutes.' },
-          { type: 'analyse', text: 'Quelle est la différence entre SNMP polling et SNMP trap ? Quel protocole utilise quel port ?' },
-          { type: 'réflexion', text: 'Qu\'est-ce qu\'une escalade d\'alertes dans Centreon ? Donne un exemple concret de configuration.' }
+          { type: 'reflexion', text: "Compare Zabbix vs Prometheus+Grafana : architecture, avantages, cas d'usage recommandes." },
+          { type: 'pratique', text: "Quelles metriques surveiller sur un serveur Linux et quels seuils d'alerte recommandes-tu ?" },
+          { type: 'pratique', text: "Configure un check Zabbix pour alerter si l'espace disque / passe sous 15% sur Linux." },
+          { type: 'analyse', text: "A 2h du matin le serveur web repond en 8s au lieu de 200ms. Demarche de diagnostic ?" },
+          { type: 'reflexion', text: "Qu'est-ce qu'un SLA 99.9% ? Calcule le temps d'indisponibilite max sur une annee." }
         ],
         correction: [
-          '/etc/zabbix/zabbix_agentd.conf :\nServer=192.168.1.10\nServerActive=192.168.1.10\nHostname=NOM-SERVEUR\nsystemctl enable --now zabbix-agent',
-          'Passif : serveur contacte l\'agent (port 10050). Actif : agent contacte le serveur (port 10051). Actif préféré derrière NAT.',
-          'Trigger Zabbix : Expression : avg(/host/system.cpu.load,5m)>0.8\nSeverité : Warning ou High, durée 5m.',
-          'Polling : interrogation régulière par le superviseur (port 161 UDP). Trap : alerte envoyée spontanément par l\'équipement (port 162 UDP).',
-          'Escalade : si alerte non acquittée après Xmin → notification au niveau supérieur. Ex : 0-30min → L1 support, 30-120min → L2 admin, >120min → astreinte.'
+          "Zabbix : monolithique, templates, ideal infras classiques. Prometheus+Grafana : cloud-native, Kubernetes, pull HTTP. Classique = Zabbix, Cloud = Prometheus.",
+          "CPU: Warning >75% / 5min. RAM: Warning >80%. Disque: Warning <20%. IO Wait: Warning >20%. Perte paquets: >1%.",
+          "Item: vfs.fs.size[/,pfree] Agent 5min. Trigger: {host:vfs.fs.size[/,pfree].last()}<15 WARNING / <10 HIGH.",
+          "1.Alerte locale ou generalisee ? 2.CPU/RAM/IO/connexions 3.journalctl -u nginx 4.netstat connexions 5.Batch planifie ?",
+          "99.9% = 0.1% indisponibilite. 8760h x 0.001 = 8h46min/an. 99.99% = 52min/an. 99.999% = 5min/an."
         ]
       }
     ]
   }
 };
 
-// TP current state
 let tpCurrentDoc = null;
 let tpQuizState = null;
 
@@ -4656,6 +4929,350 @@ function renderCredits() {
     <div class="credits-version">TSSR Révisions · v6.0 · 2025</div>
   </div>`;
 }
+
+
+// ============================================================
+// PANNEAU ADMINISTRATEUR
+// ============================================================
+
+const ADMIN_USER = 'Administrateur';
+const ADMIN_PIN  = '7539';
+let _adminOpen = false;
+let _adminTab  = 'overview';
+let _adminAnnounceType = 'info';
+let _adminPollInterval = null;
+
+// ── Déclencheur secret : vérifié dans authLogin ──
+function checkAdminLogin(username, pin) {
+  if (username === ADMIN_USER && pin === ADMIN_PIN) {
+    // Ne pas créer de compte — ouvrir directement le panel
+    hideAuthOverlay();
+    adminOpen();
+    return true;
+  }
+  return false;
+}
+
+// Patch authLogin pour intercepter le compte admin
+const _origAuthLogin = authLogin;
+async function authLogin() {
+  const username = (document.getElementById('auth-username')||{}).value?.trim();
+  const pin = authGetPin();
+  if (username === ADMIN_USER && pin === ADMIN_PIN) {
+    hideAuthOverlay();
+    adminOpen();
+    return;
+  }
+  return _origAuthLogin();
+}
+
+function adminOpen() {
+  _adminOpen = true;
+  const ov = document.getElementById('admin-overlay');
+  if (ov) ov.style.display = 'flex';
+  adminTab('overview');
+  adminStartPolling();
+}
+
+function adminClose() {
+  _adminOpen = false;
+  const ov = document.getElementById('admin-overlay');
+  if (ov) ov.style.display = 'none';
+  if (_adminPollInterval) { clearInterval(_adminPollInterval); _adminPollInterval = null; }
+}
+
+function adminTab(tab) {
+  _adminTab = tab;
+  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+  const sec = document.getElementById('admin-sec-' + tab);
+  if (sec) sec.classList.add('active');
+  // Mark nav btn
+  document.querySelectorAll('.admin-nav-btn').forEach(b => {
+    if (b.getAttribute('onclick')?.includes("'" + tab + "'")) b.classList.add('active');
+  });
+  // Load content
+  if (tab === 'overview') adminLoadOverview();
+  if (tab === 'users') adminLoadUsers();
+  if (tab === 'online') adminLoadOnline();
+  if (tab === 'logs') adminLoadLogs();
+  if (tab === 'announce') adminLoadAnnounceHistory();
+}
+
+function adminStartPolling() {
+  adminLoadOverview();
+  _adminPollInterval = setInterval(() => {
+    if (_adminTab === 'online') adminLoadOnline();
+    if (_adminTab === 'overview') adminLoadOverview();
+    adminCheckAnnounces(); // Vérifie les annonces pour les users aussi
+  }, 30000);
+  // Vérifie les annonces pour tous les users
+  setInterval(adminCheckAnnounces, 20000);
+  adminCheckAnnounces();
+}
+
+// ── Charger la vue d'ensemble ──
+async function adminLoadOverview() {
+  const statsEl = document.getElementById('admin-stats');
+  const recentEl = document.getElementById('admin-recent-users');
+  if (!statsEl) return;
+
+  statsEl.innerHTML = '<div style="font-family:var(--mono);font-size:11px;color:var(--muted);grid-column:1/-1">⏳ Chargement...</div>';
+
+  const rUsers = await sbQuery('users', 'GET', null, 'select=id,username,created_at,last_login&order=created_at.desc');
+  const rData  = await sbQuery('user_data', 'GET', null, 'select=user_id,data_key&data_key=eq.qcm_scores');
+
+  const users = (rUsers.ok && Array.isArray(rUsers.data)) ? rUsers.data : [];
+  const active = (rData.ok && Array.isArray(rData.data)) ? [...new Set(rData.data.map(d => d.user_id))].length : 0;
+
+  // Count online (last_login within 30 min)
+  const now = Date.now();
+  const onlineUsers = users.filter(u => u.last_login && (now - new Date(u.last_login).getTime()) < 30 * 60 * 1000);
+
+  statsEl.innerHTML = `
+    <div class="admin-stat"><div class="admin-stat-val">${users.length}</div><div class="admin-stat-lbl">Comptes</div></div>
+    <div class="admin-stat"><div class="admin-stat-val" style="color:var(--green)">${onlineUsers.length}</div><div class="admin-stat-lbl">En ligne (30min)</div></div>
+    <div class="admin-stat"><div class="admin-stat-val" style="color:var(--purple)">${active}</div><div class="admin-stat-lbl">Ont joué un QCM</div></div>`;
+
+  // Recent users
+  if (recentEl) {
+    const recent = users.slice(0, 8);
+    recentEl.innerHTML = `<table class="admin-table">
+      <thead><tr><th>Pseudo</th><th>Inscrit le</th><th>Dernière connexion</th></tr></thead>
+      <tbody>${recent.map(u => `<tr>
+        <td><strong>${escHTML(u.username)}</strong></td>
+        <td style="font-family:var(--mono);font-size:10px">${new Date(u.created_at).toLocaleDateString('fr-FR')}</td>
+        <td style="font-family:var(--mono);font-size:10px">${u.last_login ? new Date(u.last_login).toLocaleString('fr-FR') : '—'}</td>
+      </tr>`).join('')}</tbody></table>`;
+  }
+}
+
+// ── Tous les utilisateurs ──
+async function adminLoadUsers() {
+  const el = document.getElementById('admin-users-table');
+  if (!el) return;
+  el.innerHTML = '<div style="font-family:var(--mono);font-size:11px;color:var(--muted)">⏳ Chargement...</div>';
+
+  const rUsers = await sbQuery('users', 'GET', null, 'select=id,username,created_at,last_login&order=username.asc');
+  const rData  = await sbQuery('user_data', 'GET', null, 'select=user_id,data_key,data_value&data_key=in.(qcm_scores,total_questions,sprint_sessions)');
+
+  const users = (rUsers.ok && Array.isArray(rUsers.data)) ? rUsers.data : [];
+  const dataMap = {};
+  if (rData.ok && Array.isArray(rData.data)) {
+    rData.data.forEach(d => {
+      if (!dataMap[d.user_id]) dataMap[d.user_id] = {};
+      dataMap[d.user_id][d.data_key] = d.data_value;
+    });
+  }
+
+  const now = Date.now();
+  el.innerHTML = `<table class="admin-table">
+    <thead><tr><th>Statut</th><th>Pseudo</th><th>Questions</th><th>Sprints</th><th>Modules</th><th>Inscrit</th></tr></thead>
+    <tbody>${users.map(u => {
+      const d = dataMap[u.id] || {};
+      const isOnline = u.last_login && (now - new Date(u.last_login).getTime()) < 30 * 60 * 1000;
+      const totalQ = d.total_questions || 0;
+      const sprints = d.sprint_sessions || 0;
+      const modules = d.qcm_scores ? Object.keys(d.qcm_scores).length : 0;
+      return `<tr>
+        <td><span class="${isOnline ? 'admin-online-dot' : 'admin-offline-dot'}"></span>${isOnline ? 'En ligne' : 'Hors ligne'}</td>
+        <td><strong>${escHTML(u.username)}</strong></td>
+        <td style="font-family:var(--mono)">${totalQ}</td>
+        <td style="font-family:var(--mono)">${sprints}</td>
+        <td style="font-family:var(--mono)">${modules}</td>
+        <td style="font-family:var(--mono);font-size:10px">${new Date(u.created_at).toLocaleDateString('fr-FR')}</td>
+      </tr>`;
+    }).join('')}</tbody></table>`;
+}
+
+// ── Utilisateurs en ligne ──
+async function adminLoadOnline() {
+  const el = document.getElementById('admin-online-list');
+  const countEl = document.getElementById('admin-online-count');
+  if (!el) return;
+
+  const r = await sbQuery('users', 'GET', null, 'select=id,username,last_login&order=last_login.desc');
+  const users = (r.ok && Array.isArray(r.data)) ? r.data : [];
+  const now = Date.now();
+  const online = users.filter(u => u.last_login && (now - new Date(u.last_login).getTime()) < 30 * 60 * 1000);
+
+  if (countEl) countEl.textContent = `(${online.length})`;
+
+  // Get their current activity from user_data
+  const rAct = online.length > 0
+    ? await sbQuery('user_data', 'GET', null, `select=user_id,data_key,data_value&data_key=eq.current_section&user_id=in.(${online.map(u=>u.id).join(',')})`)
+    : { ok: true, data: [] };
+
+  const actMap = {};
+  if (rAct.ok && Array.isArray(rAct.data)) {
+    rAct.data.forEach(d => { actMap[d.user_id] = d.data_value; });
+  }
+
+  if (online.length === 0) {
+    el.innerHTML = '<div style="color:var(--muted);font-family:var(--mono);font-size:12px;padding:.5rem 0">Aucun utilisateur actif dans les 30 dernières minutes.</div>';
+    return;
+  }
+
+  el.innerHTML = `<table class="admin-table">
+    <thead><tr><th>Pseudo</th><th>Section active</th><th>Dernière activité</th></tr></thead>
+    <tbody>${online.map(u => {
+      const section = actMap[u.id] || 'Accueil';
+      const lastSeen = u.last_login ? Math.round((now - new Date(u.last_login).getTime()) / 60000) : '?';
+      return `<tr>
+        <td><span class="admin-online-dot"></span><strong>${escHTML(u.username)}</strong></td>
+        <td><span class="admin-activity-badge">${escHTML(String(section))}</span></td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Il y a ${lastSeen} min</td>
+      </tr>`;
+    }).join('')}</tbody></table>`;
+}
+
+// ── Logs d'activité ──
+async function adminLoadLogs() {
+  const el = document.getElementById('admin-log-content');
+  if (!el) return;
+
+  const r = await sbQuery('user_data', 'GET', null, 'select=user_id,data_key,data_value,updated_at&data_key=in.(qcm_scores,sprint_sessions,total_questions)&order=updated_at.desc&limit=50');
+  const rUsers = await sbQuery('users', 'GET', null, 'select=id,username');
+
+  const userMap = {};
+  if (rUsers.ok && Array.isArray(rUsers.data)) {
+    rUsers.data.forEach(u => { userMap[u.id] = u.username; });
+  }
+
+  const logs = (r.ok && Array.isArray(r.data)) ? r.data : [];
+
+  if (logs.length === 0) {
+    el.innerHTML = '<div style="color:var(--muted)">Aucune activité enregistrée.</div>';
+    return;
+  }
+
+  el.innerHTML = logs.map(l => {
+    const username = userMap[l.user_id] || l.user_id?.substring(0,8) + '...';
+    const time = new Date(l.updated_at).toLocaleString('fr-FR');
+    const action = l.data_key === 'qcm_scores' ? 'a joué un QCM'
+      : l.data_key === 'sprint_sessions' ? 'a fait un sprint'
+      : 'a répondu à des questions';
+    return `<div class="admin-log-entry">
+      <span class="admin-log-time">${time}</span>
+      <span class="admin-log-user">${escHTML(username)}</span>
+      <span class="admin-log-action"> ${action}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── Annonces ──
+let _adminAnnounceTypeVal = 'info';
+function adminAnnounceType(btn) {
+  document.querySelectorAll('.admin-type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  _adminAnnounceTypeVal = btn.dataset.type;
+}
+
+async function adminSendAnnounce() {
+  const text = (document.getElementById('admin-announce-text')||{}).value?.trim();
+  if (!text) return;
+  const announce = {
+    text,
+    type: _adminAnnounceTypeVal,
+    ts: Date.now(),
+    from: 'Administrateur'
+  };
+  // Save to Supabase as a global key
+  const r = await sbQuery('user_data', 'POST', {
+    user_id: '00000000-0000-0000-0000-000000000001', // Admin UUID sentinel
+    data_key: 'announce_' + announce.ts,
+    data_value: announce
+  });
+  if (r.ok || r.status === 409) {
+    // Also try upsert
+    await sbQuery('user_data', 'POST', {
+      user_id: '00000000-0000-0000-0000-000000000001',
+      data_key: 'announce_' + announce.ts,
+      data_value: announce
+    });
+  }
+  // Show immediately to admin
+  showAnnounceToast(announce);
+  // Store in localStorage for broadcast simulation
+  const announces = JSON.parse(localStorage.getItem('tssr_announces') || '[]');
+  announces.push(announce);
+  localStorage.setItem('tssr_announces', JSON.stringify(announces.slice(-20)));
+  // Clear textarea
+  if (document.getElementById('admin-announce-text')) {
+    document.getElementById('admin-announce-text').value = '';
+  }
+  adminLoadAnnounceHistory();
+}
+
+async function adminLoadAnnounceHistory() {
+  const el = document.getElementById('admin-announce-history');
+  if (!el) return;
+  const announces = JSON.parse(localStorage.getItem('tssr_announces') || '[]').reverse();
+  if (!announces.length) {
+    el.innerHTML = '<div style="color:var(--muted);font-family:var(--mono);font-size:11px">Aucune annonce envoyée.</div>';
+    return;
+  }
+  const typeIcon = {info:'ℹ️', warning:'⚠️', urgent:'🚨'};
+  el.innerHTML = announces.map(a => `
+    <div style="padding:.65rem .9rem;background:var(--surface2);border-radius:var(--radius);margin-bottom:6px;font-size:12px">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+        <span>${typeIcon[a.type]||'📢'}</span>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--muted)">${new Date(a.ts).toLocaleString('fr-FR')}</span>
+      </div>
+      <div style="color:var(--text2)">${escHTML(a.text)}</div>
+    </div>`).join('');
+}
+
+// ── Toast d'annonce (visible par tous) ──
+function showAnnounceToast(announce) {
+  const toast = document.getElementById('announce-toast');
+  const header = document.getElementById('announce-toast-header');
+  const text = document.getElementById('announce-toast-text');
+  if (!toast || !header || !text) return;
+  const typeIcon = {info:'ℹ️ Information', warning:'⚠️ Attention', urgent:'🚨 URGENT'};
+  header.className = 'announce-toast-header ' + (announce.type || 'info');
+  header.textContent = typeIcon[announce.type] || '📢 Annonce';
+  text.textContent = announce.text;
+  toast.classList.add('show');
+  if (announce.type !== 'urgent') {
+    setTimeout(() => toast.classList.remove('show'), 12000);
+  }
+}
+
+// ── Polling des annonces pour les utilisateurs connectés ──
+let _lastAnnounceSeen = parseInt(localStorage.getItem('tssr_last_announce') || '0');
+function adminCheckAnnounces() {
+  const announces = JSON.parse(localStorage.getItem('tssr_announces') || '[]');
+  const newOnes = announces.filter(a => a.ts > _lastAnnounceSeen);
+  if (newOnes.length > 0) {
+    showAnnounceToast(newOnes[newOnes.length - 1]);
+    _lastAnnounceSeen = Math.max(...newOnes.map(a => a.ts));
+    localStorage.setItem('tssr_last_announce', String(_lastAnnounceSeen));
+  }
+}
+
+// ── Tracking de section pour le panel admin ──
+const _origShowSectionForAdmin = showSection;
+function showSection(id) {
+  _origShowSectionForAdmin(id);
+  // Track current section for admin visibility
+  const u = getCurrentUser();
+  if (u) {
+    sbQuery('user_data', 'POST',
+      { user_id: u.id, data_key: 'current_section', data_value: id },
+      'on_conflict=user_id,data_key'
+    ).catch(() => {});
+  }
+}
+
+function escHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── Raccourci admin : Alt+Shift+A ──
+document.addEventListener('keydown', e => {
+  if (e.altKey && e.shiftKey && e.key === 'A') {
+    if (_adminOpen) adminClose(); else showAuthOverlay('login');
+  }
+});
 
 </script>
 </body>
