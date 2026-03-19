@@ -692,6 +692,17 @@
   .mesnotes-search{padding:7px 12px;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:13px;font-family:var(--mono);outline:none;width:200px;transition:.15s;-webkit-appearance:none}
   .mesnotes-search:focus{border-color:var(--accent);width:240px}
 
+
+  /* ── MULTI-CHOICE ── */
+  .multi-hint{font-family:var(--mono);font-size:11px;color:var(--amber);background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:var(--radius);padding:6px 12px;margin-bottom:.85rem;display:inline-flex;align-items:center;gap:6px}
+  .opt-multi{cursor:pointer;user-select:none;-webkit-user-select:none}
+  .opt-multi:hover:not([style*="pointer-events"]){border-color:var(--accent);color:var(--text);background:var(--surface2);transform:translateX(3px)}
+  .opt-multi.multi-selected{background:rgba(79,142,255,.1);border-color:var(--accent);color:var(--accent2)}
+  .opt-multi.multi-selected .opt-check-icon{color:var(--accent2)}
+  .opt-check-icon{font-size:15px;flex-shrink:0;margin-right:.3rem;transition:color .12s}
+  .opt-multi.correct{background:var(--green-bg);border-color:var(--green-border);color:var(--green)}
+  .opt-multi.wrong{background:var(--red-bg);border-color:var(--red-border);color:var(--red)}
+
 </style>
 </head>
 <body>
@@ -912,7 +923,12 @@ const MODULES = {
       {q:"Que fait 'ln -s /source /dest' ?",opts:["Crée un lien physique","Crée un lien symbolique","Copie le fichier","Déplace le fichier"],ans:1,expl:"ln -s crée un lien symbolique (raccourci). Sans -s, c'est un lien physique."},
       {q:"Dans quel répertoire se trouvent les scripts de démarrage systemd ?",opts:["/etc/init.d","/etc/systemd/system","/usr/lib/systemd/system","/var/run"],ans:1,expl:"/etc/systemd/system contient les unités locales (prioritaires). /usr/lib/systemd/system contient les unités des paquets."},
       {q:"Quelle commande affiche l'espace utilisé par un dossier ?",opts:["df -h /dossier","du -sh /dossier","ls -lh /dossier","stat /dossier"],ans:1,expl:"du -sh /dossier affiche la taille totale du dossier de façon lisible."},
-      {q:"Que signifie le bit SUID sur un exécutable ?",opts:["Le fichier est partagé","Il s'exécute avec les droits du propriétaire, pas de l'utilisateur","Il est en lecture seule","Il appartient à root"],ans:1,expl:"SUID = Set User ID. Ex : /usr/bin/passwd a le SUID pour écrire dans /etc/shadow même en tant qu'utilisateur normal."}
+      {q:"Que signifie le bit SUID sur un exécutable ?",opts:["Le fichier est partagé","Il s'exécute avec les droits du propriétaire, pas de l'utilisateur","Il est en lecture seule","Il appartient à root"],ans:1,expl:"SUID = Set User ID. Ex : /usr/bin/passwd a le SUID pour écrire dans /etc/shadow même en tant qu'utilisateur normal."},
+      {q:"Quelles commandes permettent d'afficher les utilisateurs et groupes d'un compte Linux ?",opts:["id","groups","whoami","passwd"],ans:[0,1],expl:"id affiche UID, GID et tous les groupes. groups affiche seulement les noms de groupes. whoami = juste le nom d'utilisateur. passwd gère les mots de passe."},
+      {q:"Quels répertoires contiennent des binaires exécutables sous Linux ?",opts:["/bin","/sbin","/usr/bin","/etc"],ans:[0,1,2],expl:"/bin contient les binaires essentiels (cp, ls, cat). /sbin contient les binaires d'administration (fdisk, ifconfig). /usr/bin contient les binaires utilisateurs installés. /etc contient uniquement des fichiers de configuration."},
+      {q:"Quelles options de 'tar' permettent de créer une archive compressée gzip ?",opts:["-c (create)","-z (gzip)","-v (verbose)","-x (extract)"],ans:[0,1],expl:"-c crée l'archive, -z compresse avec gzip. -v affiche les fichiers (optionnel), -x extrait au lieu de créer. Exemple : tar -czf archive.tar.gz dossier/"},
+      {q:"Lesquelles de ces affirmations sur systemd sont correctes ?",opts:["systemctl enable démarre le service immédiatement","systemctl enable active le démarrage automatique","journalctl -f suit les logs en temps réel","systemctl status affiche l'état d'un service"],ans:[1,2,3],expl:"systemctl enable active au boot mais ne démarre pas. Pour démarrer immédiatement : systemctl start (ou enable --now). journalctl -f = suivi temps réel. systemctl status = état + derniers logs."},
+      {q:"Quels sont les fichiers de configuration réseau essentiels sous Debian/Ubuntu ?",opts:["/etc/netplan/*.yaml","/etc/resolv.conf","/etc/network/interfaces","/etc/hostname"],ans:[0,1,3],expl:"/etc/netplan/*.yaml est la config réseau sur Ubuntu 18+. /etc/resolv.conf configure les DNS. /etc/hostname = nom de la machine. /etc/network/interfaces est l'ancienne méthode (Debian classique)."}
     ]
   },
   reseau: {
@@ -947,7 +963,11 @@ const MODULES = {
       {q:"Quelle commande affiche la table de routage sous Linux ?",opts:["netstat -r","ip route","route -n","Les trois sont correctes"],ans:3,expl:"ip route, route -n et netstat -r affichent toutes la table de routage. ip route est la commande moderne."},
       {q:"Que signifie TTL dans un paquet IP ?",opts:["Transfer Time Limit","Time To Live — nombre de sauts avant suppression du paquet","Total Traffic Load","Transmission Test Layer"],ans:1,expl:"TTL = Time To Live. Décrémenté à chaque routeur. Quand TTL=0, le paquet est supprimé pour éviter les boucles."},
       {q:"Quel port utilise SSH ?",opts:["21","22","23","25"],ans:1,expl:"SSH = port 22 TCP. Il remplace Telnet (port 23) en chiffrant la connexion."},
-      {q:"Qu'est-ce qu'un sous-réseau ?",opts:["Un réseau sans fil secondaire","Une subdivision d'un réseau IP pour organiser et isoler les machines","Un VPN","Un VLAN"],ans:1,expl:"Le sous-réseau divise un réseau IP en plages plus petites pour organiser, isoler et sécuriser les machines."}
+      {q:"Qu'est-ce qu'un sous-réseau ?",opts:["Un réseau sans fil secondaire","Une subdivision d'un réseau IP pour organiser et isoler les machines","Un VPN","Un VLAN"],ans:1,expl:"Le sous-réseau divise un réseau IP en plages plus petites pour organiser, isoler et sécuriser les machines."},
+      {q:"Quels protocoles fonctionnent à la fois en TCP et UDP ?",opts:["DNS (port 53)","DHCP (port 67/68)","Kerberos (port 88)","HTTP (port 80)"],ans:[0,2],expl:"DNS utilise UDP pour les requêtes courantes et TCP pour les transferts de zone (>512 octets). Kerberos utilise TCP et UDP. DHCP = UDP uniquement. HTTP = TCP uniquement."},
+      {q:"Quelles adresses font partie des plages IP privées (RFC 1918) ?",opts:["10.0.0.1","172.20.5.10","192.168.1.100","8.8.8.8"],ans:[0,1,2],expl:"Les plages privées RFC 1918 : 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16. 8.8.8.8 est le DNS public Google — adresse publique."},
+      {q:"Quelles affirmations sur TCP sont exactes ?",opts:["TCP est orienté connexion","TCP garantit l'ordre des paquets","TCP utilise un handshake à 3 étapes","TCP est plus rapide qu'UDP"],ans:[0,1,2],expl:"TCP : connexion établie par handshake SYN/SYN-ACK/ACK, accusés de réception, retrasmission en cas de perte, ordre garanti. UDP est plus rapide car sans ces mécanismes."},
+      {q:"Lesquels de ces équipements travaillent en couche 3 (réseau) du modèle OSI ?",opts:["Routeur","Switch de couche 3","Hub","Répéteur"],ans:[0,1],expl:"Routeur : couche 3, route les paquets IP entre réseaux. Switch L3 : switch capable de router. Hub = couche 1 (répète tous les signaux). Répéteur = couche 1."}
     ]
   },
   virt: {
@@ -1052,7 +1072,10 @@ const MODULES = {
       {q:"Qu'est-ce que Kerberos dans AD ?",opts:["Un antivirus","Un protocole d'authentification basé sur des tickets","Un type de réplication","Un outil de gestion des GPO"],ans:1,expl:"Kerberos émet des tickets d'authentification (TGT puis ST) évitant de retransmettre le mot de passe sur le réseau."},
       {q:"Que fait la commande 'gpupdate /force' ?",opts:["Crée une nouvelle GPO","Force l'application immédiate des GPO sur le poste","Supprime les GPO existantes","Réplique les GPO entre DC"],ans:1,expl:"gpupdate /force reapplique immédiatement toutes les GPO sans attendre le prochain cycle automatique."},
       {q:"Qu'est-ce qu'un DC en lecture seule (RODC) ?",opts:["Un DC avec une sauvegarde en lecture seule","Un DC installé en site distant qui ne peut pas modifier AD, mais peut authentifier","Un DC de test","Un DC pour les postes Linux"],ans:1,expl:"Le RODC (Read-Only Domain Controller) est conçu pour les sites distants non sécurisés. Il lit AD mais ne peut pas modifier."},
-      {q:"Qu'est-ce que le protocole Kerberos v5 et ses tickets ?",opts:["Un antivirus réseau","Un protocole d'authentification à base de tickets : TGT puis ticket de service","Un type de chiffrement","Un protocole de messagerie"],ans:1,expl:"Kerberos v5 : le client obtient un TGT (Ticket Granting Ticket) du KDC, puis échange ce TGT contre un ticket de service pour accéder à une ressource. Le mot de passe ne circule jamais sur le réseau."}
+      {q:"Qu'est-ce que le protocole Kerberos v5 et ses tickets ?",opts:["Un antivirus réseau","Un protocole d'authentification à base de tickets : TGT puis ticket de service","Un type de chiffrement","Un protocole de messagerie"],ans:1,expl:"Kerberos v5 : le client obtient un TGT (Ticket Granting Ticket) du KDC, puis échange ce TGT contre un ticket de service pour accéder à une ressource. Le mot de passe ne circule jamais sur le réseau."},
+      {q:"Quels rôles FSMO sont uniques par forêt (et non par domaine) ?",opts:["Schema Master","Domain Naming Master","PDC Emulator","RID Master"],ans:[0,1],expl:"Schema Master et Domain Naming Master = 1 seul pour toute la forêt. PDC Emulator, RID Master, Infrastructure Master = 1 par domaine. Retenir : les 2 rôles 'forêt' concernent la structure globale (schéma et nommage)."},
+      {q:"Quels éléments sont contenus dans une GPO (Group Policy Object) ?",opts:["Configuration ordinateur","Configuration utilisateur","Règles de pare-feu Windows","Comptes utilisateurs AD"],ans:[0,1,2],expl:"Une GPO contient : Configuration Ordinateur (s'applique au démarrage) et Configuration Utilisateur (s'applique à la connexion). Les deux peuvent contenir des paramètres, scripts, règles de sécurité, déploiement logiciels. Les comptes utilisateurs AD sont des objets AD, pas des éléments d'une GPO."},
+      {q:"Quelles affirmations sur les groupes AD sont correctes ?",opts:["Un groupe global peut contenir des utilisateurs du même domaine","Un groupe universel peut contenir des membres de toute la forêt","Un groupe domaine local est utilisé pour attribuer des permissions sur des ressources locales","On peut imbriquer un groupe universel dans un groupe global"],ans:[0,1,2],expl:"Règle IGDLA : identités (I) dans groupes Globaux (G) dans groupes Domaine Local (DL) pour Accès (A). Universels = membres de toute la forêt. On ne peut pas mettre un groupe universel dans un groupe global."}
     ]
   },
   secu: {
@@ -1087,7 +1110,10 @@ const MODULES = {
       {q:"Qu'est-ce que le NAC (Network Access Control) ?",opts:["Un type de firewall","Un système qui contrôle et conditionne l'accès au réseau selon la conformité du poste","Un protocole VPN","Un outil de supervision"],ans:1,expl:"Le NAC vérifie que les équipements respectent les politiques de sécurité avant de les autoriser à se connecter."},
       {q:"Qu'est-ce que le protocole TLS 1.3 ?",opts:["Une version obsolète de SSL","La version la plus récente de TLS, plus rapide et plus sécurisée","Un protocole de VPN","Un protocole de sauvegarde"],ans:1,expl:"TLS 1.3 supprime les algorithmes faibles, réduit la latence du handshake et renforce la sécurité par rapport à TLS 1.2."},
       {q:"Qu'est-ce qu'un honeypot ?",opts:["Un serveur de production renforcé","Un système leurre conçu pour attirer et étudier les attaquants","Un type de firewall","Un outil de déduplication"],ans:1,expl:"Un honeypot est un faux système vulnérable qui attire les attaquants, permettant d'analyser leurs techniques."},
-      {q:"Qu'est-ce que le Zero Trust ?",opts:["Ne jamais utiliser de VPN","Ne faire confiance à aucun utilisateur ni équipement par défaut, même interne","Bloquer tout le trafic réseau","Un type de chiffrement"],ans:1,expl:"Zero Trust : 'ne jamais faire confiance, toujours vérifier'. Chaque accès est authentifié et vérifié, même depuis l'intérieur."}
+      {q:"Qu'est-ce que le Zero Trust ?",opts:["Ne jamais utiliser de VPN","Ne faire confiance à aucun utilisateur ni équipement par défaut, même interne","Bloquer tout le trafic réseau","Un type de chiffrement"],ans:1,expl:"Zero Trust : 'ne jamais faire confiance, toujours vérifier'. Chaque accès est authentifié et vérifié, même depuis l'intérieur."},
+      {q:"Quels éléments font partie d'une politique de mots de passe robuste ?",opts:["Longueur minimale de 12 caractères","Expiration tous les 30 jours maximum","Combinaison de lettres, chiffres et caractères spéciaux","Interdiction de réutiliser les 5 derniers mots de passe"],ans:[0,2,3],expl:"Bonne politique : 12+ caractères, mixte (maj/min/chiffres/spéciaux), historique (pas de réutilisation). Expiration trop fréquente (30 jours) est contre-productive : elle pousse les utilisateurs à des mots de passe prévisibles. NIST recommande de ne pas forcer l'expiration sauf compromission."},
+      {q:"Quels sont les piliers du modèle CIA (triade de la sécurité) ?",opts:["Confidentialité","Intégrité","Authentification","Disponibilité"],ans:[0,1,3],expl:"CIA = Confidentiality, Integrity, Availability. Confidentialité = seuls les autorisés accèdent aux données. Intégrité = données non altérées. Disponibilité = service accessible quand nécessaire. L'authentification est un mécanisme, pas un pilier de la triade."},
+      {q:"Quelles attaques font partie de l'ingénierie sociale (social engineering) ?",opts:["Phishing par email","Vishing (phishing téléphonique)","Injection SQL","Pretexting (faux prétexte)"],ans:[0,1,3],expl:"L'ingénierie sociale manipule les humains : phishing (email), vishing (voix/téléphone), smishing (SMS), pretexting (se faire passer pour quelqu'un). L'injection SQL est une attaque technique contre les bases de données."}
     ]
   },
   supervision: {
@@ -1321,39 +1347,35 @@ function showSection(id) {
   if (id === 'notes') renderNotesHub();
 }
 
-function initQcm(id) {
-    const mod = MODULES[id];
-    // On prend les questions au hasard
-    let drawn = shuffle(mod.questions).slice(0, DRAW_QCM);
-    
-    // Pour chaque question, on mélange les options
-    drawn = drawn.map(q => {
-        // Sauvegarder la bonne réponse
-        const correctAnswer = q.opts[q.ans];
-        // Mélanger toutes les options
-        const shuffledOpts = shuffle(q.opts);
-        // Trouver la nouvelle position de la bonne réponse
-        const newAns = shuffledOpts.indexOf(correctAnswer);
-        
-        return {
-            ...q,
-            opts: shuffledOpts,
-            ans: newAns  // La nouvelle position de la bonne réponse
-        };
-    });
-    
-    state[id] = { questions: drawn, current: 0, score: 0, answered: false, missed: [] };
-    renderQcm(id);
-    
-    setTimeout(() => {
-        const section = document.getElementById('section-' + id);
-        if (section && !document.getElementById('notes-block-' + id)) {
-            const nb = renderNotes(id);
-            section.appendChild(nb);
-        }
-    }, 50);
+function shuffleQuestionOpts(q) {
+  // Randomise l'ordre des options et met à jour ans en conséquence
+  const isMulti = Array.isArray(q.ans);
+  const indices = q.opts.map((_, i) => i);
+  const shuffled = shuffle(indices);
+  const newOpts = shuffled.map(i => q.opts[i]);
+  let newAns;
+  if (isMulti) {
+    newAns = q.ans.map(a => shuffled.indexOf(a));
+  } else {
+    newAns = shuffled.indexOf(q.ans);
+  }
+  return { ...q, opts: newOpts, ans: newAns };
 }
-  
+
+function initQcm(id) {
+  const mod = MODULES[id];
+  const drawn = shuffle(mod.questions).slice(0, DRAW_QCM).map(shuffleQuestionOpts);
+  state[id] = { questions: drawn, current: 0, score: 0, answered: false, missed: [] };
+  renderQcm(id);
+  setTimeout(() => {
+    const section = document.getElementById('section-' + id);
+    if (section && !document.getElementById('notes-block-' + id)) {
+      const nb = renderNotes(id);
+      section.appendChild(nb);
+    }
+  }, 50);
+}
+
 function renderQcm(id) {
   const mod = MODULES[id];
   const s = state[id];
@@ -1364,7 +1386,11 @@ function renderQcm(id) {
     const missedHTML = s.missed && s.missed.length > 0 ? `
       <div class="result-missed">
         <div class="result-missed-title">À revoir (${s.missed.length})</div>
-        ${s.missed.map(q => `<div class="result-missed-item"><div class="result-missed-q">${q.q}</div><div class="result-missed-a">→ ${q.opts[q.ans]}</div></div>`).join('')}
+        ${s.missed.map(q => {
+          const isMulti = Array.isArray(q.ans);
+          const ansText = isMulti ? q.ans.map(a => q.opts[a]).join(' + ') : q.opts[q.ans];
+          return `<div class="result-missed-item"><div class="result-missed-q">${q.q}</div><div class="result-missed-a">→ ${ansText}</div></div>`;
+        }).join('')}
       </div>` : '';
     authSaveQcmResult(id, s.score, s.questions.length);
     el.innerHTML = `<div class="result-box">
@@ -1387,7 +1413,14 @@ function renderQcm(id) {
       <div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${mod.color}"></div></div>
     </div>
     <div class="q-text">${q.q}</div>
-    <div class="options">${q.opts.map((o, i) => `<button class="opt" id="opt-${id}-${i}" onclick="chooseQcm('${id}',${i})">${o}</button>`).join('')}</div>
+    ${Array.isArray(q.ans) ? `<div class="multi-hint">📋 Plusieurs réponses correctes — coche toutes les bonnes</div>` : ''}
+    <div class="options">
+      ${Array.isArray(q.ans)
+        ? q.opts.map((o, i) => `<label class="opt opt-multi" id="opt-${id}-${i}" onclick="toggleMultiOpt('${id}',${i})"><span class="opt-check-icon">☐</span> ${o}</label>`).join('')
+        : q.opts.map((o, i) => `<button class="opt" id="opt-${id}-${i}" onclick="chooseQcm('${id}',${i})">${o}</button>`).join('')
+      }
+    </div>
+    ${Array.isArray(q.ans) ? `<button class="next-btn" style="margin-top:.75rem" onclick="validateMulti('${id}')">Valider mes choix →</button>` : ''}
     <div id="fb-${id}"></div>
     <div id="nxt-${id}"></div>`;
 }
@@ -1411,7 +1444,7 @@ function chooseQcm(id, i) {
   const sentences = q.expl.match(/[^.!?]+[.!?]*/g) || [q.expl];
   const keyPhrase = sentences[0].trim();
   const detail = sentences.slice(1).join(' ').trim();
-  const tags = [...new Set((q.expl.match(/[A-Z]{2,8}/g) || []))].slice(0, 5);
+  const tags = [...new Set((q.expl.match(/\b[A-Z]{2,8}\b/g) || []))].slice(0, 5);
   const tagsHTML = tags.length ? `<div class="feedback-tags">${tags.map(t=>`<span class="feedback-tag">${t}</span>`).join('')}</div>` : '';
 
   if (correct) {
@@ -1443,6 +1476,58 @@ function nextQcm(id) {
   state[id].current++;
   state[id].answered = false;
   renderQcm(id);
+}
+
+function toggleMultiOpt(id, i) {
+  const lbl = document.getElementById(`opt-${id}-${i}`);
+  const icon = lbl.querySelector('.opt-check-icon');
+  if (!lbl) return;
+  const selected = lbl.classList.toggle('multi-selected');
+  if (icon) icon.textContent = selected ? '☑' : '☐';
+}
+
+function validateMulti(id) {
+  const s = state[id];
+  if (s.answered) return;
+  s.answered = true;
+  const q = s.questions[s.current];
+  const correctSet = new Set(q.ans);
+  const selected = [];
+  q.opts.forEach((_, i) => {
+    if (document.getElementById(`opt-${id}-${i}`)?.classList.contains('multi-selected')) {
+      selected.push(i);
+    }
+  });
+  const selectedSet = new Set(selected);
+  const correct = correctSet.size === selectedSet.size && [...correctSet].every(x => selectedSet.has(x));
+
+  q.opts.forEach((_, i) => {
+    const lbl = document.getElementById(`opt-${id}-${i}`);
+    if (!lbl) return;
+    lbl.style.pointerEvents = 'none';
+    if (correctSet.has(i)) lbl.classList.add('correct');
+    else if (selectedSet.has(i) && !correctSet.has(i)) lbl.classList.add('wrong');
+  });
+
+  if (correct) s.score++;
+  else s.missed.push(q);
+
+  const correctLabels = q.ans.map(a => q.opts[a]).join(', ');
+  const sentences = q.expl.match(/[^.!?]+[.!?]*/g) || [q.expl];
+  const keyPhrase = sentences[0].trim();
+  const detail = sentences.slice(1).join(' ').trim();
+
+  document.getElementById(`fb-${id}`).innerHTML = `
+    <div class="feedback ${correct ? 'ok' : 'ko'}">
+      <div class="feedback-top">${correct ? '✓ Parfait — toutes les bonnes réponses !' : '✗ Incomplet ou incorrect'}</div>
+      <div class="feedback-body">
+        ${!correct ? `<div class="feedback-key">✓ ${correctLabels}</div>` : ''}
+        <div class="feedback-${correct?'key':'expl'}">${keyPhrase}</div>
+        ${detail ? `<div class="feedback-expl">${detail}</div>` : ''}
+      </div>
+    </div>`;
+  const label = s.current + 1 < s.questions.length ? 'Suivant →' : 'Résultat →';
+  document.getElementById(`nxt-${id}`).innerHTML = `<button class="next-btn" onclick="nextQcm('${id}')">${label}</button>`;
 }
 
 function initOpen() {
@@ -1654,9 +1739,20 @@ function checkPorts() {
     const inp = document.getElementById(`pi-${r}-${c}`);
     if (!inp) return;
     total++;
-    const expected = PORTS_DATA[r][c].toLowerCase().replace(/\s+/g,'');
+    const expected = currentPorts[r][c].trim().toLowerCase().replace(/\s+/g,'');
     const given = inp.value.trim().toLowerCase().replace(/\s+/g,'');
-    const ok = given === expected || (c==='type' && given.replace('/','')===expected.replace('/',''));
+    let ok = false;
+    if (c === 'type') {
+      // Normalise : TCP/UDP = UDP/TCP = tcpudp = udptcp
+      const norm = s => s.replace(/[\/\-]/g,'').split('').sort().join('');
+      ok = norm(given) === norm(expected) || given === expected;
+    } else if (c === 'port') {
+      // Accepte ordre inversé ex: "67/68" ou "68/67"
+      const sortPorts = s => s.split('/').map(x=>x.trim()).sort().join('/');
+      ok = given === expected || sortPorts(given) === sortPorts(expected);
+    } else {
+      ok = given === expected;
+    }
     inp.classList.add(ok?'ok':'ko');
     if (!ok) inp.value = currentPorts[r][c];
     inp.disabled = true;
@@ -2871,18 +2967,9 @@ async function sbQuery(table, method, body, filter) {
 }
 
 // ── Hash PIN côté client (SHA-256 via WebCrypto) ──
-// Fonction de hachage ultra simple pour le PIN
 async function hashPin(pin) {
-    // Version simplifiée qui fonctionne partout
-    const str = pin + 'tssr_salt_2024';
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-    }
-    // Ajouter un padding pour faire comme SHA-256
-    return Math.abs(hash).toString(16).padStart(64, '0') + Math.abs(hash*2).toString(16).slice(0,32);
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pin + 'tssr_salt_2024'));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
 
 // ── Sauvegarde/chargement données profil ──
