@@ -818,6 +818,73 @@
   .announce-toast-text{font-size:13px;color:var(--text);line-height:1.6}
   .announce-toast-close{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;-webkit-appearance:none}
 
+  /* ── SCREAMER OVERLAY ── */
+  .screamer-overlay{position:fixed;inset:0;z-index:99999;background:#000;display:none;align-items:center;justify-content:center;cursor:pointer;overflow:hidden}
+  .screamer-overlay.show{display:flex;animation:screamIn .04s ease}
+  @keyframes screamIn{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:scale(1)}}
+  .screamer-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;animation:screamShake .1s infinite}
+  @keyframes screamShake{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(-5px,5px) rotate(-1deg)}50%{transform:translate(5px,-5px) rotate(1deg)}75%{transform:translate(-3px,3px) rotate(0)}100%{transform:translate(3px,-3px) rotate(-1deg)}}
+  .screamer-face{font-size:min(90vw,90vh);line-height:1;user-select:none;filter:drop-shadow(0 0 40px #ff0000) drop-shadow(0 0 80px #ff0000)}
+  .screamer-flash{position:absolute;inset:0;background:red;opacity:0;animation:flashLoop .15s infinite alternate}
+  @keyframes flashLoop{from{opacity:0}to{opacity:.15}}
+
+  /* ── FICHES AMÉLIORÉES ── */
+  .fiche-hero{padding:1.5rem 2rem 1.25rem;border-bottom:1px solid var(--border);background:linear-gradient(135deg,rgba(79,142,255,.04),rgba(56,217,245,.02))}
+  .fiche-hero-meta{display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem;flex-wrap:wrap}
+  .fiche-cat-badge{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 11px;border-radius:99px;background:rgba(79,142,255,.12);border:1px solid rgba(79,142,255,.3);color:var(--accent2)}
+  .fiche-num-badge{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.06em}
+  .fiche-hero-title{font-size:19px;font-weight:700;color:var(--text);letter-spacing:-.015em;margin-bottom:.6rem;line-height:1.3}
+  .fiche-hero-intro{font-size:13px;color:var(--text2);line-height:1.75}
+  .fiche-block{padding:1.25rem 2rem}
+  .fiche-block+.fiche-block{border-top:1px solid var(--border)}
+  .fiche-block-label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:.85rem;display:flex;align-items:center;gap:8px}
+  .fiche-block-label::after{content:'';flex:1;height:1px;background:var(--border)}
+  .fiche-why-box{background:rgba(56,217,245,.05);border:1px solid rgba(56,217,245,.2);border-left:3px solid var(--cyan);border-radius:var(--radius);padding:.85rem 1rem;margin-bottom:.75rem}
+  .fiche-why-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase;margin-bottom:.5rem}
+  .fiche-why-text{font-size:13px;color:var(--text2);line-height:1.75}
+  .fiche-memo-box{background:rgba(255,179,71,.07);border:1px solid rgba(255,179,71,.25);border-left:3px solid var(--amber);border-radius:var(--radius);padding:.85rem 1rem}
+  .fiche-memo-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--amber);text-transform:uppercase;margin-bottom:.5rem}
+  .fiche-memo-text{font-size:13px;color:var(--text2);line-height:1.75}
+  .fiche-welcome-wrap{padding:2.5rem 2rem;text-align:center;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .fiche-welcome-icon{font-size:3rem;margin-bottom:1rem}
+  .fiche-welcome-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:.5rem;letter-spacing:-.02em}
+  .fiche-welcome-sub{font-size:13px;color:var(--muted);line-height:1.75;max-width:380px;margin:0 auto 2rem}
+  .fiche-welcome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:380px;margin:0 auto}
+  .fiche-welcome-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:.85rem .9rem;text-align:center}
+  .fiche-welcome-val{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--accent2)}
+  .fiche-welcome-lbl{font-size:10px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.08em}
+  .fiche-how-list{font-size:13px;color:var(--text2);line-height:1.9;padding-left:1.2rem}
+  .fiche-how-list li{margin-bottom:.2rem}
+
+  /* ── FEEDBACK AMÉLIORÉ ── */
+  .feedback-top{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-family:var(--mono);padding:.65rem 1.1rem;border-bottom:1px solid rgba(100,180,255,.08)}
+  .feedback.ok .feedback-top{color:var(--green);background:rgba(46,204,138,.05)}
+  .feedback.ko .feedback-top{color:var(--red);background:rgba(255,95,109,.05)}
+  .feedback-body{padding:.9rem 1.1rem}
+  .feedback-key{font-size:15px;font-weight:700;color:var(--text);margin-bottom:.85rem;line-height:1.5}
+  .feedback-section{margin-top:.85rem;padding-top:.75rem;border-top:1px solid rgba(100,180,255,.07)}
+  .feedback-section-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:.4rem}
+  .feedback-section-body{font-size:13px;color:var(--text2);line-height:1.8}
+  .feedback-why-box{background:rgba(56,217,245,.05);border-left:2px solid var(--cyan);padding:.6rem .9rem;border-radius:0 var(--radius) var(--radius) 0;margin-top:.75rem}
+  .feedback-why-text{font-size:13px;color:var(--text2);line-height:1.75}
+  .feedback-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:.85rem}
+  .feedback-tag{font-family:var(--mono);font-size:10px;padding:2px 9px;border-radius:99px;background:rgba(79,142,255,.1);border:1px solid rgba(79,142,255,.2);color:var(--accent2)}
+  .feedback-wrong-ans{background:rgba(255,95,109,.05);border-left:2px solid var(--red);padding:.6rem .9rem;border-radius:0 var(--radius) var(--radius) 0;margin-top:.75rem;font-size:12px;color:var(--text2);line-height:1.7}
+  .feedback-wrong-label{font-family:var(--mono);font-size:9px;color:var(--red);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+
+  /* ── ADMIN TROLL ── */
+  .troll-screamer-btn{width:100%;padding:1.25rem;background:linear-gradient(135deg,#ff1a1a,#cc0000);border:none;border-radius:12px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:var(--sans);transition:all .2s;letter-spacing:.03em;box-shadow:0 8px 30px rgba(255,26,26,.3)}
+  .troll-screamer-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,26,26,.5)}
+  .troll-screamer-btn:active{transform:scale(.97)}
+  .troll-warn-box{background:rgba(255,179,71,.08);border:1px solid rgba(255,179,71,.25);border-radius:10px;padding:.85rem 1rem;margin-bottom:1.25rem}
+  .troll-warn-text{font-size:12px;color:var(--text2);line-height:1.7}
+  .troll-status-box{margin-top:.85rem;padding:.6rem 1rem;border-radius:8px;font-family:var(--mono);font-size:11px;text-align:center;display:none}
+  .troll-status-box.show{display:block}
+  .troll-status-box.sent{background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.3);color:#ff6b6b}
+  .troll-status-box.ok{background:rgba(46,204,138,.1);border:1px solid rgba(46,204,138,.3);color:var(--green)}
+  .troll-preview{margin-top:1.25rem;padding:1rem;background:rgba(0,0,0,.3);border:1px dashed rgba(255,26,26,.3);border-radius:10px;text-align:center}
+  .troll-preview-lbl{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem}
+
   /* ── PROFILE ── */
   .profile-wrap{max-width:600px;margin:0 auto;padding:2rem 0 5rem}
   .profile-hero{display:flex;align-items:center;gap:1.25rem;padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:2rem}
@@ -877,6 +944,7 @@
         <button class="admin-nav-btn" onclick="adminTab('users')">👥 Utilisateurs</button>
         <button class="admin-nav-btn" onclick="adminTab('announce')">📢 Annonces</button>
         <button class="admin-nav-btn" onclick="adminTab('logs')">📋 Activite</button>
+        <button class="admin-nav-btn" onclick="adminTab('troll')" style="margin-top:auto;border-color:rgba(255,26,26,.2);color:#ff6b6b">😈 Troll</button>
       </div>
       <div class="admin-content">
         <div class="admin-section active" id="admin-sec-overview">
@@ -913,8 +981,27 @@
           <div class="admin-sec-title" style="display:flex">Activite <button class="admin-refresh-btn" onclick="adminLoadLogs()">Actualiser</button></div>
           <div class="admin-log" id="admin-log-content"></div>
         </div>
+        <div class="admin-section" id="admin-sec-troll">
+          <div class="admin-sec-title">😈 Onglet Troll — Screameur</div>
+          <div class="troll-warn-box">
+            <div class="troll-warn-text">⚠️ <strong>Attention :</strong> Le screameur s'envoie à <strong>tous les utilisateurs connectés</strong> sur le site. Une image effrayante apparaîtra plein écran avec un son fort. À utiliser avec modération pour rigoler entre collègues. Le screameur reste actif 6 secondes puis disparaît automatiquement.</div>
+          </div>
+          <button class="troll-screamer-btn" onclick="adminSendScreamer()">😱 ENVOYER LE SCREAMEUR À TOUS</button>
+          <div class="troll-status-box" id="troll-status"></div>
+          <div class="troll-preview">
+            <div class="troll-preview-lbl">Prévisualisation de l'effet</div>
+            <div style="font-size:2.5rem;margin:.5rem 0">😱💀😨</div>
+            <div style="font-size:11px;color:var(--muted);font-family:var(--mono)">Plein écran rouge · Son d'alarme · Tremblement 6 secondes</div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="screamer-overlay" id="screamer-overlay" onclick="hideScreamer()">
+  <div class="screamer-flash"></div>
+  <div class="screamer-inner">
+    <div class="screamer-face">😱</div>
   </div>
 </div>
 <div class="announce-toast" id="announce-toast">
@@ -1605,35 +1692,44 @@ function chooseQcm(id, i) {
   if (correct) { s.score++; document.getElementById(`opt-${id}-${i}`).classList.add('correct'); }
   else { s.missed.push(q); }
 
-  // Feedback riche : phrase clé + détail
+
+  // Feedback pédagogique : pourquoi + mécanisme + à retenir
   const sentences = q.expl.match(/[^.!?]+[.!?]*/g) || [q.expl];
   const keyPhrase = sentences[0].trim();
-  const detail = sentences.slice(1).join(' ').trim();
-  const tags = [...new Set((q.expl.match(/[A-Z]{2,8}/g) || []))].slice(0, 5);
+  const restSentences = sentences.slice(1);
+  const mechPhrase = restSentences.slice(0, 2).join(' ').trim();
+  const retenir = restSentences.slice(2).join(' ').trim();
+  const tags = [...new Set((q.expl.match(/\b[A-Z]{2,8}\b/g) || []))].filter(t => t.length >= 2 && t.length <= 8).slice(0, 6);
   const tagsHTML = tags.length ? `<div class="feedback-tags">${tags.map(t=>`<span class="feedback-tag">${t}</span>`).join('')}</div>` : '';
 
   if (correct) {
     document.getElementById(`fb-${id}`).innerHTML = `
       <div class="feedback ok">
-        <div class="feedback-top">✓ Bonne réponse</div>
+        <div class="feedback-top">✓ Bonne réponse !</div>
         <div class="feedback-body">
           <div class="feedback-key">${keyPhrase}</div>
-          ${detail ? `<div class="feedback-expl">${detail}</div>` : ''}
+          ${mechPhrase ? `<div class="feedback-section"><div class="feedback-section-lbl">Comment ça fonctionne</div><div class="feedback-section-body">${mechPhrase}</div></div>` : ''}
+          ${retenir ? `<div class="feedback-why-box"><div style="font-family:var(--mono);font-size:9px;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">À retenir</div><div class="feedback-why-text">${retenir}</div></div>` : ''}
           ${tagsHTML}
         </div>
       </div>`;
   } else {
     document.getElementById(`fb-${id}`).innerHTML = `
       <div class="feedback ko">
-        <div class="feedback-top">✗ Mauvaise réponse</div>
+        <div class="feedback-top">✗ Mauvaise réponse — voici pourquoi</div>
         <div class="feedback-body">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:.4rem">La bonne réponse</div>
           <div class="feedback-key">✓ ${q.opts[q.ans]}</div>
-          <div class="feedback-expl">${q.expl}</div>
+          <div class="feedback-section"><div class="feedback-section-lbl">Pourquoi c'est correct</div><div class="feedback-section-body">${keyPhrase}</div></div>
+          ${mechPhrase ? `<div class="feedback-section"><div class="feedback-section-lbl">Mécanisme en détail</div><div class="feedback-section-body">${mechPhrase}</div></div>` : ''}
+          ${retenir ? `<div class="feedback-why-box"><div style="font-family:var(--mono);font-size:9px;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">Ce qu'il faut absolument retenir</div><div class="feedback-why-text">${retenir}</div></div>` : ''}
+          <div class="feedback-wrong-ans"><div class="feedback-wrong-label">Pourquoi les autres options sont incorrectes</div>Ta réponse ne correspond pas à la définition standard — relis la fiche de révision correspondante pour bien ancrer ce concept.</div>
           ${tagsHTML}
         </div>
       </div>`;
   }
   const label = s.current + 1 < s.questions.length ? 'Suivant →' : 'Résultat →';
+
   document.getElementById(`nxt-${id}`).innerHTML = `<button class="next-btn" onclick="nextQcm('${id}')">${label}</button>`;
 }
 
@@ -1996,11 +2092,43 @@ nmap -A 192.168.1.10            # Scan complet</pre><h3>Règle absolue</h3><p>Ja
 ];
 
 // FICHES FUNCTIONS
+const FICHES_META = {
+  f001:{why:"Le modèle OSI est LA BASE du dépannage réseau. Chaque technicien doit penser en couches : câble KO → couche 1, IP incorrecte → couche 3, application qui plante → couche 7. C'est la méthode universelle pour diagnostiquer N'IMPORTE quel problème réseau.",memo:"Mnémotechnique bas→haut : Physique Liaison Réseau Transport Session Présentation Application. Du haut vers le bas pour encapsuler, du bas vers le haut pour dépanner. Commencer TOUJOURS par la couche 1 : est-ce que le câble est branché ?"},
+  f002:{why:"TCP/IP est le vrai protocole d'Internet. OSI est théorique, TCP/IP est concret. En entreprise tu travailles avec TCP/IP tous les jours : SSH (TCP 22), HTTP (TCP 80), HTTPS (TCP 443), DNS (UDP 53). Comprendre TCP vs UDP permet de choisir le bon protocole selon le besoin.",memo:"TCP = fiable mais lent : accuse réception de chaque paquet, retransmission si perte (handshake 3-way SYN/SYN-ACK/ACK). UDP = rapide mais sans garantie : pas de confirmation. Streaming vidéo → UDP (une image perdue ne bloque pas tout). Transfert de fichier → TCP (aucun bit ne doit être perdu)."},
+  f003:{why:"Le subnetting est obligatoire à l'examen TSSR. Découper un réseau en sous-réseaux permet d'optimiser l'espace d'adressage, d'isoler les segments et de sécuriser l'architecture. Indispensable pour concevoir n'importe quelle infrastructure réseau.",memo:"Formule : hôtes utiles = 2^(32-CIDR) - 2. Toujours -2 car : première adresse = adresse réseau (ex: 192.168.1.0/24), dernière = broadcast (ex: 192.168.1.255). /24 = 254 hôtes. /25 = 126 hôtes. /26 = 62. /27 = 30. /30 = 2 hôtes (liens point-à-point WAN)."},
+  f004:{why:"Les VLANs permettent de séparer le trafic réseau SANS déployer de matériel supplémentaire. C'est une isolation logique sur les mêmes switches physiques. Indispensable pour séparer en entreprise : serveurs, VoIP, postes de travail, invités, management.",memo:"Un VLAN = un sous-réseau = un domaine de broadcast distinct. Port ACCESS = 1 seul VLAN non tagué (pour PC ou imprimante). Port TRUNK = plusieurs VLANs tagués 802.1Q (pour switch vers switch). Le tag 802.1Q ajoute 4 octets dans la trame Ethernet avec l'ID du VLAN (1-4094)."},
+  f005:{why:"DHCP automatise l'attribution d'adresses IP. Sans DHCP, chaque machine doit être configurée manuellement. En entreprise avec 500 postes, c'est indispensable. DHCP Relay (ip helper-address) permet au serveur DHCP d'être dans un VLAN différent des clients.",memo:"DORA : Discover (client cherche un serveur DHCP en broadcast), Offer (serveur propose une IP), Request (client confirme vouloir cette IP), Acknowledge (serveur valide le bail). APIPA 169.254.x.x = le client n'a pas trouvé de serveur DHCP → problème réseau ou Relay DHCP manquant."},
+  f006:{why:"DNS est l'annuaire d'Internet ET d'Active Directory. Sans DNS interne correct, AD est complètement cassé : les DC ne se trouvent pas, les clients ne peuvent pas se connecter au domaine. Règle absolue : jamais de 8.8.8.8 comme DNS dans un domaine AD. Toujours pointer vers les DC.",memo:"Types essentiels : A (nom vers IPv4), AAAA (nom vers IPv6), MX (serveur mail), CNAME (alias), PTR (IP vers nom pour zone inverse), SRV (service, utilisé par AD pour localiser les DC via _ldap._tcp et _kerberos._tcp). nslookup et dig = tes meilleurs outils de diagnostic DNS."},
+  f007:{why:"Le routage détermine le chemin des paquets entre réseaux différents. Route statique = configuration manuelle adaptée aux petits réseaux simples. OSPF = protocole dynamique qui recalcule automatiquement les routes en cas de panne. En grande entreprise = OSPF obligatoire.",memo:"Route statique Cisco : ip route [réseau_cible] [masque] [IP_nexthop]. OSPF utilise l'algorithme Dijkstra (SPF = Shortest Path First). 'show ip ospf neighbor' = voir les voisins OSPF établis. Si un lien tombe, OSPF recalcule et reconverge en quelques secondes automatiquement."},
+  f008:{why:"ARP et ICMP sont les fondations du diagnostic réseau. La méthodologie couche par couche (ping loopback puis local puis gateway puis distant puis DNS) permet de localiser EXACTEMENT où un problème réseau commence. C'est LA méthode que tout technicien TSSR doit maîtriser.",memo:"ARP = résout IP vers MAC sur le LAN local. ICMP type 0/8 = ping (Echo Reply/Request). ICMP type 11 = TTL dépassé (base du traceroute). ICMP type 3 = destination inaccessible (route manquante ou bloquée par firewall). 'arp -a' Windows et 'ip neigh' Linux pour voir la table ARP locale."},
+  f009:{why:"Active Directory centralise l'authentification et la gestion de tous les objets d'un SI Windows. Sans AD = chaque serveur gère ses propres comptes. Avec AD = 1 seul compte pour tout le SI. Les 5 rôles FSMO sont uniques dans un domaine et critiques pour le bon fonctionnement d'AD.",memo:"5 rôles FSMO : PDC Emulator (heure du domaine + synchronisation mots de passe), RID Master (IDs uniques pour chaque objet AD), Infrastructure Master (références inter-domaines), Schema Master (modification structure AD), Domain Naming Master (ajout ou suppression de domaines). Minimum 2 DC en production. IP fixe obligatoire sur tous les DC."},
+  f010:{why:"Les GPO permettent de configurer des centaines de machines en quelques clics depuis un seul endroit : restrictions logicielles, paramètres de sécurité, scripts de démarrage, mappages de lecteurs réseau, configuration d'imprimantes. Sans GPO = tout se configure manuellement machine par machine.",memo:"LSDOU = Local puis Site puis Domaine puis OU. La GPO la plus proche (OU) a la priorité par défaut. gpupdate /force = applique immédiatement les GPO sans attendre le prochain refresh (90 min par défaut). gpresult /r = affiche TOUTES les GPO appliquées à l'utilisateur et à la machine. Enforced (No Override) l'emporte toujours."},
+  f011:{why:"Kerberos est le protocole d'authentification d'AD. Il est sécurisé car le mot de passe ne circule JAMAIS sur le réseau — uniquement des tickets chiffrés à durée limitée. Comprendre Kerberos aide à diagnostiquer les échecs d'authentification et à comprendre les attaques Golden Ticket.",memo:"TGT = Ticket Granting Ticket (valide 10h, permet d'obtenir des tickets de service). ST = Service Ticket (valide 10 min pour accéder à une ressource). Kerberos échoue si : DNS KO (SRV introuvables), horloge décalée de plus de 5 minutes (vérifier PDC Emulator !), ou si un seul DC existe. 'klist' = voir les tickets actifs."},
+  f012:{why:"AGDLP est LA méthode standard Microsoft pour gérer les permissions en entreprise. Elle évite de donner des droits directs aux utilisateurs, ce qui rendrait l'administration impossible à grande échelle. Chaque niveau du modèle AGDLP a un rôle précis et clair.",memo:"A=Account (l'utilisateur) - G=Global Group (regroupe le service, ex: GG-Finance) - DL=Domain Local (reçoit les permissions NTFS, ex: DL-Finance-RW) - P=Permission NTFS. En pratique : jdupont appartient à GG-Finance qui est dans DL-Finance-RW qui a la permission Modify sur le partage Finance. NTFS = droits réels stockés sur le disque."},
+  f013:{why:"La virtualisation permet de faire tourner plusieurs serveurs sur un seul serveur physique, réduisant les coûts matériels et simplifiant l'administration. En entreprise, 90% des serveurs sont virtualisés. TSSR = maîtriser au moins un hyperviseur de Type 1.",memo:"Type 1 (bare-metal) = hyperviseur directement sur le hardware, performance maximale : ESXi, Hyper-V, Proxmox. Type 2 (hosted) = sur un OS existant, pour les tests et la formation uniquement : VirtualBox, VMware Workstation. Un snapshot n'est PAS une sauvegarde. Ne jamais garder un snapshot plus de 48h en production : dégrade les performances."},
+  f014:{why:"VMware ESXi domine le marché enterprise avec vCenter pour la gestion centralisée. vMotion permet de migrer des VMs SANS la moindre coupure de service. HA redémarre automatiquement les VMs si un hôte physique tombe. Ces fonctions sont indispensables pour respecter les SLA de disponibilité.",memo:"vMotion = migration à chaud (VM continue de tourner pendant la migration). HA = High Availability (redémarre les VMs sur un autre hôte si le premier tombe). DRS = Distributed Resource Scheduler (équilibre la charge automatiquement entre les hôtes). Storage vMotion = déplace le stockage à chaud. vCenter = interface centralisée pour tout gérer."},
+  f015:{why:"Proxmox VE est la solution open-source qui monte en puissance en remplacement d'ESXi. Gratuit, basé sur Debian, il supporte à la fois les VMs (KVM) et les containers légers (LXC). Son système de fichiers ZFS est auto-réparant. De nombreuses PME l'adoptent à la place de VMware.",memo:"pvecm create NOM = créer un nouveau cluster. pvecm add IP = ajouter un noeud au cluster. Minimum 3 noeuds pour garantir le quorum (éviter le split-brain). ZFS = système de fichiers avec auto-healing, checksums et snapshots intégrés. LXC = containers Linux légers qui partagent le kernel de l'hôte (démarrage en secondes)."},
+  f016:{why:"Hyper-V est natif dans Windows Server donc naturel en environnement 100% Microsoft. PowerShell permet d'automatiser entièrement la gestion des VMs. Le Failover Cluster avec Hyper-V assure la haute disponibilité des VMs en cas de panne d'un hôte.",memo:"3 types de vSwitch : Externe (VM vers réseau physique), Interne (VM vers hôte seulement), Privé (VM vers VM uniquement). Toujours utiliser Generation 2 : UEFI, GPT, Secure Boot, meilleures performances. Les snapshots Hyper-V = Checkpoints. Checkpoint-VM NomVM -SnapshotName avant-maj pour créer un point de restauration."},
+  f017:{why:"Le firewall est la première ligne de défense périmétrique. La DMZ isole les serveurs publics (web, mail) du LAN interne en créant une zone tampon. VPN sécurise les accès distants des employés. Comprendre ces mécanismes est fondamental pour toute infrastructure sécurisée.",memo:"Stateless = analyse chaque paquet isolément sans contexte (peu sécurisé). Stateful = suit l'état des connexions TCP (sécurité réelle). L7/NGFW = analyse le contenu applicatif en profondeur. DMZ = Internet vers Firewall vers DMZ (serveurs web/mail) vers Firewall vers LAN. WireGuard = nouveau standard VPN ultra-performant basé sur des clés publiques/privées."},
+  f018:{why:"Les attaques AD sont les plus fréquentes et les plus dévastatrices en entreprise. Pass-the-Hash, Kerberoasting et DCSync permettent de prendre le contrôle total d'un SI SANS connaître les mots de passe en clair. Le hardening AD est une priorité absolue en sécurité.",memo:"Pass-the-Hash = utilise le hash NTLM sans connaître le mot de passe clair. Kerberoasting = demande des tickets de service et les craque hors ligne. Golden Ticket = TGT forgé avec le hash du compte KRBTGT = accès TOTAL pendant 10 ans si non détecté. Pour annuler un Golden Ticket : changer le mot de passe KRBTGT DEUX FOIS. LAPS = mots de passe admin locaux uniques et rotatifs automatiquement."},
+  f019:{why:"Le SOC centralise la détection et la réponse aux incidents. Sans SOC, les attaques ne sont découvertes que des semaines après le début de l'intrusion. EDR détecte les comportements anormaux sur les endpoints. SIEM corrèle des milliers d'événements pour identifier les menaces.",memo:"SOC L1 = triage des alertes. L2 = investigation et analyse. L3 = threat hunting proactif. EDR détecte par comportements (pas seulement par signatures comme l'antivirus). SIEM = Security Information and Event Management, agrège TOUS les logs de toutes les sources et corrèle pour trouver les attaques. MITRE ATT&CK = référentiel mondial des techniques d'attaque."},
+  f020:{why:"SNMP est LE protocole universel de supervision réseau. Tous les équipements réseau le supportent. SNMPv3 est obligatoire en production car v1 et v2c transmettent les community strings en clair sur le réseau, ce qui est un risque majeur de sécurité.",memo:"v1/v2c = community string en clair (public et private par défaut = DANGER). v3 = authentification SHA/MD5 + chiffrement AES/DES. OID = adresse unique d'une variable (ex: 1.3.6.1.2.1.1.5.0 = sysName). MIB = fichier décrivant tous les OID disponibles. Trap = l'équipement envoie une alerte proactivement (UDP port 162). Polling = supervision tire l'info (UDP port 161)."},
+  f021:{why:"Sans supervision, tu découvres les pannes QUAND les utilisateurs appellent le helpdesk. Centreon et Zabbix permettent de détecter les problèmes AVANT qu'ils impactent le service. Les SLA (engagements de disponibilité 99,9%) dépendent directement d'une supervision efficace.",memo:"États Centreon : OK (tout va bien) puis WARNING (seuil d'alerte dépassé) puis CRITICAL (intervention urgente) puis UNKNOWN (check impossible à exécuter). Zabbix : Host (équipement supervisé) + Item (métrique collectée) + Trigger (condition d'alerte) + Action (notification ou commande de remédiation). Check actif = l'agent pousse les données. Check passif = le serveur tire les données (SNMP ou ping)."},
+  f022:{why:"Linux est omniprésent sur les serveurs en entreprise : Apache, Nginx, MySQL, PostgreSQL, Docker, Kubernetes tournent quasi-exclusivement sur Linux. Maîtriser l'arborescence et les commandes de base est indispensable pour administrer ces serveurs et diagnostiquer des problèmes.",memo:"/etc = tous les fichiers de configuration système. /var/log = tous les logs. /home = répertoires personnels des utilisateurs. /tmp = fichiers temporaires effacés au reboot. /usr/bin = binaires des programmes utilisateurs. chmod 755 = rwxr-xr-x. chmod 644 = rw-r--r-- (fichiers de config standard). chmod 777 = DANGEREUX : tout le monde peut tout lire/écrire/exécuter."},
+  f023:{why:"systemd gère tous les services Linux modernes. Sans maîtrise de systemctl et journalctl, tu ne peux pas administrer un serveur Linux. Savoir démarrer/arrêter/activer un service et consulter ses logs est la base absolue que tout admin TSSR doit connaître par coeur.",memo:"systemctl start/stop/restart/status/enable/disable NomService. 'enable' = active le démarrage automatique au boot SANS démarrer maintenant. 'start' = démarre maintenant SANS activer le boot auto. journalctl -u NomService = logs du service. -f = suivi en temps réel. -b = boot actuel seulement. APRÈS modification d'un fichier .service : systemctl daemon-reload OBLIGATOIRE avant de relancer."},
+  f024:{why:"Les permissions Linux protègent les fichiers des accès non autorisés. SSH sécurisé par clé publique est le standard de l'industrie pour accéder aux serveurs sans mot de passe (plus sécurisé ET plus pratique). Fail2ban protège automatiquement contre les attaques bruteforce.",memo:"r=4, w=2, x=1. chmod 755 = rwxr-xr-x (standard pour les scripts). chmod 644 = rw-r--r-- (standard pour les fichiers de config). chmod 700 = rwx------ (privé au propriétaire uniquement). ssh-keygen -t ed25519 = génère une paire de clés modernes. ssh-copy-id user@serveur = dépose la clé publique sur le serveur cible. PermitRootLogin no et PasswordAuthentication no = configuration SSH sécurisée minimale indispensable."},
+  f025:{why:"Les sauvegardes sont LA DERNIÈRE ligne de défense contre ransomware, pannes matérielles et erreurs humaines. La règle 3-2-1 est le standard industriel. Rappel crucial : le RAID NE PROTÈGE PAS contre les ransomwares, les suppressions accidentelles ou les corruptions logicielles.",memo:"Complète = tout sauvegarder (lente à exécuter, simple à restaurer : 1 fichier). Différentielle = depuis la dernière complète (restauration = complète + 1 différentielle). Incrémentielle = depuis la dernière sauvegarde quelle qu'elle soit (très rapide à faire, restauration longue = complète + TOUTES les incréments dans l'ordre). RTO = durée max d'interruption acceptable. RPO = quantité max de données perdues acceptable."},
+  f026:{why:"Le RAID protège contre les pannes de disque dur mais N'EST PAS une sauvegarde. Un ransomware chiffre aussi les données en RAID. RAID 5 est le standard PME (bon compromis performance et sécurité). RAID 10 pour les bases de données critiques qui nécessitent les meilleures performances en lecture/écriture.",memo:"RAID 0 = performances max mais 0 tolérance panne. RAID 1 = miroir parfait (50% capacité, supporte 1 panne). RAID 5 = parité distribuée (minimum 3 disques, supporte 1 panne, capacité = n-1 disques). RAID 6 = double parité (minimum 4 disques, supporte 2 pannes simultanées). RAID 10 = miroir + stripe (minimum 4 disques, 50% capacité, performance BDD). NAS = partage fichiers SMB/NFS. SAN = stockage bloc FC/iSCSI."},
+  f027:{why:"NTFS vs SMB est souvent mal compris. NTFS = droits réels stockés sur le disque (s'appliquent toujours, même en local). SMB = premier filtre réseau uniquement. En production, toujours gérer les droits via NTFS car les droits SMB ne s'appliquent que lors d'un accès via le réseau.",memo:"AGDLP pour les partages : Users vers GG (service) vers DL (permission NTFS). ABE (Access-Based Enumeration) = cache dans l'explorateur les dossiers auxquels l'utilisateur n'a pas accès. DFS-N = namespace logique unique (\\\\domaine\\DATA peut pointer vers différents serveurs). DFS-R = réplication entre sites. SMBv1 = JAMAIS (vulnérable à EternalBlue, WannaCry, NotPetya)."},
+  f028:{why:"PowerShell est LE langage d'administration Windows. Tout ce qui se fait graphiquement peut être scripté et automatisé en PowerShell. Le remoting (PSRemoting) permet d'exécuter des commandes sur des centaines de machines en parallèle depuis un seul point d'administration.",memo:"Pipe | = passe des OBJETS .NET d'une commande à l'autre (pas du texte brut comme sous Unix). Where-Object = filtrer. Select-Object = choisir les propriétés à afficher. Sort-Object = trier. Get-Help NomCommande -Full = aide complète. Invoke-Command -ComputerName SRV01 { Get-Service } = exécuter à distance. $ErrorActionPreference = Stop = arrêter le script sur toute erreur."},
+  f029:{why:"Bash permet d'automatiser les tâches répétitives Linux : sauvegardes nocturnes, déploiements, monitoring, maintenance. set -euo pipefail est la bonne pratique professionnelle qui évite les erreurs silencieuses dans les scripts. Cron planifie l'exécution automatique.",memo:"$? = code retour de la dernière commande (0 = succès, non-0 = erreur). $0 = nom du script. $1, $2... = arguments positionnels. set -e = arrêt sur erreur. set -u = arrêt si variable non définie. set -o pipefail = arrêt si erreur dans un pipe. Cron : 'minute heure jour mois jourSemaine commande'. Exemple : 0 2 * * * = tous les jours à 2h du matin."},
+  f030:{why:"Le pentest éthique permet d'évaluer la sécurité d'un système avec autorisation explicite. SANS contrat écrit et périmètre défini, c'est une infraction pénale (accès frauduleux à un système informatique, article 323-1 du Code Pénal). La méthodologie PTES est le standard de l'industrie.",memo:"PTES = Pre-engagement (contrat OBLIGATOIRE) puis Reconnaissance (OSINT et Nmap) puis Enumération puis Exploitation puis Post-exploitation puis Rapport. Outils TSSR : Nmap (scan ports et services), Nessus/OpenVAS (scan de vulnérabilités), Nikto (scan web), Metasploit (exploitation), Wireshark (capture réseau). Toujours horodater et documenter chaque action avec screenshots."}
+};
+
 let currentFiche = null;
 
 function initFiches() {
   renderFichesSidebar('');
-  if (FICHES.length > 0) showFiche(FICHES[0].id);
 }
 
 function renderFichesSidebar(filter) {
@@ -2012,7 +2140,7 @@ function renderFichesSidebar(filter) {
   ) : FICHES;
   const cats = {};
   filtered.forEach(f => { if(!cats[f.cat]) cats[f.cat]=[]; cats[f.cat].push(f); });
-  let sidebar = '<input class="fiches-search" id="fiche-search" placeholder="🔍 Rechercher..." oninput="renderFichesSidebar(this.value)" value="' + filter.replace(/"/g,'&quot;') + '">';
+  let sidebar = '<input class="fiches-search" id="fiche-search" placeholder="&#x1F50D; Rechercher..." oninput="renderFichesSidebar(this.value)" value="' + filter.replace(/"/g,'&quot;') + '">';
   Object.entries(cats).forEach(([cat, fiches]) => {
     sidebar += '<div class="fiches-cat-label">' + cat + '</div>';
     fiches.forEach(f => sidebar += '<div class="fiches-nav-item' + (f.id===currentFiche?' active':'') + '" onclick="showFiche(\'' + f.id + '\')">' + f.title + '</div>');
@@ -2021,22 +2149,76 @@ function renderFichesSidebar(filter) {
   if(currentFiche) {
     const exists = filtered.find(f => f.id === currentFiche);
     if (exists) showFiche(currentFiche);
-    else if (filtered.length > 0) showFiche(filtered[0].id);
+    else if (filtered.length > 0) showFicheWelcome();
+  } else {
+    showFicheWelcome();
   }
+}
+
+function showFicheWelcome() {
+  const contentEl = document.getElementById('fiche-content');
+  if (!contentEl) return;
+  const cats = {};
+  FICHES.forEach(f => { if(!cats[f.cat]) cats[f.cat]=[]; cats[f.cat].push(f); });
+  const catCount = Object.keys(cats).length;
+  contentEl.innerHTML =
+    '<div class="fiche-welcome-wrap">' +
+      '<div class="fiche-welcome-icon">&#x1F4DA;</div>' +
+      '<div class="fiche-welcome-title">Fiches de r&eacute;vision TSSR</div>' +
+      '<div class="fiche-welcome-sub">30 fiches couvrant tous les domaines du programme TSSR. Chaque fiche explique <strong>comment &ccedil;a fonctionne</strong>, <strong>pourquoi c&rsquo;est important</strong> en production, et une <strong>astuce m&eacute;mo</strong> pour retenir facilement.</div>' +
+      '<div class="fiche-welcome-grid">' +
+        '<div class="fiche-welcome-card"><div class="fiche-welcome-val">' + FICHES.length + '</div><div class="fiche-welcome-lbl">Fiches</div></div>' +
+        '<div class="fiche-welcome-card"><div class="fiche-welcome-val">' + catCount + '</div><div class="fiche-welcome-lbl">Cat&eacute;gories</div></div>' +
+        '<div class="fiche-welcome-card"><div class="fiche-welcome-val">&#x221E;</div><div class="fiche-welcome-lbl">&Agrave; apprendre</div></div>' +
+      '</div>' +
+      '<div style="margin-top:2rem;text-align:left;max-width:420px">' +
+        '<div class="fiche-block-label" style="margin-bottom:.75rem">Comment utiliser les fiches</div>' +
+        '<ul class="fiche-how-list">' +
+          '<li>S&eacute;lectionne une fiche dans la colonne de gauche</li>' +
+          '<li>Lis le <span style="color:var(--cyan);font-weight:600">contexte professionnel</span> pour comprendre pourquoi ce sujet compte en production</li>' +
+          '<li>&Eacute;tudie le contenu technique avec les tableaux et exemples</li>' +
+          '<li>M&eacute;morise l&rsquo;<span style="color:var(--amber);font-weight:600">astuce m&eacute;mo</span> pour ancrer le concept rapidement</li>' +
+          '<li>Va faire le QCM correspondant pour tester tes connaissances !</li>' +
+        '</ul>' +
+      '</div>' +
+    '</div>';
 }
 
 function showFiche(id) {
   currentFiche = id;
   const f = FICHES.find(x => x.id === id);
   if(!f) return;
+  const meta = FICHES_META[id] || {};
+  const idx = FICHES.findIndex(x => x.id === id) + 1;
   const contentEl = document.getElementById('fiche-content');
   if (contentEl) {
-    contentEl.innerHTML = '<div class="fiches-badge">' + f.cat + '</div><div class="fiches-title">' + f.title + '</div>' + f.content;
+    let html = '<div class="fiche-hero">';
+    html += '<div class="fiche-hero-meta">';
+    html += '<span class="fiche-cat-badge">' + f.cat + '</span>';
+    html += '<span class="fiche-num-badge">Fiche ' + String(idx).padStart(2,'0') + ' / ' + FICHES.length + '</span>';
+    html += '</div>';
+    html += '<div class="fiche-hero-title">' + f.title + '</div>';
+    html += '</div>';
+    if (meta.why) {
+      html += '<div class="fiche-block">';
+      html += '<div class="fiche-block-label">Pourquoi c&rsquo;est important en production</div>';
+      html += '<div class="fiche-why-box"><div class="fiche-why-label">Contexte professionnel</div><div class="fiche-why-text">' + meta.why + '</div></div>';
+      html += '</div>';
+    }
+    html += '<div class="fiche-block"><div class="fiche-block-label">Contenu de la fiche</div>' + f.content + '</div>';
+    if (meta.memo) {
+      html += '<div class="fiche-block">';
+      html += '<div class="fiche-block-label">Astuce m&eacute;mo &mdash; pour retenir rapidement</div>';
+      html += '<div class="fiche-memo-box"><div class="fiche-memo-label">&#x1F4A1; M&eacute;mo</div><div class="fiche-memo-text">' + meta.memo + '</div></div>';
+      html += '</div>';
+    }
+    contentEl.innerHTML = html;
   }
   document.querySelectorAll('.fiches-nav-item').forEach(el => {
     el.classList.toggle('active', el.getAttribute('onclick') === "showFiche('" + id + "')");
   });
 }
+
 
 
 // ============================================================
@@ -4654,6 +4836,7 @@ function adminTab(tab) {
   if (tab === 'online') adminLoadOnline();
   if (tab === 'logs') adminLoadLogs();
   if (tab === 'announce') adminLoadAnnounceHistory();
+  if (tab === 'troll') { /* rien à charger, tout est statique */ }
 }
 
 async function adminLoadOverview() {
@@ -4863,6 +5046,94 @@ async function adminCheckAnnounces() {
   } catch(e) {}
 }
 
+// ============================================================
+// SCREAMER — Envoi et réception en temps réel
+// ============================================================
+let _lastScreamerCheck = 0;
+
+async function adminSendScreamer() {
+  const statusEl = document.getElementById('troll-status');
+  const ts = Date.now();
+  const screamer = { ts, sent_by: 'admin' };
+  if (statusEl) { statusEl.className = 'troll-status-box show sent'; statusEl.textContent = '⏳ Envoi en cours...'; }
+  const r = await sbQuery('user_data','POST',{
+    user_id: '00000000-0000-0000-0000-000000000002',
+    data_key: 'screamer_' + ts,
+    data_value: screamer
+  },'on_conflict=user_id,data_key');
+  if (statusEl) {
+    if (r.ok) {
+      statusEl.className = 'troll-status-box show sent';
+      statusEl.textContent = '😱 Screameur envoyé à tous les utilisateurs connectés !';
+    } else {
+      statusEl.className = 'troll-status-box show ok';
+      statusEl.textContent = '❌ Erreur lors de l\'envoi. Vérifie la connexion Supabase.';
+    }
+    setTimeout(() => { statusEl.className = 'troll-status-box'; }, 5000);
+  }
+}
+
+function showScreamer() {
+  const overlay = document.getElementById('screamer-overlay');
+  if (!overlay) return;
+  // Son généré via Web Audio API (bruit fort et aigu)
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    // Oscillateur 1 : aigu fort
+    const osc1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    osc1.type = 'sawtooth';
+    osc1.frequency.setValueAtTime(440, ctx.currentTime);
+    osc1.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1);
+    osc1.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.3);
+    gain1.gain.setValueAtTime(1.5, ctx.currentTime);
+    gain1.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.5);
+    osc1.connect(gain1);
+    gain1.connect(ctx.destination);
+    osc1.start(ctx.currentTime);
+    osc1.stop(ctx.currentTime + 1.5);
+    // Bruit blanc en couche
+    const bufferSize = ctx.sampleRate * 1.5;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+    const noise = ctx.createBufferSource();
+    const gainN = ctx.createGain();
+    noise.buffer = buffer;
+    gainN.gain.setValueAtTime(0.8, ctx.currentTime);
+    gainN.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.5);
+    noise.connect(gainN);
+    gainN.connect(ctx.destination);
+    noise.start(ctx.currentTime);
+  } catch(e) {}
+  overlay.classList.add('show');
+  setTimeout(() => hideScreamer(), 6000);
+}
+
+function hideScreamer() {
+  const overlay = document.getElementById('screamer-overlay');
+  if (overlay) overlay.classList.remove('show');
+}
+
+async function checkScreamer() {
+  try {
+    const r = await sbQuery('user_data','GET',null,
+      'user_id=eq.00000000-0000-0000-0000-000000000002&data_key=like.screamer_*&select=data_key,data_value&order=updated_at.desc&limit=3'
+    );
+    if (!r.ok || !Array.isArray(r.data)) return;
+    const saved = parseInt(localStorage.getItem('tssr_last_screamer')||'0');
+    let newest = saved;
+    r.data.forEach(row => {
+      const s = row.data_value;
+      if (s && s.ts && s.ts > saved) {
+        if (s.ts > newest) newest = s.ts;
+        showScreamer();
+      }
+    });
+    if (newest > saved) localStorage.setItem('tssr_last_screamer', String(newest));
+  } catch(e) {}
+}
+
 // Vérification si l'utilisateur est bloqué (appelée périodiquement)
 async function checkIfBlocked() {
   const u = getCurrentUser();
@@ -4917,6 +5188,9 @@ async function saveUserIP(userId) {
   // Annonces pour tous
   setInterval(adminCheckAnnounces, 20000);
   setTimeout(adminCheckAnnounces, 3000);
+  // Vérification screameur (poll toutes les 5s pour réactivité)
+  setInterval(checkScreamer, 5000);
+  setTimeout(checkScreamer, 4000);
   // Le bouton admin est TOUJOURS caché au démarrage
   // Il s'affiche uniquement après adminOpen()
   const ab = document.getElementById('admin-btn');
